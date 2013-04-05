@@ -17,8 +17,8 @@ DIVISION = os.environ.get("MLB_DIVISION", "WEST")
 if __name__ == "__main__":
     logging.info('Starting bot')
 
-    assert "REDDIT_USERNAME" in os.environ, "REDDIT_USERNAME envvar required"
-    assert "REDDIT_PASSWORD" in os.environ, "REDDIT_PASSWORD envvar required"
+    assert "REDDIT_USERNAME" in os.environ, "REDDIT_USERNAME required"
+    assert "REDDIT_PASSWORD" in os.environ, "REDDIT_PASSWORD required"
 
     # Initiate a reddit session
     r = reddit.Client(os.environ["REDDIT_USERNAME"],
