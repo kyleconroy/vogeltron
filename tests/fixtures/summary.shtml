@@ -1,0 +1,2374 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/website" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" lang="en">
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8">
+  <script>
+/*
+ * JS Redirection Mobile
+ *
+ * Developed by
+ * Sebastiano Armeli-Battana (@sebarmeli) - http://www.sebastianoarmelibattana.com
+ * Release under the MIT licence
+ */
+if(!window.SA){window.SA={}}SA.redirection_mobile=function(d){var b=function(k){var j=new Date();j.setTime(j.getTime()+k);return j};var i=function(o){if(!o){return}var j=document.location.search,p=j&&j.substring(1).split("&"),l=0,n=p.length;for(;l<n;l++){var k=p[l],m=k&&k.substring(0,k.indexOf("="));if(m===o){return k.substring(k.indexOf("=")+1,k.length)}}};var f=navigator.userAgent.toLowerCase(),h="false",g="true",d=d||{};redirection_param=d.redirection_paramName||"mobile",redirection_param_long=d.redirection_paramName_long||"mobile_long",mobile_prefix=d.mobile_prefix||"m",mobile_url=d.mobile_url,mobile_protocol=d.mobile_scheme?d.mobile_scheme+":":document.location.protocol,host=document.location.host,queryValue=i(redirection_param),queryValue_long=i(redirection_param_long),mobile_host=mobile_url||(mobile_prefix+"."+(!!host.match(/^www./i)?host.substring(4):host)),cookie_hours=d.cookie_hours||1,isUAMobile=!!(f.match(/(iPhone|iPod|blackberry|android|googlebot-mobile|googlebotmobile|htc|kindle|lg|midp|mmp|nokia|opera mini|palm|pocket|psp|sgh|smartphone|symbian|treo mini|Playstation Portable|SonyEricsson|Samsung|MobileExplorer|PalmSource|Benq|Windows Phone|Windows Mobile|IEMobile|Windows CE|Nintendo Wii)/i));if(queryValue_long===h){if(window.localStorage){window.localStorage.setItem(redirection_param_long,h)}else{document.cookie=redirection_param+"="+h+";expires="+b(3600*1000*cookie_hours*7*24*31).toUTCString()}}else{if((queryValue_long===g)||(queryValue===g)){if(window.localStorage){window.localStorage.setItem(redirection_param_long,g)}else{document.cookie=redirection_param+"="+h+";expires="+b(-3600*1000*cookie_hours*7*24*31).toUTCString()}if(window.localStorage){window.sessionStorage.setItem(redirection_param,g)}else{document.cookie=redirection_param+"="+h+";expires="+b(-3600*1000*cookie_hours*7*24*31).toUTCString()}}else{if(document.referrer.indexOf(mobile_host)>=0||queryValue===h){if(window.sessionStorage){window.sessionStorage.setItem(redirection_param,h)}else{document.cookie=redirection_param+"="+h+";expires="+b(3600*1000*cookie_hours).toUTCString()}}}}var a=(window.sessionStorage)?(window.sessionStorage.getItem(redirection_param)===h):false,e=(window.localStorage)?(window.localStorage.getItem(redirection_param_long)===h):false,c=document.cookie?(document.cookie.indexOf(redirection_param)>=0):false;if(isUAMobile&&!(c||a||e)){document.location.href=mobile_protocol+"//"+mobile_host}};
+SA.redirection_mobile({mobile_url:"m.bbref.com/m?p=XXleaguesXXNLXX2013.shtml",redirection_paramName:"mobile",redirection_paramName_long:"mobile_long",cookie_hours:6});
+</script> 
+
+  <!-- CRITEO -->
+<script type="text/javascript"> 
+var crtg_nid="1631"; 
+var crtg_cookiename="cto_usatd"; 
+function crtg_getCookie(c_name){var i,x,y,ARRcookies=document.cookie.split(";");for(i=0;i<ARRcookies.length;i++){x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);x=x.replace(/^\s+|\s+$/g,"");if(x==c_name){return unescape(y);}}return'';} var crtg_content=crtg_getCookie(crtg_cookiename);var crtg_rnd=Math.floor(Math.random()*99999999999);var crtg_url='http://rtax.criteo.com/delivery/rta/rta.js?netId='+escape(crtg_nid);crtg_url+='&cookieName='+escape(crtg_cookiename);crtg_url+='&rnd='+crtg_rnd;crtg_url+='&varName=crtg_content';var crtg_script=document.createElement('script');crtg_script.type='text/javascript';crtg_script.src=crtg_url;crtg_script.async=true;if(document.getElementsByTagName("head").length>0)document.getElementsByTagName("head")[0].appendChild(crtg_script);else if(document.getElementsByTagName("body").length>0)document.getElementsByTagName("body")[0].appendChild(crtg_script); 
+var crtg_ap=new Array();var crtg_cp=(crtg_content!=null&&crtg_content.length>0)?crtg_content.split(';'):null;if(crtg_cp){for(var crtg_kidx in crtg_cp){if(crtg_cp[crtg_kidx].length>0){var crtg_apa=crtg_cp[crtg_kidx].split('=');if(crtg_apa[1]==1){crtg_ap.push(crtg_apa[0].replace(/usatd/,''))}}}}
+</script>
+<!--  SYNCHRONOUS:googletag -->
+<script type="text/deferscript">
+  (function() {
+    var useSSL = 'https:' == document.location.protocol;
+    var src = (useSSL ? 'https:' : 'http:') +       '//www.googletagservices.com/tag/js/gpt.js';
+    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+  })();
+</script>
+<script type="text/deferscript">
+googletag.pubads().enableSyncRendering();
+googletag.pubads().setTargeting("usatcriteo",crtg_ap);
+</script>
+
+  <title>2013 National League  Season Summary  - Baseball-Reference.com</title>
+  <meta name="Description" content="Standings, Team and Player Statistics, Leaderboards, Award Winners, Trades, Minor Leagues, Fielding, Batting, Pitching, New Debuts">
+<script type="text/javascript">var sr_gzipEnabled = false;</script>
+<script type="text/javascript" src="http://d2ft4b0ve1aur1.cloudfront.net/js-307/sr.gzipcheck.js.jgz"></script>
+
+<noscript>
+  <link type="text/css" rel="stylesheet" href="http://d2ft4b0ve1aur1.cloudfront.net/css-307/sr-br-min.css">
+</noscript>
+<script type="text/javascript">
+(function () {
+    var sr_css_file = 'http://d2ft4b0ve1aur1.cloudfront.net/css-307/sr-br-min.css';
+    if (sr_gzipEnabled) {
+       sr_css_file = 'http://d2ft4b0ve1aur1.cloudfront.net/css-307/sr-br-min-gz.css';
+    }
+    var head = document.getElementsByTagName("head")[0];
+    if (head) {
+	var scriptStyles = document.createElement("link");
+	scriptStyles.rel = "stylesheet";
+	scriptStyles.type = "text/css";
+	scriptStyles.href = sr_css_file;
+	head.appendChild(scriptStyles);
+	//alert('adding css to header:'+sr_css_file);
+    }
+}());
+</script>
+
+
+  <meta property="fb:admins"     content="34208645" />
+  <meta property="fb:page_id"    content="10515271761" />
+  <meta property="og:site_name"  content="Baseball-Reference.com"> 
+  <meta property="og:image"      content="http://d2ft4b0ve1aur1.cloudfront.net/images-001/Baseball-Ref.png"> 
+  <meta itemprop="image"         content="http://d2ft4b0ve1aur1.cloudfront.net/images-001/Baseball-Ref.png">
+
+
+<div></div><!-- to prevent hangs on some browsers -->
+  <link rel="icon"          type="image/vnd.microsoft.icon" href="http://d2ft4b0ve1aur1.cloudfront.net/images-307/favicon-br.ico">
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://d2ft4b0ve1aur1.cloudfront.net/images-307/favicon-br.ico">
+
+
+<link rel="search"        type="application/opensearchdescription+xml" href="http://d2ft4b0ve1aur1.cloudfront.net/os-307/opensearch-br.xml" title="B-Ref Search">
+<!--[if lte IE 7 ]>
+<style type="text/css">
+.uni_holder { display: none; }
+</style>
+<![endif]-->
+<!--[if lte IE 6]>
+<style type="text/css">
+.hovermenu,.hovermenu_ajax,.sub_index,#quick_index {display:none!important}
+</style>
+<![endif]-->
+</head>
+
+<body onload="" class="tradu">
+<div id="page_container">
+ <div id="top_nav">
+<div id="site_header">
+ <div id="sr_header">
+  <div class="float_right clear_right">
+   <div class="logged_out width100 float_left">
+    <div style="position: relative;">
+      &nbsp;<span id="login_placeholder" style="display: none;"><a href="/my/auth.cgi" onclick="return sr_login_popup();">Login</a><span id="loginform_container"></span></span>
+    </div>
+   </div>
+   <div class="logged_in width100 float_left">
+       <span id="welcome" class="like_a"></span>
+     | <span class="acct_external"><a href="/my/auth.cgi?do=edit">Account</a></span>
+     | <span><a href="/my/auth.cgi?do=logout" onclick="return sr_logout()">Logout</a></span>
+   </div>
+
+    <a href="http://www.sports-reference.com">S-R</a>:
+    <strong>MLB</strong> |
+    <a href="http://www.basketball-reference.com">NBA</a> &#183;
+    <a href="http://www.sports-reference.com/cbb/">CBB</a> |
+    <a href="http://www.pro-football-reference.com">NFL</a> &#183;
+    <a href="http://www.sports-reference.com/cfb/">CFB</a> |
+    <a href="http://www.hockey-reference.com/">NHL</a> |
+    <a href="http://www.sports-reference.com/olympics/">Oly</a> |
+    <a href="http://www.sports-reference.com/blog/">Blog</a> &#183; 
+    <a href="http://www.sports-reference.com/feedback/">Q?</a>
+
+    <br>
+  </div>
+  
+  <div class="clearfix padding_top_half float_right clear_both">
+    <div class="padding_left_half float_right"><a class="sprite-twitter" title="Follow us on Twitter" href="http://twitter.com/baseball_ref"></a><a class="sprite-facebook" title="Become a Fan on FaceBook" href="http://www.facebook.com/Baseball.Reference"></a>
+    </div>
+    <div class="float_right">
+       <form method="get" id="f" name="f" action="/pl/player_search.cgi">
+         <input x-webkit-speech type="search" placeholder="click 'Tips' for shortcuts" id="search" name="search" class="search long"> 
+         <input type="submit" value="Search" class="submit">
+         <a class="padding_left_half small_text" href="/about/findstuff.shtml">Tips</a>
+       </form>
+    </div>
+  </div>
+  </div><!-- div#sr_header -->
+  <div class="float_left padding_bottom_half"><a href="/"><img src="http://d2ft4b0ve1aur1.cloudfront.net/images-904/Baseball-Ref.png" width=394 height=73 border="0" alt="Baseball-Reference.com"></a></div>
+ </div><!-- div#site_header -->
+
+
+
+<div id="quick_index">
+  <ul class="hovermenu_ajax navbar">
+   <li class=""><a href="/play-index/">play index</a><ul class="li_margin" id="header_playindex"></ul></li>
+   <li class=""><a href="/players/">players</a><ul class="li_margin" id="header_players"></ul></li>
+   <li class=""><a href="/teams/">teams</a><ul id="header_teams"></ul></li>
+   <li class="active"><a href="/leagues/">seasons</a><ul class="li_margin" id="header_leagues"></ul></li>
+   <li class=""><a href="/managers/">managers</a><ul class="li_margin" id="header_managers"></ul></li>
+   <li class=""><a href="/leaders/">leaders</a><ul class="li_margin" id="header_leaders"></ul></li>
+   <li class=""><a href="/awards/">awards</a><ul class="li_margin" id="header_awards"></ul></li>
+   <li class=""><a href="/postseason/">postseason</a><ul class="li_margin" id="header_postseason"></ul></li>
+   <li class=""><a href="/boxes/">boxscores</a><ul class="li_margin" id="header_boxes"></ul></li>
+   <li class=""><a href="/nlb/">nlb</a><ul class="li_margin" id="header_nlb"></ul></li>
+   <li class=""><a href="/minors/">minors</a><ul class="li_margin" id="header_minors"></ul></li>
+   <li class=""><a href="/draft/">draft</a><ul class="li_margin" id="header_draft"></ul></li>
+   <li class=""><a href="">more <span class="arrowsprite_bottom"></span></a>
+    <ul class="li_margin" id="header_more_links">
+	<li>
+	  <a class="bold_text" href="/my/">Your Account</a>:
+          <a href="/about/sponsorships.shtml">About Sponsorships</a> &nbsp;&#183;  
+          <a href="/my/SoonAvailable.shtml">Soon-to-Expire</a> &nbsp;&#183;  
+          <a href="/my/NewAvailable.shtml">Newly Expired Pages</a> &nbsp;&#183; 
+          <a href="/my/available.shtml">All Available Pages</a>
+	</li>
+	<li>
+	  <a class="bold_text" href="/about/">About</a>:
+	  <a href="/about/coverage.shtml">Data Coverage</a> &nbsp;&#183; 
+	  <a href="/about/total_zone.shtml">Total Zone</a> &nbsp;&#183; 
+	  <a href="/about/wpa.shtml">WPA</a> &nbsp;&#183; 
+          Glossaries:
+	  <a href="/about/bat_glossary.shtml">Bat</a>, 
+	  <a href="/about/pitch_glossary.shtml">Pitch</a>,
+	  <a href="/about/field_glossary.shtml">Field</a>,
+	  <a href="/about/pi_glossary.shtml">PI</a>,  &amp;
+	  <a href="/about/leader_glossary.shtml">Leaders &amp; HOF</a> &nbsp;&#183; 
+	  <a href="/about/sources.shtml">Sources &amp; Philosophy</a> 
+        </li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <a href="/about/sharing.shtml">Sharing Tool</a> &nbsp;&#183; 
+	  <a href="/about/contact.shtml">Contacts</a> &nbsp;&#183; 
+          <a href="/feedback/">Feedback</a> &nbsp;&#183; 
+          <a href="/about/findstuff.shtml">Search Engine Tips</a> &nbsp;&#183; 
+          <a href="/about/similarity.shtml">Sim Scores</a> &nbsp;&#183; 
+          <a href="/about/fielding_notes.shtml">Fielding Errata</a>
+	  <a href="/about/">....</a>
+	</li>
+        <li>
+          <a class="bold_text" href="http://widgets.sports-reference.com/">Widgets.Sports-Reference.com</a>: embed our content within your site.  Free and easy to use.
+        </li>
+        <li>
+          <a class="bold_text" href="/allstar/">All-Star</a>:
+          <a href="/allstar/">Box Scores</a>: <a href="/boxes/ALS/ALS201207100.shtml">2012</a> &nbsp;&#183; 
+          Registers: 
+          <a href="/allstar/bat-register.shtml">Batting</a> &amp; 
+          <a href="/allstar/pitch-register.shtml">Pitching</a> &nbsp;&#183;  
+          Leaders: 
+          <a href="/allstar/leaders_bat.shtml">Batting</a> &amp; 
+          <a href="/allstar/leaders_pitch.shtml">Pitching</a> &nbsp;&#183;  
+          Starters: 
+          <a href="/allstar/ALS-lineups.shtml">A.L.</a> &amp;
+          <a href="/allstar/NLS-lineups.shtml">N.L.</a> 
+        </li>
+        <li>
+          <a class="bold_text" href="/bullpen/">Bullpen Wiki</a>: Over 68,000 articles &nbsp;&#183; 
+          <a href="/bullpen/How_to_contribute">Contribute</a> &nbsp;&#183;  
+          <a href="/bullpen/What%27s_the_BR_Bullpen%3F">What is it?</a> &nbsp;&#183;  
+          <a href="/bullpen/Guidelines">Guidelines</a> &nbsp;&#183;  
+          <a href="/bullpen/Special:Random">Random Page</a> &nbsp;&#183;  
+          <a href="/bullpen/Special:RecentChanges">Recent Changes</a>
+        </li>
+	<li>
+	  <a class="bold_text" href="/friv/">Frivolities</a>:
+	  <a href="/friv/elo.cgi">Elo Rater</a> &nbsp;&#183;  
+          <a href="/random.cgi">Random Page</a> &nbsp;&#183;  
+          <a href="/friv/milestones.cgi">Milestones</a> &nbsp;&#183;  
+          <a href="/friv/trade-partners.cgi">Trade Partners</a> &nbsp;&#183;  
+          <a href="/friv/birthdays.cgi">Birthdays</a> &nbsp;&#183;  
+          <a href="/friv/dateofdeath.cgi">Date of Death</a>
+        </li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/friv/transactions.cgi">Transactions on a date</a> &nbsp;&#183;  
+          <a href="/friv/dictionary.shtml">English-to-Spanish Dictionary</a> &nbsp;&#183;  
+          <a href="/friv/multifranchise.shtml">Multi-Franchise Players</a> &nbsp;&#183;  
+          <a href="/friv/mitchell-report-players.shtml">Mitchell Report Players</a>
+        </li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/friv/coffee.shtml">Cups of Coffee</a> &nbsp;&#183;  
+          <a href="/friv/fieldPitch.shtml">Pitching Hitters</a> &nbsp;&#183;  
+          <a href="/friv/handedness.shtml">Handedness Search</a> &nbsp;&#183;  
+          <a href="/friv/placeofbirth.shtml">Place of Birth Search</a> &nbsp;&#183;  
+          <a href="/friv/20gameLosers.shtml">20-game Losers</a>
+	</li>
+        <li>
+          <span class="bold_text">Other:</span>
+          <a href="/previews/">Game Previews</a> &nbsp;&#183; 
+          <a href="/home-runs/">Home Run Log</a> &nbsp;&#183; 
+          <a href="/games/">Team Game Searches</a> &nbsp;&#183;  
+          <a href="/schools/">Schools Played For</a> &nbsp;&#183;  
+          <a href="/oracle/">Oracle of Baseball</a> &nbsp;&#183;  
+          <a href="/videos/">Videos</a> &nbsp;&#183; 
+          <a href="/bio/">Bio</a>
+        </li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/nonmlbpa/">Non-MLB or Non-playing Personnel</a> &nbsp;&#183;  
+          <a href="/travel/">Travel</a>  &nbsp;&#183;  
+          <a href="/feedback/">Feedback</a> &nbsp;&#183; 
+	  <a href="/linker/">Linker Tool</a> &nbsp;&#183; 
+	  <a href="/linker/newsfeed.shtml">Your Blog on our Newsfeeds</a> &nbsp;&#183; 
+          <a href="http://www.sports-reference.com/olympics/sports/BSB/">Olympics</a>
+        </li>
+	<li>
+         <a class="bold_text" href="http://www.sports-reference.com/blog/category/baseball-reference-com/">Blog</a>: News and notes about B-R
+        </li>
+
+    </ul>
+   </li>
+  </ul>
+</div>
+<div id="you_are_here">
+<p class="padding_left0"><a class="mobile_link" href="http://m.bbref.com/m?p=XXleaguesXXNLXX2013.shtml">Mobile Site</a> <strong>You Are Here</strong> &gt;
+<a href="http://www.baseball-reference.com/">Home</a> &gt;
+<a href="/leagues/">Leagues</a> &gt;
+<a href="/leagues/NL/">NL History</a> &gt;
+<a href="/leagues/NL/2013.shtml">2013 NL</a> | <a href="/leagues/AL/2013.shtml">AL</a> &gt;
+<strong>Team Stats &amp; Standings</strong></p>
+</div>
+<div class="site_news"><p><span class="bold_text">News:</span> <span class="poptip" tip="Our minor league section is off and running today with daily updated stats for every league currently underway."><a onClick="try { pageTracker._trackEvent('blog','click','area-yah'); } catch (err) {};"
+ href="http://www.baseball-reference.com/minors/league.cgi?year=2013">2013 Minor League Baseball League Encyclopedia</a> <span class="small_text">&raquo;<a href="http://www.sports-reference.com/blog/2013/04/2013-minor-league-baseball-league-encyclopedia/" onClick="try { pageTracker._trackEvent('blog','click','area-yah'); } catch (err) {};"
+>post</a></span></span></p></div>
+
+</div><!-- div#top_nav -->
+<div id="restofsite_launchpad" class="advertlaunchpad">
+<script type='text/deferscript'>
+googletag.defineSlot('/7103/SMG_BaseballReference/launchpad/sports/baseball/general', [970,66] ,             'restofsite_launchpad').addService(googletag.pubads());
+googletag.enableServices();
+googletag.display("restofsite_launchpad");
+</script>
+</div><!-- div.#restofsite_launchpad.advertlaunchpad -->
+
+
+<div id="restofsite_728x90_atf1" class="advert728x90">
+<script type='text/deferscript'>
+googletag.defineSlot('/7103/SMG_BaseballReference/728x90_1a/sports/baseball/general', [728,90] ,             'restofsite_728x90_atf1').addService(googletag.pubads());
+googletag.enableServices();
+googletag.display("restofsite_728x90_atf1");
+</script>
+</div><!-- div.#restofsite_728x90_atf1.advert728x90 -->
+
+
+<div id="page_content">
+<div class="freeze_bar sub_index" id="league_index_div">
+<ul class="hovermenu menu">
+<li class="bold_text"><a class="no_border_right" href="/leagues/NL/2013.shtml">2013 NL</a></li>
+<li><span class="no_border_right like_a">&gt;&gt;</span></li>
+<li><a href="/leagues/AL/2013.shtml">AL</a></li>
+<li><a href="/leagues/MLB/2013.shtml">MLB</a></li>
+<li class=""><a href="/minors/league.cgi?year=2013">Minor Leagues</a></li>
+<li class=""><a href="/leagues/NL/2013-standings.shtml">Standings</a></li>
+<li class=""><a href="/leagues/NL/2013-standard-fielding.shtml">Fielding<span class="arrowsprite_bottom"></span></a>
+<ul>
+<li class=""><a href="/leagues/NL/2013-standard-fielding.shtml">Standard Fielding</a></li>
+<li class=""><a href="/leagues/NL/2013-appearances-fielding.shtml">Appearances</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_p-fielding.shtml">Pitcher</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_c-fielding.shtml">Catcher</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_1b-fielding.shtml">FirstBase</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_2b-fielding.shtml">SecondBase</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_3b-fielding.shtml">ThirdBase</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_ss-fielding.shtml">Shortstop</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_lf-fielding.shtml">LeftField</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_cf-fielding.shtml">CenterField</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_rf-fielding.shtml">RightField</a></li>
+<li class=""><a href="/leagues/NL/2013-specialpos_of-fielding.shtml">Outfield</a></li>
+  </ul>
+</li>
+<li class=""><a href="/leagues/NL/2013-standard-batting.shtml">Batting<span class="arrowsprite_bottom"></span></a>
+<ul>
+<li class=""><a href="/leagues/NL/2013-standard-batting.shtml">Standard Batting</a></li>
+<li class=""><a href="/leagues/NL/2013-value-batting.shtml">Player Value</a></li>
+<li class=""><a href="/leagues/NL/2013-advanced-batting.shtml">Advanced Batting</a></li>
+<li class=""><a href="/leagues/NL/2013-win_probability-batting.shtml">Win Probability</a></li>
+<li><span class="inactive">Spring Training</span></li>
+<li class=""><a href="/leagues/NL/2013-ratio-batting.shtml">Batting Ratios</a></li>
+<li class=""><a href="/leagues/NL/2013-baserunning-batting.shtml">Baserunning/Misc</a></li>
+<li class=""><a href="/leagues/NL/2013-situational-batting.shtml">PH/HR/Situ Hitting</a></li>
+<li class=""><a href="/leagues/NL/2013-pitches-batting.shtml">Pitches Batting</a></li>
+<li class=""><a href="/leagues/MLB/2013-cumulative-batting.shtml">Cumulative Batting</a></li>
+<li class=""><a href="/leagues/MLB/2013-neutral-batting.shtml">Neutralized Batting</a></li>
+<li><a href="/leagues/split.cgi?t=b&amp;lg=NL&amp;year=2013">League Splits</a></li>
+<li><a href="/minors/leader.cgi?type=bat&amp;year=2013">Minors Batting</a></li>
+  </ul>
+</li>
+<li class=""><a href="/leagues/NL/2013-standard-pitching.shtml">Pitching<span class="arrowsprite_bottom"></span></a>
+<ul>
+<li class=""><a href="/leagues/NL/2013-standard-pitching.shtml">Standard Pitching</a></li>
+<li class=""><a href="/leagues/NL/2013-value-pitching.shtml">Player Value</a></li>
+<li><span class="inactive">Spring Training</span></li>
+<li class=""><a href="/leagues/NL/2013-batting-pitching.shtml">Batting Against</a></li>
+<li class=""><a href="/leagues/NL/2013-win_probability-pitching.shtml">Win Probability</a></li>
+<li class=""><a href="/leagues/NL/2013-starter-pitching.shtml">Starting Pitching</a></li>
+<li class=""><a href="/leagues/NL/2013-reliever-pitching.shtml">Relief Pitching</a></li>
+<li class=""><a href="/leagues/NL/2013-ratio-pitching.shtml">Pitching Ratios</a></li>
+<li class=""><a href="/leagues/NL/2013-pitches-pitching.shtml">Pitching Pitches</a></li>
+<li class=""><a href="/leagues/NL/2013-basesituation-pitching.shtml">Baserunning/Situ</a></li>
+<li class=""><a href="/leagues/MLB/2013-cumulative-pitching.shtml">Cumulative Pitching</a></li>
+<li class=""><a href="/leagues/MLB/2013-neutral-pitching.shtml">Neutralized Pitching</a></li>
+<li><a href="/leagues/split.cgi?t=p&amp;lg=NL&amp;year=2013">League Splits</a></li>
+<li><a href="/minors/leader.cgi?type=pitch&amp;year=2013">Minors Pitching</a></li>
+  </ul>
+</li>
+<li class=""><span class="like_a like_link">Leaders&amp;Awards<span class="arrowsprite_bottom"></span></span>
+<ul>
+<li class=""><a href="/leagues/NL/2013-batting-leaders.shtml">Batting</a></li>
+<li class=""><a href="/leagues/NL/2013-pitching-leaders.shtml">Pitching</a></li>
+<li class=""><a href="/leagues/NL/2013-fielding-leaders.shtml">Fielding</a></li>
+<li class=""><a href="/leagues/NL/2013-other-leaders.shtml">Awards,A-S,&amp;More</a></li>
+  </ul>
+</li>
+<li class=""><span class="like_a like_link">Other<span class="arrowsprite_bottom"></span></span>
+<ul>
+<li class=""><a href="/leagues/NL/2013-misc.shtml">Attendance &amp; Misc.</a></li>
+<li class=""><a href="/leagues/MLB/2013-debuts.shtml">New Debuts</a></li>
+<li><span class="inactive">Retirements</span></li>
+<li><span class="inactive">Born this Year</span></li>
+<li class=""><a href="/leagues/MLB/2013-deaths.shtml">Died this Year</a></li>
+<li class=""><a href="/leagues/MLB/2013-uniform-numbers.shtml">Uniform Numbers</a></li>
+<li class=""><a href="/leagues/MLB/2013-transactions.shtml">Transactions</a></li>
+<li><span class="inactive">Amateur Draft</span></li>
+<li class=""><a href="/leagues/MLB/2013-opening-day-rosters.shtml">Opening Day Rosters</a></li>
+<li class=""><a href="/leagues/MLB/2013-team-starting-lineups.shtml">Team Starting Lineups</a></li>
+<li class=""><a href="/leagues/MLB/2013-team-pitching-staffs.shtml">Team Pitching Staffs</a></li>
+  </ul>
+</li>
+
+</ul>
+</div>
+<div class="clear_both page_name">
+<h1 class="page_title">2013 National League Team Statistics and Standings</h1>
+</div>
+<div class="clear_both"></div>
+<div class="clear_both small_text"><a href="/leagues/NL/2012.shtml">2012 NL</a>
+&nbsp;/&nbsp;<a href="/leagues/AL/2013.shtml">2013 AL</a>
+&nbsp;/&nbsp;<a href="/leagues/MLB/2013.shtml">2013 MLB</a>
+&nbsp;Team Statistics and Standings</div>
+<table>
+  <tr>   
+<td valign=top class="stw">
+<div class="table_heading"><h3 data-mobile-header="East Division Standings">East Division</h3></div>
+<div class="table_container" id="div_standings_E">
+<table class="sortable  stats_table" id="standings_E">
+<colgroup><col><col><col><col><col><col></colgroup>
+<thead>
+<tr class="">
+  <th data-stat="team_ID" align="center"  class="tooltip sort_default_asc show_partial_when_sorting" >Tm</th>
+  <th data-stat="team_abbrev" align="CENTER"  class="tooltip" ></th>
+  <th data-stat="W" align="center"  class="tooltip"  tip="Wins">W</th>
+  <th data-stat="L" align="center"  class="tooltip"  tip="Losses">L</th>
+  <th data-stat="win_loss_perc" align="center"  class="tooltip hide_non_quals"  tip="<strong>Win-Loss Percentage</strong><br>W / (W + L)<br>For players, leaders need one decision for every ten team games.<br>For managers, minimum to qualify for leading is 320 games."><nobr>W-L%</nobr></th>
+  <th data-stat="games_back" align="center"  class="tooltip sort_default_asc"  tip="<strong>Games Back of Division/League Leader</strong><br>Computed as games over .500 of leader (W-L) minus games over .500 of team divided by two.<br>Typically computed at the end of play for a particular day.<br>Blank for 1st game of DH.">GB</th>
+</tr>
+</thead>
+<tbody>
+<tr  class="bold_text">
+   <td align="left" ><a href="/teams/WSN/2013.shtml" title="Washington Nationals">Washington Nationals</a></td>
+   <td align="" >WSN</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >1.000</td>
+   <td align="right" >--</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/ATL/2013.shtml" title="Atlanta Braves">Atlanta Braves</a></td>
+   <td align="" >ATL</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >1.0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/NYM/2013.shtml" title="New York Mets">New York Mets</a></td>
+   <td align="" >NYM</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >1.0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PHI/2013.shtml" title="Philadelphia Phillies">Philadelphia Phillies</a></td>
+   <td align="" >PHI</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >2.0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIA/2013.shtml" title="Miami Marlins">Miami Marlins</a></td>
+   <td align="" >MIA</td>
+   <td align="right" >0</td>
+   <td align="right" >3</td>
+   <td align="right" >.000</td>
+   <td align="right" >3.0</td>
+</tr>
+</tbody>
+</table>
+</div><!-- div.table_container#div_xxxx -->
+</td>
+<td valign=top class="stw">
+<div class="table_heading"><h3 data-mobile-header="Central Division Standings">Central Division</h3></div>
+<div class="table_container" id="div_standings_C">
+<table class="sortable  stats_table" id="standings_C">
+<colgroup><col><col><col><col><col><col></colgroup>
+<thead>
+<tr class="">
+  <th data-stat="team_ID" align="center"  class="tooltip sort_default_asc show_partial_when_sorting" >Tm</th>
+  <th data-stat="team_abbrev" align="CENTER"  class="tooltip" ></th>
+  <th data-stat="W" align="center"  class="tooltip"  tip="Wins">W</th>
+  <th data-stat="L" align="center"  class="tooltip"  tip="Losses">L</th>
+  <th data-stat="win_loss_perc" align="center"  class="tooltip hide_non_quals"  tip="<strong>Win-Loss Percentage</strong><br>W / (W + L)<br>For players, leaders need one decision for every ten team games.<br>For managers, minimum to qualify for leading is 320 games."><nobr>W-L%</nobr></th>
+  <th data-stat="games_back" align="center"  class="tooltip sort_default_asc"  tip="<strong>Games Back of Division/League Leader</strong><br>Computed as games over .500 of leader (W-L) minus games over .500 of team divided by two.<br>Typically computed at the end of play for a particular day.<br>Blank for 1st game of DH.">GB</th>
+</tr>
+</thead>
+<tbody>
+<tr  class="bold_text">
+   <td align="left" ><a href="/teams/CHC/2013.shtml" title="Chicago Cubs">Chicago Cubs</a></td>
+   <td align="" >CHC</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >--</td>
+</tr>
+<tr  class="bold_text">
+   <td align="left" ><a href="/teams/CIN/2013.shtml" title="Cincinnati Reds">Cincinnati Reds</a></td>
+   <td align="" >CIN</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >--</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIL/2013.shtml" title="Milwaukee Brewers">Milwaukee Brewers</a></td>
+   <td align="" >MIL</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >1.0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PIT/2013.shtml" title="Pittsburgh Pirates">Pittsburgh Pirates</a></td>
+   <td align="" >PIT</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >1.0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/STL/2013.shtml" title="St. Louis Cardinals">St. Louis Cardinals</a></td>
+   <td align="" >STL</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >1.0</td>
+</tr>
+</tbody>
+</table>
+</div><!-- div.table_container#div_xxxx -->
+</td>
+<td valign=top class="stw">
+<div class="table_heading"><h3 data-mobile-header="West Division Standings">West Division</h3></div>
+<div class="table_container" id="div_standings_W">
+<table class="sortable  stats_table" id="standings_W">
+<colgroup><col><col><col><col><col><col></colgroup>
+<thead>
+<tr class="">
+  <th data-stat="team_ID" align="center"  class="tooltip sort_default_asc show_partial_when_sorting" >Tm</th>
+  <th data-stat="team_abbrev" align="CENTER"  class="tooltip" ></th>
+  <th data-stat="W" align="center"  class="tooltip"  tip="Wins">W</th>
+  <th data-stat="L" align="center"  class="tooltip"  tip="Losses">L</th>
+  <th data-stat="win_loss_perc" align="center"  class="tooltip hide_non_quals"  tip="<strong>Win-Loss Percentage</strong><br>W / (W + L)<br>For players, leaders need one decision for every ten team games.<br>For managers, minimum to qualify for leading is 320 games."><nobr>W-L%</nobr></th>
+  <th data-stat="games_back" align="center"  class="tooltip sort_default_asc"  tip="<strong>Games Back of Division/League Leader</strong><br>Computed as games over .500 of leader (W-L) minus games over .500 of team divided by two.<br>Typically computed at the end of play for a particular day.<br>Blank for 1st game of DH.">GB</th>
+</tr>
+</thead>
+<tbody>
+<tr  class="bold_text">
+   <td align="left" ><a href="/teams/ARI/2013.shtml" title="Arizona Diamondbacks">Arizona Diamondbacks</a></td>
+   <td align="" >ARI</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >--</td>
+</tr>
+<tr  class="bold_text">
+   <td align="left" ><a href="/teams/COL/2013.shtml" title="Colorado Rockies">Colorado Rockies</a></td>
+   <td align="" >COL</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >--</td>
+</tr>
+<tr  class="bold_text">
+   <td align="left" ><a href="/teams/SFG/2013.shtml" title="San Francisco Giants">San Francisco Giants</a></td>
+   <td align="" >SFG</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >--</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/LAD/2013.shtml" title="Los Angeles Dodgers">Los Angeles Dodgers</a></td>
+   <td align="" >LAD</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >1.0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/SDP/2013.shtml" title="San Diego Padres">San Diego Padres</a></td>
+   <td align="" >SDP</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >1.0</td>
+</tr>
+</tbody>
+</table>
+</div><!-- div.table_container#div_xxxx -->
+</td>
+    </tr>
+   </table>
+<div><a href="2013-standings.shtml">Expanded Standings</a></div>
+
+
+<div class="div_batting_type stw" id="all_teams_standard_batting">
+<div class="table_heading">
+<h2>Team &amp; League Standard Batting</h2><div class="table_heading_text"></div></div>
+<div class="table_container" id="div_teams_standard_batting">
+<table data-freeze="1" class="sortable  stats_table" id="teams_standard_batting">
+<colgroup><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col></colgroup>
+<thead>
+<tr class="">
+  <th data-stat="team_ID" align="center"  class="tooltip sort_default_asc show_partial_when_sorting" >Tm</th>
+  <th data-stat="batters_used" align="center"  class="tooltip"  tip="<strong>Number of Players used in Games</strong>">#Bat</th>
+  <th data-stat="age_bat" align="center"  class="tooltip sort_default_asc"  tip="<strong>Batters&#146; average age</strong><br>Weighted by AB + Games Played">BatAge</th>
+  <th data-stat="runs_per_game" align="center"  class="tooltip"  tip="Runs Scored Per Game">R/G</th>
+  <th data-stat="G" align="center"  class="tooltip"  tip="Games Played or Pitched">G</th>
+  <th data-stat="PA" align="center"  class="tooltip"  tip="<strong>Plate Appearances</strong><br>When available, we use actual plate appearances from play-by-play game accounts<br>Otherwise estimated using AB + BB + HBP + SF + SH,<br>which excludes catcher interferences.<br>When <span class=tooltip>this color</span> click for a summary of each PA.">PA</th>
+  <th data-stat="AB" align="center"  class="tooltip"  tip="At Bats">AB</th>
+  <th data-stat="R" align="center"  class="tooltip"  tip="Runs Scored/Allowed">R</th>
+  <th data-stat="H" align="center"  class="tooltip"  tip="Hits/Hits Allowed">H</th>
+  <th data-stat="2B" align="center"  class="tooltip"  tip="Doubles Hit/Allowed">2B</th>
+  <th data-stat="3B" align="center"  class="tooltip"  tip="Triples Hit/Allowed">3B</th>
+  <th data-stat="HR" align="center"  class="tooltip"  tip="Home Runs Hit/Allowed">HR</th>
+  <th data-stat="RBI" align="center"  class="tooltip"  tip="Runs Batted In">RBI</th>
+  <th data-stat="SB" align="center"  class="tooltip"  tip="Stolen Bases">SB</th>
+  <th data-stat="CS" align="center"  class="tooltip"  tip="Caught Stealing">CS</th>
+  <th data-stat="BB" align="center"  class="tooltip"  tip="Bases on Balls/Walks">BB</th>
+  <th data-stat="SO" align="center"  class="tooltip"  tip="Strikeouts">SO</th>
+  <th data-stat="batting_avg" align="center"  class="tooltip hide_non_quals"  tip="<strong>Hits/At Bats</strong><br>For recent years, leaders need 3.1 PA<br>per team game played<br>Bold indicates highest BA using current stats<br><span class=glimmer>Gold</span> means awarded title at end of year.">BA</th>
+  <th data-stat="onbase_perc" align="center"  class="tooltip hide_non_quals"  tip="<strong>(H + BB + HBP)/(At Bats + BB + HBP + SF)</strong><br>For recent years, leaders need 3.1 PA<br>per team game played">OBP</th>
+  <th data-stat="slugging_perc" align="center"  class="tooltip hide_non_quals"  tip="<strong>Total Bases/At Bats or <br>(1B + 2*2B + 3*3B + 4*HR)/AB</strong><br>For recent years, leaders need 3.1 PA<br>per team game played">SLG</th>
+  <th data-stat="onbase_plus_slugging" align="center"  class="tooltip hide_non_quals"  tip="<strong>On-Base + Slugging Percentages </strong><br>For recent years, leaders need 3.1 PA<br>per team game played">OPS</th>
+  <th data-stat="onbase_plus_slugging_plus" align="center"  class="tooltip hide_non_quals"  tip="<strong>OPS+</strong><br>100*[OBP/lg OBP + SLG/lg SLG - 1]<br>Adjusted to the player&#146;s ballpark(s)">OPS+</th>
+  <th data-stat="TB" align="center"  class="tooltip"  tip="<strong>Total Bases</strong><br>Singles + 2 x Doubles + 3 x Triples + 4 x Home Runs.">TB</th>
+  <th data-stat="GIDP" align="center"  class="tooltip"  tip="<strong>Double Plays Grounded Into</strong><br>Only includes standard 6-4-3, 4-3, etc. double plays.<br>First tracked in 1933.<br>For gamelogs only in seasons we have play-by-play, we include triple plays as well.<br>All official seasonal totals do not include GITP's.">GDP</th>
+  <th data-stat="HBP" align="center"  class="tooltip"  tip="Times Hit by a Pitch.">HBP</th>
+  <th data-stat="SH" align="center"  class="tooltip"  tip="Sacrifice Hits (Sacrifice Bunts)">SH</th>
+  <th data-stat="SF" align="center"  class="tooltip"  tip="<strong>Sacrifice Flies</strong><br>First tracked in 1954.">SF</th>
+  <th data-stat="IBB" align="center"  class="tooltip"  tip="<strong>Intentional Bases on Balls</strong><br>First tracked in 1955.">IBB</th>
+</tr>
+</thead>
+<tbody>
+<tr  class="">
+   <td align="left" ><a href="/teams/ARI/2013.shtml" title="Arizona Diamondbacks">ARI</a></td>
+   <td align="right" >23</td>
+   <td align="right" >28.7</td>
+   <td align="right" >5.67</td>
+   <td align="right" >3</td>
+   <td align="right" >144</td>
+   <td align="right" >126</td>
+   <td align="right" >17</td>
+   <td align="right" >35</td>
+   <td align="right" >8</td>
+   <td align="right" >1</td>
+   <td align="right" >4</td>
+   <td align="right" >15</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >12</td>
+   <td align="right" >29</td>
+   <td align="right" >.278</td>
+   <td align="right" >.338</td>
+   <td align="right" >.452</td>
+   <td align="right" >.790</td>
+   <td align="right" >134</td>
+   <td align="right" >57</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >3</td>
+   <td align="right" >2</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/ATL/2013.shtml" title="Atlanta Braves">ATL</a></td>
+   <td align="right" >23</td>
+   <td align="right" >27.1</td>
+   <td align="right" >5.33</td>
+   <td align="right" >3</td>
+   <td align="right" >104</td>
+   <td align="right" >95</td>
+   <td align="right" >16</td>
+   <td align="right" >21</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >6</td>
+   <td align="right" >15</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >9</td>
+   <td align="right" >34</td>
+   <td align="right" >.221</td>
+   <td align="right" >.288</td>
+   <td align="right" >.453</td>
+   <td align="right" >.741</td>
+   <td align="right" >118</td>
+   <td align="right" >43</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/CHC/2013.shtml" title="Chicago Cubs">CHC</a></td>
+   <td align="right" >23</td>
+   <td align="right" >28.9</td>
+   <td align="right" >2.00</td>
+   <td align="right" >3</td>
+   <td align="right" >100</td>
+   <td align="right" >91</td>
+   <td align="right" >6</td>
+   <td align="right" >11</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >6</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >5</td>
+   <td align="right" >30</td>
+   <td align="right" >.121</td>
+   <td align="right" >.192</td>
+   <td align="right" >.209</td>
+   <td align="right" >.401</td>
+   <td align="right" >20</td>
+   <td align="right" >19</td>
+   <td align="right" >0</td>
+   <td align="right" >3</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/CIN/2013.shtml" title="Cincinnati Reds">CIN</a></td>
+   <td align="right" >20</td>
+   <td align="right" >28.9</td>
+   <td align="right" >3.67</td>
+   <td align="right" >3</td>
+   <td align="right" >121</td>
+   <td align="right" >103</td>
+   <td align="right" >11</td>
+   <td align="right" >16</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >4</td>
+   <td align="right" >10</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >12</td>
+   <td align="right" >27</td>
+   <td align="right" >.155</td>
+   <td align="right" >.254</td>
+   <td align="right" >.311</td>
+   <td align="right" >.565</td>
+   <td align="right" ></td>
+   <td align="right" >32</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >3</td>
+   <td align="right" >1</td>
+   <td align="right" >4</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/COL/2013.shtml" title="Colorado Rockies">COL</a></td>
+   <td align="right" >23</td>
+   <td align="right" >28.4</td>
+   <td align="right" >6.33</td>
+   <td align="right" >3</td>
+   <td align="right" >126</td>
+   <td align="right" >116</td>
+   <td align="right" >19</td>
+   <td align="right" >41</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >8</td>
+   <td align="right" >19</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >7</td>
+   <td align="right" >30</td>
+   <td align="right" >.353</td>
+   <td align="right" >.384</td>
+   <td align="right" >.578</td>
+   <td align="right" >.962</td>
+   <td align="right" >183</td>
+   <td align="right" >67</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/LAD/2013.shtml" title="Los Angeles Dodgers">LAD</a></td>
+   <td align="right" >20</td>
+   <td align="right" >30.9</td>
+   <td align="right" >2.33</td>
+   <td align="right" >3</td>
+   <td align="right" >106</td>
+   <td align="right" >91</td>
+   <td align="right" >7</td>
+   <td align="right" >16</td>
+   <td align="right" >6</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >10</td>
+   <td align="right" >23</td>
+   <td align="right" >.176</td>
+   <td align="right" >.276</td>
+   <td align="right" >.275</td>
+   <td align="right" >.551</td>
+   <td align="right" >66</td>
+   <td align="right" >25</td>
+   <td align="right" >1</td>
+   <td align="right" >3</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIA/2013.shtml" title="Miami Marlins">MIA</a></td>
+   <td align="right" >21</td>
+   <td align="right" >29.3</td>
+   <td align="right" >0.33</td>
+   <td align="right" >3</td>
+   <td align="right" >98</td>
+   <td align="right" >90</td>
+   <td align="right" >1</td>
+   <td align="right" >15</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >7</td>
+   <td align="right" >17</td>
+   <td align="right" >.167</td>
+   <td align="right" >.227</td>
+   <td align="right" >.222</td>
+   <td align="right" >.449</td>
+   <td align="right" >36</td>
+   <td align="right" >20</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIL/2013.shtml" title="Milwaukee Brewers">MIL</a></td>
+   <td align="right" >23</td>
+   <td align="right" >29.3</td>
+   <td align="right" >4.00</td>
+   <td align="right" >3</td>
+   <td align="right" >116</td>
+   <td align="right" >103</td>
+   <td align="right" >12</td>
+   <td align="right" >26</td>
+   <td align="right" >6</td>
+   <td align="right" >0</td>
+   <td align="right" >3</td>
+   <td align="right" >12</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >11</td>
+   <td align="right" >18</td>
+   <td align="right" >.252</td>
+   <td align="right" >.328</td>
+   <td align="right" >.398</td>
+   <td align="right" >.726</td>
+   <td align="right" >116</td>
+   <td align="right" >41</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/NYM/2013.shtml" title="New York Mets">NYM</a></td>
+   <td align="right" >23</td>
+   <td align="right" >28.3</td>
+   <td align="right" >6.67</td>
+   <td align="right" >3</td>
+   <td align="right" >116</td>
+   <td align="right" >102</td>
+   <td align="right" >20</td>
+   <td align="right" >26</td>
+   <td align="right" >5</td>
+   <td align="right" >0</td>
+   <td align="right" >5</td>
+   <td align="right" >20</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >13</td>
+   <td align="right" >28</td>
+   <td align="right" >.255</td>
+   <td align="right" >.345</td>
+   <td align="right" >.451</td>
+   <td align="right" >.796</td>
+   <td align="right" >136</td>
+   <td align="right" >46</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PHI/2013.shtml" title="Philadelphia Phillies">PHI</a></td>
+   <td align="right" >21</td>
+   <td align="right" >31.0</td>
+   <td align="right" >3.00</td>
+   <td align="right" >3</td>
+   <td align="right" >116</td>
+   <td align="right" >105</td>
+   <td align="right" >9</td>
+   <td align="right" >27</td>
+   <td align="right" >5</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >9</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >10</td>
+   <td align="right" >19</td>
+   <td align="right" >.257</td>
+   <td align="right" >.319</td>
+   <td align="right" >.352</td>
+   <td align="right" >.671</td>
+   <td align="right" >101</td>
+   <td align="right" >37</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PIT/2013.shtml" title="Pittsburgh Pirates">PIT</a></td>
+   <td align="right" >20</td>
+   <td align="right" >28.3</td>
+   <td align="right" >2.00</td>
+   <td align="right" >3</td>
+   <td align="right" >100</td>
+   <td align="right" >90</td>
+   <td align="right" >6</td>
+   <td align="right" >13</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >6</td>
+   <td align="right" >4</td>
+   <td align="right" >1</td>
+   <td align="right" >8</td>
+   <td align="right" >25</td>
+   <td align="right" >.144</td>
+   <td align="right" >.222</td>
+   <td align="right" >.189</td>
+   <td align="right" >.411</td>
+   <td align="right" >25</td>
+   <td align="right" >17</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/SDP/2013.shtml" title="San Diego Padres">SDP</a></td>
+   <td align="right" >23</td>
+   <td align="right" >28.1</td>
+   <td align="right" >2.67</td>
+   <td align="right" >3</td>
+   <td align="right" >107</td>
+   <td align="right" >93</td>
+   <td align="right" >8</td>
+   <td align="right" >16</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >6</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >9</td>
+   <td align="right" >21</td>
+   <td align="right" >.172</td>
+   <td align="right" >.257</td>
+   <td align="right" >.237</td>
+   <td align="right" >.494</td>
+   <td align="right" >50</td>
+   <td align="right" >22</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/SFG/2013.shtml" title="San Francisco Giants">SFG</a></td>
+   <td align="right" >22</td>
+   <td align="right" >29.2</td>
+   <td align="right" >2.67</td>
+   <td align="right" >3</td>
+   <td align="right" >98</td>
+   <td align="right" >96</td>
+   <td align="right" >8</td>
+   <td align="right" >20</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >7</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >19</td>
+   <td align="right" >.208</td>
+   <td align="right" >.224</td>
+   <td align="right" >.281</td>
+   <td align="right" >.506</td>
+   <td align="right" >51</td>
+   <td align="right" >27</td>
+   <td align="right" >7</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/STL/2013.shtml" title="St. Louis Cardinals">STL</a></td>
+   <td align="right" >22</td>
+   <td align="right" >28.5</td>
+   <td align="right" >5.67</td>
+   <td align="right" >3</td>
+   <td align="right" >140</td>
+   <td align="right" >126</td>
+   <td align="right" >17</td>
+   <td align="right" >31</td>
+   <td align="right" >10</td>
+   <td align="right" >0</td>
+   <td align="right" >4</td>
+   <td align="right" >16</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >8</td>
+   <td align="right" >32</td>
+   <td align="right" >.246</td>
+   <td align="right" >.301</td>
+   <td align="right" >.421</td>
+   <td align="right" >.722</td>
+   <td align="right" >114</td>
+   <td align="right" >53</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/WSN/2013.shtml" title="Washington Nationals">WSN</a></td>
+   <td align="right" >21</td>
+   <td align="right" >27.8</td>
+   <td align="right" >3.67</td>
+   <td align="right" >3</td>
+   <td align="right" >99</td>
+   <td align="right" >85</td>
+   <td align="right" >11</td>
+   <td align="right" >20</td>
+   <td align="right" >3</td>
+   <td align="right" >1</td>
+   <td align="right" >4</td>
+   <td align="right" >11</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >9</td>
+   <td align="right" >19</td>
+   <td align="right" >.235</td>
+   <td align="right" >.316</td>
+   <td align="right" >.435</td>
+   <td align="right" >.751</td>
+   <td align="right" >122</td>
+   <td align="right" >37</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+</tr>
+<tr  class="league_average_table">
+   <td align="left"  csk="ZZZZZZ">LgAvg</td>
+   <td align="right" >22</td>
+   <td align="right" >28.8</td>
+   <td align="right" >3.73</td>
+   <td align="right" >3</td>
+   <td align="right" >113</td>
+   <td align="right" >101</td>
+   <td align="right" >11</td>
+   <td align="right" >22</td>
+   <td align="right" >4</td>
+   <td align="right" >0</td>
+   <td align="right" >3</td>
+   <td align="right" >10</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >9</td>
+   <td align="right" >25</td>
+   <td align="right" >.221</td>
+   <td align="right" >.289</td>
+   <td align="right" >.359</td>
+   <td align="right" >.648</td>
+   <td align="right" >107</td>
+   <td align="right" >36</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+</tr>
+</tbody>
+<tfoot>
+<tr  class=" stat_total">
+   <td align="left" ></td>
+   <td align="right" >328</td>
+   <td align="right" >28.8</td>
+   <td align="right" >3.73</td>
+   <td align="right" >45</td>
+   <td align="right" >1691</td>
+   <td align="right" >1512</td>
+   <td align="right" >168</td>
+   <td align="right" >334</td>
+   <td align="right" >65</td>
+   <td align="right" >3</td>
+   <td align="right" >46</td>
+   <td align="right" >157</td>
+   <td align="right" >18</td>
+   <td align="right" >10</td>
+   <td align="right" >132</td>
+   <td align="right" >371</td>
+   <td align="right" >.221</td>
+   <td align="right" >.289</td>
+   <td align="right" >.359</td>
+   <td align="right" >.648</td>
+   <td align="right" >107</td>
+   <td align="right" >543</td>
+   <td align="right" >30</td>
+   <td align="right" >17</td>
+   <td align="right" >20</td>
+   <td align="right" >10</td>
+   <td align="right" >13</td>
+</tr>
+</tfoot>
+</table>
+</div><!-- div.table_container#div_xxxx -->
+</div>
+
+<div class="margin padding"><div id="restofsite_728x90_btf1" class="advert728x90">
+<script type='text/deferscript'>
+googletag.defineSlot('/7103/SMG_BaseballReference/728x90_2a/sports/baseball/general', [728,90] ,             'restofsite_728x90_btf1').addService(googletag.pubads());
+googletag.enableServices();
+googletag.display("restofsite_728x90_btf1");
+</script>
+</div><!-- div.#restofsite_728x90_btf1.advert728x90 -->
+</div><div class="clear_both margin0 padding0"></div>
+
+
+<div class="div_pitching_type stw" id="all_teams_standard_pitching">
+<div class="table_heading">
+<h2>Team &amp; League Standard Pitching</h2><div class="table_heading_text"></div></div>
+<div class="table_container" id="div_teams_standard_pitching">
+<table data-freeze="1" class="sortable  stats_table" id="teams_standard_pitching">
+<colgroup><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col></colgroup>
+<thead>
+<tr class="">
+  <th data-stat="team_ID" align="center"  class="tooltip sort_default_asc show_partial_when_sorting" >Tm</th>
+  <th data-stat="pitchers_used" align="center"  class="tooltip"  tip="<strong>Number of Pitchers used in Games</strong>">#Pitch</th>
+  <th data-stat="age_pitch" align="center"  class="tooltip sort_default_asc"  tip="<strong>Pitchers&#146; average age</strong><br>Weighted by 3*GS + G + SV">PitchAge</th>
+  <th data-stat="runs_per_game" align="center"  class="tooltip"  tip="Runs Scored Per Game">R/G</th>
+  <th data-stat="W" align="center"  class="tooltip"  tip="Wins">W</th>
+  <th data-stat="L" align="center"  class="tooltip"  tip="Losses">L</th>
+  <th data-stat="win_loss_perc" align="center"  class="tooltip hide_non_quals"  tip="<strong>Win-Loss Percentage</strong><br>W / (W + L)<br>For players, leaders need one decision for every ten team games.<br>For managers, minimum to qualify for leading is 320 games."><nobr>W-L%</nobr></th>
+  <th data-stat="earned_run_avg" align="center"  class="tooltip sort_default_asc hide_non_quals"  tip="<strong>9 * ER / IP</strong><br>For recent years, leaders need 1 IP<br>per team game played.<br>Bold indicates lowest ERA using current stats<br><span class=glimmer>Gold</span> means awarded ERA title at end of year.">ERA</th>
+  <th data-stat="G" align="center"  class="tooltip"  tip="Games Played or Pitched">G</th>
+  <th data-stat="GS" align="center"  class="tooltip"  tip="Games Started">GS</th>
+  <th data-stat="GF" align="center"  class="tooltip"  tip="Games Finished">GF</th>
+  <th data-stat="CG" align="center"  class="tooltip"  tip="Complete Game">CG</th>
+  <th data-stat="SHO_team" align="center"  class="tooltip"  tip="Shutouts by a team<br>No runs allowed in a game by one or more pitchers.">tmSHO</th>
+  <th data-stat="SHO_cg" align="center"  class="tooltip"  tip="Shutouts<br>No runs allowed and a complete game.">cgSHO</th>
+  <th data-stat="SV" align="center"  class="tooltip"  tip="Saves">SV</th>
+  <th data-stat="IP" align="center"  class="tooltip"  tip="Innings Pitched">IP</th>
+  <th data-stat="H" align="center"  class="tooltip"  tip="Hits/Hits Allowed">H</th>
+  <th data-stat="R" align="center"  class="tooltip"  tip="Runs Scored/Allowed">R</th>
+  <th data-stat="ER" align="center"  class="tooltip"  tip="Earned Runs Allowed">ER</th>
+  <th data-stat="HR" align="center"  class="tooltip"  tip="Home Runs Hit/Allowed">HR</th>
+  <th data-stat="BB" align="center"  class="tooltip"  tip="Bases on Balls/Walks">BB</th>
+  <th data-stat="IBB" align="center"  class="tooltip"  tip="<strong>Intentional Bases on Balls</strong><br>First tracked in 1955.">IBB</th>
+  <th data-stat="SO" align="center"  class="tooltip"  tip="Strikeouts">SO</th>
+  <th data-stat="HBP" align="center"  class="tooltip"  tip="Times Hit by a Pitch.">HBP</th>
+  <th data-stat="BK" align="center"  class="tooltip"  tip="Balks">BK</th>
+  <th data-stat="WP" align="center"  class="tooltip"  tip="Wild Pitches">WP</th>
+  <th data-stat="batters_faced" align="center"  class="tooltip"  tip="Batters Faced">BF</th>
+  <th data-stat="earned_run_avg_plus" align="center"  class="tooltip hide_non_quals"  tip="<strong>ERA+</strong><br>100*[lgERA/ERA]<br>Adjusted to the player&#146;s ballpark(s).">ERA+</th>
+  <th data-stat="whip" align="center"  class="tooltip sort_default_asc hide_non_quals"  tip="<strong>(BB + H)/IP</strong><br>For recent years, leaders need 1 IP<br>per team game played">WHIP</th>
+  <th data-stat="hits_per_nine" align="center"  class="tooltip sort_default_asc hide_non_quals"  tip="<strong>9 x H / IP</strong><br>For recent years, leaders need 1 IP<br>per team game played">H/9</th>
+  <th data-stat="home_runs_per_nine" align="center"  class="tooltip sort_default_asc hide_non_quals"  tip="<strong>9 x HR / IP</strong><br>For recent years, leaders need 1 IP<br>per team game played">HR/9</th>
+  <th data-stat="bases_on_balls_per_nine" align="center"  class="tooltip sort_default_asc hide_non_quals"  tip="<strong>9 x BB / IP</strong><br>For recent years, leaders need 1 IP<br>per team game played">BB/9</th>
+  <th data-stat="strikeouts_per_nine" align="center"  class="tooltip hide_non_quals"  tip="<strong>9 x SO / IP</strong><br>For recent years, leaders need 1 IP<br>per team game played">SO/9</th>
+  <th data-stat="strikeouts_per_base_on_balls" align="center"  class="tooltip hide_non_quals"  tip="<strong>SO/BB</strong><br>For recent years, leaders need 1 IP<br>per team game played">SO/BB</th>
+</tr>
+</thead>
+<tbody>
+<tr  class="">
+   <td align="left" ><a href="/teams/ARI/2013.shtml" title="Arizona Diamondbacks">ARI</a></td>
+   <td align="right" >10</td>
+   <td align="right" >28.7</td>
+   <td align="right" >5.67</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >4.50</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >34.0</td>
+   <td align="right" >31</td>
+   <td align="right" >17</td>
+   <td align="right" >17</td>
+   <td align="right" >4</td>
+   <td align="right" >8</td>
+   <td align="right" >1</td>
+   <td align="right" >32</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >140</td>
+   <td align="right" >85</td>
+   <td align="right" >1.147</td>
+   <td align="right" >8.2</td>
+   <td align="right" >1.1</td>
+   <td align="right" >2.1</td>
+   <td align="right" >8.5</td>
+   <td align="right" >4.00</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/ATL/2013.shtml" title="Atlanta Braves">ATL</a></td>
+   <td align="right" >10</td>
+   <td align="right" >29.0</td>
+   <td align="right" >3.00</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >3.00</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >27.0</td>
+   <td align="right" >27</td>
+   <td align="right" >9</td>
+   <td align="right" >9</td>
+   <td align="right" >1</td>
+   <td align="right" >10</td>
+   <td align="right" >1</td>
+   <td align="right" >19</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >116</td>
+   <td align="right" >131</td>
+   <td align="right" >1.370</td>
+   <td align="right" >9.0</td>
+   <td align="right" >0.3</td>
+   <td align="right" >3.3</td>
+   <td align="right" >6.3</td>
+   <td align="right" >1.90</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/CHC/2013.shtml" title="Chicago Cubs">CHC</a></td>
+   <td align="right" >10</td>
+   <td align="right" >29.4</td>
+   <td align="right" >2.00</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >2.08</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >26.0</td>
+   <td align="right" >13</td>
+   <td align="right" >6</td>
+   <td align="right" >6</td>
+   <td align="right" >0</td>
+   <td align="right" >8</td>
+   <td align="right" >1</td>
+   <td align="right" >25</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >100</td>
+   <td align="right" >191</td>
+   <td align="right" >0.808</td>
+   <td align="right" >4.5</td>
+   <td align="right" >0.0</td>
+   <td align="right" >2.8</td>
+   <td align="right" >8.7</td>
+   <td align="right" >3.13</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/CIN/2013.shtml" title="Cincinnati Reds">CIN</a></td>
+   <td align="right" >8</td>
+   <td align="right" >28.3</td>
+   <td align="right" >3.67</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >2.90</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >31.0</td>
+   <td align="right" >26</td>
+   <td align="right" >11</td>
+   <td align="right" >10</td>
+   <td align="right" >3</td>
+   <td align="right" >11</td>
+   <td align="right" >2</td>
+   <td align="right" >36</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >131</td>
+   <td align="right" ></td>
+   <td align="right" >1.194</td>
+   <td align="right" >7.5</td>
+   <td align="right" >0.9</td>
+   <td align="right" >3.2</td>
+   <td align="right" >10.5</td>
+   <td align="right" >3.27</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/COL/2013.shtml" title="Colorado Rockies">COL</a></td>
+   <td align="right" >10</td>
+   <td align="right" >29.0</td>
+   <td align="right" >4.00</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >3.90</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >27.2</td>
+   <td align="right" >26</td>
+   <td align="right" >12</td>
+   <td align="right" >12</td>
+   <td align="right" >3</td>
+   <td align="right" >11</td>
+   <td align="right" >2</td>
+   <td align="right" >18</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >116</td>
+   <td align="right" >100</td>
+   <td align="right" >1.337</td>
+   <td align="right" >8.5</td>
+   <td align="right" >1.0</td>
+   <td align="right" >3.6</td>
+   <td align="right" >5.9</td>
+   <td align="right" >1.64</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/LAD/2013.shtml" title="Los Angeles Dodgers">LAD</a></td>
+   <td align="right" >8</td>
+   <td align="right" >27.8</td>
+   <td align="right" >2.67</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >1.33</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >27.0</td>
+   <td align="right" >20</td>
+   <td align="right" >8</td>
+   <td align="right" >4</td>
+   <td align="right" >2</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >19</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >98</td>
+   <td align="right" >287</td>
+   <td align="right" >0.815</td>
+   <td align="right" >6.7</td>
+   <td align="right" >0.7</td>
+   <td align="right" >0.7</td>
+   <td align="right" >6.3</td>
+   <td align="right" >9.50</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIA/2013.shtml" title="Miami Marlins">MIA</a></td>
+   <td align="right" >9</td>
+   <td align="right" >29.1</td>
+   <td align="right" >3.67</td>
+   <td align="right" >0</td>
+   <td align="right" >3</td>
+   <td align="right" >.000</td>
+   <td align="right" >3.38</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >24.0</td>
+   <td align="right" >20</td>
+   <td align="right" >11</td>
+   <td align="right" >9</td>
+   <td align="right" >4</td>
+   <td align="right" >9</td>
+   <td align="right" >0</td>
+   <td align="right" >19</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >3</td>
+   <td align="right" >99</td>
+   <td align="right" >117</td>
+   <td align="right" >1.208</td>
+   <td align="right" >7.5</td>
+   <td align="right" >1.5</td>
+   <td align="right" >3.4</td>
+   <td align="right" >7.1</td>
+   <td align="right" >2.11</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIL/2013.shtml" title="Milwaukee Brewers">MIL</a></td>
+   <td align="right" >11</td>
+   <td align="right" >28.7</td>
+   <td align="right" >6.33</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >6.11</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >28.0</td>
+   <td align="right" >41</td>
+   <td align="right" >19</td>
+   <td align="right" >19</td>
+   <td align="right" >8</td>
+   <td align="right" >7</td>
+   <td align="right" >0</td>
+   <td align="right" >30</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >126</td>
+   <td align="right" >65</td>
+   <td align="right" >1.714</td>
+   <td align="right" >13.2</td>
+   <td align="right" >2.6</td>
+   <td align="right" >2.3</td>
+   <td align="right" >9.6</td>
+   <td align="right" >4.29</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/NYM/2013.shtml" title="New York Mets">NYM</a></td>
+   <td align="right" >11</td>
+   <td align="right" >28.1</td>
+   <td align="right" >2.67</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >2.00</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >27.0</td>
+   <td align="right" >16</td>
+   <td align="right" >8</td>
+   <td align="right" >6</td>
+   <td align="right" >1</td>
+   <td align="right" >9</td>
+   <td align="right" >1</td>
+   <td align="right" >21</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >107</td>
+   <td align="right" >200</td>
+   <td align="right" >0.926</td>
+   <td align="right" >5.3</td>
+   <td align="right" >0.3</td>
+   <td align="right" >3.0</td>
+   <td align="right" >7.0</td>
+   <td align="right" >2.33</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PHI/2013.shtml" title="Philadelphia Phillies">PHI</a></td>
+   <td align="right" >10</td>
+   <td align="right" >32.1</td>
+   <td align="right" >5.33</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >5.76</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >25.0</td>
+   <td align="right" >21</td>
+   <td align="right" >16</td>
+   <td align="right" >16</td>
+   <td align="right" >6</td>
+   <td align="right" >9</td>
+   <td align="right" >0</td>
+   <td align="right" >34</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >104</td>
+   <td align="right" >69</td>
+   <td align="right" >1.200</td>
+   <td align="right" >7.6</td>
+   <td align="right" >2.2</td>
+   <td align="right" >3.2</td>
+   <td align="right" >12.2</td>
+   <td align="right" >3.78</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PIT/2013.shtml" title="Pittsburgh Pirates">PIT</a></td>
+   <td align="right" >8</td>
+   <td align="right" >31.4</td>
+   <td align="right" >2.00</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >2.00</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >27.0</td>
+   <td align="right" >11</td>
+   <td align="right" >6</td>
+   <td align="right" >6</td>
+   <td align="right" >2</td>
+   <td align="right" >5</td>
+   <td align="right" >0</td>
+   <td align="right" >30</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >100</td>
+   <td align="right" >191</td>
+   <td align="right" >0.593</td>
+   <td align="right" >3.7</td>
+   <td align="right" >0.7</td>
+   <td align="right" >1.7</td>
+   <td align="right" >10.0</td>
+   <td align="right" >6.00</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/SDP/2013.shtml" title="San Diego Padres">SDP</a></td>
+   <td align="right" >10</td>
+   <td align="right" >29.6</td>
+   <td align="right" >6.67</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >6.84</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >25.0</td>
+   <td align="right" >26</td>
+   <td align="right" >20</td>
+   <td align="right" >19</td>
+   <td align="right" >5</td>
+   <td align="right" >13</td>
+   <td align="right" >0</td>
+   <td align="right" >28</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >3</td>
+   <td align="right" >116</td>
+   <td align="right" >58</td>
+   <td align="right" >1.560</td>
+   <td align="right" >9.4</td>
+   <td align="right" >1.8</td>
+   <td align="right" >4.7</td>
+   <td align="right" >10.1</td>
+   <td align="right" >2.15</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/SFG/2013.shtml" title="San Francisco Giants">SFG</a></td>
+   <td align="right" >10</td>
+   <td align="right" >28.5</td>
+   <td align="right" >2.33</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.667</td>
+   <td align="right" >1.73</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >26.0</td>
+   <td align="right" >16</td>
+   <td align="right" >7</td>
+   <td align="right" >5</td>
+   <td align="right" >1</td>
+   <td align="right" >10</td>
+   <td align="right" >1</td>
+   <td align="right" >23</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >106</td>
+   <td align="right" >229</td>
+   <td align="right" >1.000</td>
+   <td align="right" >5.5</td>
+   <td align="right" >0.3</td>
+   <td align="right" >3.5</td>
+   <td align="right" >8.0</td>
+   <td align="right" >2.30</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/STL/2013.shtml" title="St. Louis Cardinals">STL</a></td>
+   <td align="right" >10</td>
+   <td align="right" >27.6</td>
+   <td align="right" >5.67</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.333</td>
+   <td align="right" >4.45</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >32.1</td>
+   <td align="right" >35</td>
+   <td align="right" >17</td>
+   <td align="right" >16</td>
+   <td align="right" >4</td>
+   <td align="right" >12</td>
+   <td align="right" >2</td>
+   <td align="right" >29</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >144</td>
+   <td align="right" >86</td>
+   <td align="right" >1.454</td>
+   <td align="right" >9.7</td>
+   <td align="right" >1.1</td>
+   <td align="right" >3.3</td>
+   <td align="right" >8.1</td>
+   <td align="right" >2.42</td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/WSN/2013.shtml" title="Washington Nationals">WSN</a></td>
+   <td align="right" >9</td>
+   <td align="right" >27.7</td>
+   <td align="right" >0.33</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >1.000</td>
+   <td align="right" >0.33</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >0</td>
+   <td align="right" >2</td>
+   <td align="right" >27.0</td>
+   <td align="right" >15</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >7</td>
+   <td align="right" >0</td>
+   <td align="right" >17</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" >98</td>
+   <td align="right" >1164</td>
+   <td align="right" >0.815</td>
+   <td align="right" >5.0</td>
+   <td align="right" >0.3</td>
+   <td align="right" >2.3</td>
+   <td align="right" >5.7</td>
+   <td align="right" >2.43</td>
+</tr>
+<tr  class="league_average_table">
+   <td align="left"  csk="ZZZZZZ">LgAvg</td>
+   <td align="right" >10</td>
+   <td align="right" >29.0</td>
+   <td align="right" >3.73</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.511</td>
+   <td align="right" >3.37</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >3</td>
+   <td align="right" >0</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+   <td align="right" >1</td>
+   <td align="right" >28</td>
+   <td align="right" >23</td>
+   <td align="right" >11</td>
+   <td align="right" >10</td>
+   <td align="right" >3</td>
+   <td align="right" >9</td>
+   <td align="right" >1</td>
+   <td align="right" >25</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" >113</td>
+   <td align="right" >107</td>
+   <td align="right" >1.147</td>
+   <td align="right" >7.5</td>
+   <td align="right" >1.0</td>
+   <td align="right" >2.8</td>
+   <td align="right" >8.3</td>
+   <td align="right" >2.90</td>
+</tr>
+</tbody>
+<tfoot>
+<tr  class=" stat_total">
+   <td align="left" ></td>
+   <td align="right" >144</td>
+   <td align="right" >29.0</td>
+   <td align="right" >3.73</td>
+   <td align="right" >23</td>
+   <td align="right" >22</td>
+   <td align="right" >.511</td>
+   <td align="right" >3.37</td>
+   <td align="right" >45</td>
+   <td align="right" >45</td>
+   <td align="right" >44</td>
+   <td align="right" >1</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+   <td align="right" >12</td>
+   <td align="right" >414.0</td>
+   <td align="right" >344</td>
+   <td align="right" >168</td>
+   <td align="right" >155</td>
+   <td align="right" >45</td>
+   <td align="right" >131</td>
+   <td align="right" >11</td>
+   <td align="right" >380</td>
+   <td align="right" >17</td>
+   <td align="right" >0</td>
+   <td align="right" >16</td>
+   <td align="right" >1701</td>
+   <td align="right" >107</td>
+   <td align="right" >1.147</td>
+   <td align="right" >7.5</td>
+   <td align="right" >1.0</td>
+   <td align="right" >2.8</td>
+   <td align="right" >8.3</td>
+   <td align="right" >2.90</td>
+</tr>
+</tfoot>
+</table>
+</div><!-- div.table_container#div_xxxx -->
+</div>
+
+
+
+<div class="div_fielding_type stw" id="all_teams_standard_fielding">
+<div class="table_heading">
+<h2>Team &amp; League Standard Fielding</h2><div class="table_heading_text"></div></div>
+<div class="table_container" id="div_teams_standard_fielding">
+<table data-freeze="1" class="sortable  stats_table" id="teams_standard_fielding">
+<colgroup><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col></colgroup>
+<thead>
+<tr class="">
+  <th data-stat="team_ID" align="center"  class="tooltip sort_default_asc show_partial_when_sorting" >Tm</th>
+  <th data-stat="fielders_used" align="center"  class="tooltip"  tip="<strong>Number of Players used as Fielders</strong>">#Fld</th>
+  <th data-stat="runs_per_game" align="center"  class="tooltip"  tip="Runs Scored Per Game">R/G</th>
+  <th data-stat="defensive_efficiency" align="center"  class="tooltip"  tip="<strong>Defensive Efficiency</strong><br>Percentage of balls in play converted into outs<br>This is an estimate based on team defensive and pitching stats.<br>We utilize two estimates of plays made.<br>One using innings pitched, strikeouts, double plays and outfield assists.<br>And the other with batters faced, strikeouts, hits allowed, walks allowed, hbp, and .71 * errors committed (avg percent of errors that result in an ROE)<br>Total plays available are plays made + hits allowed - home runs + error committed estimate.">DefEff</th>
+  <th data-stat="G" align="center"  class="tooltip"  tip="Games Played or Pitched">G</th>
+  <th data-stat="GS" align="center"  class="tooltip"  tip="Games Started">GS</th>
+  <th data-stat="CG" align="center"  class="tooltip"  tip="Complete Game">CG</th>
+  <th data-stat="Inn_def" align="center"  class="tooltip"  tip="Innings Played in Field">Inn</th>
+  <th data-stat="chances" align="center"  class="tooltip"  tip="<strong>Defensive Chances</strong><br>Putouts + Assists + Errors">Ch</th>
+  <th data-stat="PO" align="center"  class="tooltip"  tip="Putouts">PO</th>
+  <th data-stat="A" align="center"  class="tooltip"  tip="Assists">A</th>
+  <th data-stat="E_def" align="center"  class="tooltip"  tip="Errors Committed">E</th>
+  <th data-stat="DP_def" align="center"  class="tooltip"  tip="Double Plays Turned">DP</th>
+  <th data-stat="fielding_perc" align="center"  class="tooltip"  tip="<strong>Fielding Percentage</strong><br>Putouts + Assists / (Putouts + Assists + Errors)">Fld%</th>
+  <th data-stat="tz_runs_total" align="center"  class="tooltip"  tip="<strong>Total Zone Total Fielding Runs Above Avg</strong><br>The number of runs above or below average the player was worth based on the number of plays made.<br>This number combines the R<em>tz</em>, R<em>dp</em>, R<em>of</em>, R<em>catch</em> numbers into a total defensive contribution.<br>See the glossary section for a more complete explanation.<br><em>Provided by BaseballProjection.com</em>">R<em>tot</em></th>
+  <th data-stat="tz_runs_total_per_season" align="center"  class="tooltip"  tip="<strong>Total Zone Total Fielding Runs Above Avg per 1,200 Inn</strong><br>The number of runs above or below average the fielder was worth per 1,200 Innings (approx 135 games).<br>This number combines the R<em>tz</em>, R<em>dp</em>, R<em>of</em>, R<em>catch</em> numbers into a total defensive contribution.<br>See the glossary section for a more complete explanation.<br><em>Provided by BaseballProjection.com</em>">R<em>tot</em>/yr</th>
+  <th data-stat="bis_runs_total" align="center"  class="tooltip"  tip="<strong>BIS Defensive Runs Saved Above Avg</strong><br>The number of runs above or below average the player was worth based on the number of plays made.<br>This number combines the R<em>pm</em>, R<em>bdp</em>, R<em>bof</em>, R<em>bcatch</em> numbers into a total defensive contribution.<br><em>Provided by Baseball Info Solutions</em>">R<em>drs</em></th>
+  <th data-stat="bis_runs_total_per_season" align="center"  class="tooltip"  tip="<strong>BIS Defensive Runs Saved Above Avg per 1,200 Inn</strong><br>The number of runs above or below average the fielder was worth per 1,200 Innings (approx 135 games).<br>This number combines the R<em>pm</em>, R<em>bdp</em>, R<em>bof</em>, R<em>bcatch</em> numbers into a total defensive contribution.<br>For pitchers, this is set to 200 Innings.<br><em>Provided by Baseball Info Solutions</em>">R<em>drs</em>/yr</th>
+</tr>
+</thead>
+<tbody>
+<tr  class="">
+   <td align="left" ><a href="/teams/ARI/2013.shtml" title="Arizona Diamondbacks">ARI</a></td>
+   <td align="right" >21</td>
+   <td align="right" >5.67</td>
+   <td align="right" >.706</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >16</td>
+   <td align="right" >306.0</td>
+   <td align="right" >140</td>
+   <td align="right" >102</td>
+   <td align="right" >37</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.993</td>
+   <td align="right" >2</td>
+   <td align="right" >9</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/ATL/2013.shtml" title="Atlanta Braves">ATL</a></td>
+   <td align="right" >22</td>
+   <td align="right" >3.00</td>
+   <td align="right" >.689</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >22</td>
+   <td align="right" >243.0</td>
+   <td align="right" >114</td>
+   <td align="right" >81</td>
+   <td align="right" >32</td>
+   <td align="right" >1</td>
+   <td align="right" >3</td>
+   <td align="right" >.991</td>
+   <td align="right" >-1</td>
+   <td align="right" >-5</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/CHC/2013.shtml" title="Chicago Cubs">CHC</a></td>
+   <td align="right" >22</td>
+   <td align="right" >2.00</td>
+   <td align="right" >.771</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >21</td>
+   <td align="right" >234.0</td>
+   <td align="right" >114</td>
+   <td align="right" >78</td>
+   <td align="right" >33</td>
+   <td align="right" >3</td>
+   <td align="right" >2</td>
+   <td align="right" >.974</td>
+   <td align="right" >1</td>
+   <td align="right" >5</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/CIN/2013.shtml" title="Cincinnati Reds">CIN</a></td>
+   <td align="right" >18</td>
+   <td align="right" >3.67</td>
+   <td align="right" >.692</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >21</td>
+   <td align="right" >279.0</td>
+   <td align="right" >127</td>
+   <td align="right" >93</td>
+   <td align="right" >32</td>
+   <td align="right" >2</td>
+   <td align="right" >2</td>
+   <td align="right" >.984</td>
+   <td align="right" >2</td>
+   <td align="right" >9</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/COL/2013.shtml" title="Colorado Rockies">COL</a></td>
+   <td align="right" >23</td>
+   <td align="right" >4.00</td>
+   <td align="right" >.707</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >21</td>
+   <td align="right" >249.0</td>
+   <td align="right" >120</td>
+   <td align="right" >83</td>
+   <td align="right" >35</td>
+   <td align="right" >2</td>
+   <td align="right" >3</td>
+   <td align="right" >.983</td>
+   <td align="right" >5</td>
+   <td align="right" >23</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/LAD/2013.shtml" title="Los Angeles Dodgers">LAD</a></td>
+   <td align="right" >20</td>
+   <td align="right" >2.67</td>
+   <td align="right" >.722</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >21</td>
+   <td align="right" >243.0</td>
+   <td align="right" >128</td>
+   <td align="right" >81</td>
+   <td align="right" >43</td>
+   <td align="right" >4</td>
+   <td align="right" >7</td>
+   <td align="right" >.969</td>
+   <td align="right" >3</td>
+   <td align="right" >14</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIA/2013.shtml" title="Miami Marlins">MIA</a></td>
+   <td align="right" >20</td>
+   <td align="right" >3.67</td>
+   <td align="right" >.732</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >23</td>
+   <td align="right" >216.0</td>
+   <td align="right" >97</td>
+   <td align="right" >72</td>
+   <td align="right" >22</td>
+   <td align="right" >3</td>
+   <td align="right" >2</td>
+   <td align="right" >.969</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/MIL/2013.shtml" title="Milwaukee Brewers">MIL</a></td>
+   <td align="right" >21</td>
+   <td align="right" >6.33</td>
+   <td align="right" >.586</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >22</td>
+   <td align="right" >252.0</td>
+   <td align="right" >112</td>
+   <td align="right" >84</td>
+   <td align="right" >27</td>
+   <td align="right" >1</td>
+   <td align="right" >4</td>
+   <td align="right" >.991</td>
+   <td align="right" >-3</td>
+   <td align="right" >-16</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/NYM/2013.shtml" title="New York Mets">NYM</a></td>
+   <td align="right" >23</td>
+   <td align="right" >2.67</td>
+   <td align="right" >.780</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >19</td>
+   <td align="right" >243.0</td>
+   <td align="right" >117</td>
+   <td align="right" >81</td>
+   <td align="right" >34</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.983</td>
+   <td align="right" >1</td>
+   <td align="right" >3</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PHI/2013.shtml" title="Philadelphia Phillies">PHI</a></td>
+   <td align="right" >19</td>
+   <td align="right" >5.33</td>
+   <td align="right" >.714</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >23</td>
+   <td align="right" >225.0</td>
+   <td align="right" >99</td>
+   <td align="right" >75</td>
+   <td align="right" >23</td>
+   <td align="right" >1</td>
+   <td align="right" >2</td>
+   <td align="right" >.990</td>
+   <td align="right" >-1</td>
+   <td align="right" >-6</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/PIT/2013.shtml" title="Pittsburgh Pirates">PIT</a></td>
+   <td align="right" >19</td>
+   <td align="right" >2.00</td>
+   <td align="right" >.838</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >20</td>
+   <td align="right" >243.0</td>
+   <td align="right" >105</td>
+   <td align="right" >81</td>
+   <td align="right" >23</td>
+   <td align="right" >1</td>
+   <td align="right" >0</td>
+   <td align="right" >.990</td>
+   <td align="right" >1</td>
+   <td align="right" >7</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/SDP/2013.shtml" title="San Diego Padres">SDP</a></td>
+   <td align="right" >22</td>
+   <td align="right" >6.67</td>
+   <td align="right" >.674</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >19</td>
+   <td align="right" >225.0</td>
+   <td align="right" >105</td>
+   <td align="right" >75</td>
+   <td align="right" >28</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.981</td>
+   <td align="right" >-4</td>
+   <td align="right" >-23</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/SFG/2013.shtml" title="San Francisco Giants">SFG</a></td>
+   <td align="right" >21</td>
+   <td align="right" >2.33</td>
+   <td align="right" >.773</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >22</td>
+   <td align="right" >234.0</td>
+   <td align="right" >99</td>
+   <td align="right" >78</td>
+   <td align="right" >20</td>
+   <td align="right" >1</td>
+   <td align="right" >1</td>
+   <td align="right" >.990</td>
+   <td align="right" >0</td>
+   <td align="right" >1</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/STL/2013.shtml" title="St. Louis Cardinals">STL</a></td>
+   <td align="right" >20</td>
+   <td align="right" >5.67</td>
+   <td align="right" >.671</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >21</td>
+   <td align="right" >291.0</td>
+   <td align="right" >133</td>
+   <td align="right" >97</td>
+   <td align="right" >34</td>
+   <td align="right" >2</td>
+   <td align="right" >1</td>
+   <td align="right" >.985</td>
+   <td align="right" >-5</td>
+   <td align="right" >-23</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="">
+   <td align="left" ><a href="/teams/WSN/2013.shtml" title="Washington Nationals">WSN</a></td>
+   <td align="right" >18</td>
+   <td align="right" >0.33</td>
+   <td align="right" >.798</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >24</td>
+   <td align="right" >243.0</td>
+   <td align="right" >116</td>
+   <td align="right" >81</td>
+   <td align="right" >34</td>
+   <td align="right" >1</td>
+   <td align="right" >5</td>
+   <td align="right" >.991</td>
+   <td align="right" >5</td>
+   <td align="right" >25</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+<tr  class="league_average_table">
+   <td align="left"  csk="ZZZZZZ">LgAvg</td>
+   <td align="right" >21</td>
+   <td align="right" >3.73</td>
+   <td align="right" >.719</td>
+   <td align="right" >3</td>
+   <td align="right" >27</td>
+   <td align="right" >21</td>
+   <td align="right" >248</td>
+   <td align="right" >115</td>
+   <td align="right" >83</td>
+   <td align="right" >30</td>
+   <td align="right" >2</td>
+   <td align="right" >2</td>
+   <td align="right" >.984</td>
+   <td align="right" >0</td>
+   <td align="right" >0</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+</tbody>
+<tfoot>
+<tr  class=" stat_total">
+   <td align="left" ></td>
+   <td align="right" >309</td>
+   <td align="right" >3.73</td>
+   <td align="right" >.719</td>
+   <td align="right" >45</td>
+   <td align="right" >405</td>
+   <td align="right" >315</td>
+   <td align="right" >3726.0</td>
+   <td align="right" >1726</td>
+   <td align="right" >1242</td>
+   <td align="right" >457</td>
+   <td align="right" >27</td>
+   <td align="right" >36</td>
+   <td align="right" >.984</td>
+   <td align="right" >5</td>
+   <td align="right" >2</td>
+   <td align="right" ></td>
+   <td align="right" ></td>
+</tr>
+</tfoot>
+</table>
+</div><!-- div.table_container#div_xxxx -->
+</div>
+
+<div class=small_text><a href="2013-batting-leaders.shtml">Batting Leaders</a></div>
+<div class=small_text><a href="2013-pitching-leaders.shtml">Pitching Leaders</a></div>
+<div class=small_text><a href="2013-fielding-leaders.shtml">Fielding Leaders</a></div>
+<div class=small_text><a href="2013-other-leaders.shtml">Other Leaders, Awards and All-stars</a></div>
+<br><br><div class="clear_both small_text"><a href="/leagues/NL/2012.shtml">2012 NL</a>
+&nbsp;/&nbsp;<a href="/leagues/AL/2013.shtml">2013 AL</a>
+&nbsp;/&nbsp;<a href="/leagues/MLB/2013.shtml">2013 MLB</a>
+&nbsp;Team Statistics and Standings</div>
+</div><!-- div#page_content -->
+
+<div id="sr_js"></div>
+<script type="text/javascript">
+(function () {
+    var sr_js_file = 'http://d2ft4b0ve1aur1.cloudfront.net/js-307/sr-br-min.js';
+    if (sr_gzipEnabled) {
+       sr_js_file = 'http://d2ft4b0ve1aur1.cloudfront.net/js-307/sr-br-min.js.jgz';
+    }
+    var sr_script_tag = document.getElementById("sr_js");         
+    if (sr_script_tag) {
+	var scriptStyles = document.createElement("script");
+	scriptStyles.type = "text/javascript";
+	scriptStyles.src = sr_js_file;
+	sr_script_tag.appendChild(scriptStyles);
+	//alert('adding js to footer:'+sr_js_file);
+    }
+}());
+</script>
+
+<div id="site_footer">
+
+<div class="margin border">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5319453360923253";
+/* Page Bottom */
+google_ad_slot = "3058294917";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+<div id="sr_footer" class="bold_text">
+<div class="margin xx_large_text"><a href="http://www.sports-reference.com/feedback/">Question, Comment, Feedback or Correction?</a></div>
+
+  Copyright &copy; 2000-2013
+<a href="http://www.sports-reference.com">Sports Reference LLC</a>.
+All rights reserved.
+
+<form class="inline" method="get" name="f_footer" action="/pl/player_search.cgi" style="margin-left:5em;">
+<input x-webkit-speech type="text" id="search_footer" name="search" class="search long"> 
+<input type="submit" value="Search" class="submit">
+<a class="small_text" href="/about/findstuff.shtml">Tips</a>
+</form>
+<div class="margin_top"><a href="/linker/">Automatic Player Linking</a> / <a href="/about/sharing.shtml">Statistical Sharing Tool</a> / <a href="/friv/link_players.cgi">Basic Player Linking</a> / <a href="/about/coverage.shtml">Data Coverage</a></div>
+</div>
+
+<!-- LAST UPDATE --><div><a href="/">See Front Page</a> for time of last update</div>
+  
+<div class="blockquote italic_text clear_both margin_top">
+Much of the play-by-play, game results, and transaction information
+both shown and used to create certain data sets was obtained free of
+charge from and is copyrighted by <a
+href="http://www.retrosheet.org/">RetroSheet</a>.  </div>
+
+<div class="blockquote italic_text clear_both margin_top">
+ Win
+Expectancy, Run Expectancy, and Leverage Index calculations provided by Tom Tango of <a
+href="http://www.insidethebook.com/">InsideTheBook.com</a>, and
+co-author of <a class="italic_text"
+href="http://www.amazon.com/exec/obidos/tg/detail/-/1597971294/">The
+Book: Playing the Percentages in Baseball</a>.</div>
+
+<div class="blockquote italic_text clear_both margin_top"> <a
+href="/blog/archives/5756">Total Zone Rating</a> and <a
+href="/blog/archives/6063">Wins above Replacement</a> calculations
+provided by Sean Smith of <a
+href="http://www.baseballprojection.com/">BaseballProjection.com</a>.</div>
+
+<div class="blockquote italic_text clear_both margin_top"> Full-year
+historical Major League statistics provided by Pete Palmer and Gary
+Gillette of <a href="http://www.247baseball.com/web/?page_id=2">24-7
+Baseball</a>.</div>
+
+<div class="blockquote italic_text clear_both margin_top">Some
+defensive statistics Copyright BIS, 2010-2011 <a
+href="http://www.baseballinfosolutions.com/"><img alt="Baseball Info
+Solutions"
+src="http://d2ft4b0ve1aur1.cloudfront.net/images-904/bis_logo.png"
+width=100 height=38></a>.</div>
+
+<div class="blockquote italic_text clear_both margin_top">Player head
+shots courtesy of David Davis.  Many thanks to him.  We have only
+selected seasons (players who debuted before 1960) for which we
+believe the image has reverted into the public domain.  We will
+quickly remove any images for which that can be shown to not be the
+case.<a href="/feedback/">Please let us know if you are aware of any
+such images</a> on this site.</div>
+
+<div class="blockquote italic_text clear_both margin_top">Play Index
+Loading Photos from the <a
+href="http://www.loc.gov/rr/print/coll/022-2.html">George Grantham
+Bain Collection</A> at the Library of Congress.</div>
+
+<div class="blockquote clear_both margin_top">
+<a href="http://www.sports-reference.com/">A Sports Reference Site</a>:
+<a href="/about/">About Baseball Reference</a>&nbsp;|
+<a href="/feedback/">Found a bug or have a suggestion?</a><br>
+<a href="http://www.sports-reference.com/privacy.shtml">Privacy Statement</a>&nbsp;|
+<a href="http://www.sports-reference.com/termsofuse.shtml">Conditions &amp; Terms of Service</a> | 
+<a href="http://www.sports-reference.com/data_use.shtml">Use of Data</a>
+</div>
+
+<div class="blockquote clear_both margin">
+
+<a target="_blank" title="USA TODAY Sports" href="http://Sports.USATODAY.com/"><img src="http://d2ft4b0ve1aur1.cloudfront.net/images-252/USATSdp.png" width=193 height=41 border=0  style="width:193px;height:41px;vertical-align:middle"></a>
+Partner of <a target="_blank" title="USA TODAY Sports" href="http://Sports.USATODAY.com/">USA TODAY Sports Digital Properties</a>.
+
+</div>
+</div><!-- div#site_footer -->
+
+<script type="text/javascript"> 
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+   var pageTracker = _gat._createTracker("UA-1890630-1");
+   var SR_UNDERLINE = document.body.className.search('tradu') == -1?'No':'Yes'; 
+   pageTracker._setCustomVar(
+         1,                
+         "Has Underlined Links", 
+         SR_UNDERLINE,        
+         1);
+   pageTracker._trackPageview();
+   pageTracker._trackPageLoadTime();
+   var sr_tracker = _gat._createTracker("UA-1890630-9");
+   sr_tracker._setDomainName('none'); 
+   sr_tracker._setAllowLinker(true); 
+   sr_tracker._setAllowHash(false);
+   sr_tracker._setCustomVar(1,"site","br",3);
+   sr_tracker._trackPageview();
+} catch(err) {}</script>
+ 
+
+                             
+<!-- Begin comScore Tag -->
+<script type="text/deferscript">
+    document.write(unescape("%3Cscript src='" + (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+</script>
+
+<script type="text/deferscript">
+  COMSCORE.beacon({
+    c1:2,
+    c2:"6035210",
+    c3:"",
+    c4:"www.baseball-reference.com",
+    c5:"",
+    c6:"",
+    c15:""
+  });
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/b?c1=2&amp;c2=6035210&amp;c3=&amp;c4=www.baseball-reference.com&amp;c5=&amp;c6=&amp;c15=&amp;cv=1.3&amp;cj=1" width="0" height="0" alt="" />
+</noscript>
+<!-- End comScore Tag -->
+
+<!-- google +1 code -->
+<script type="text/deferscript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<!-- facebook code -->
+<script type="text/deferscript">
+     window.fbAsyncInit = function() {
+        FB.init({appId: '165379980186112', status: true, cookie: true,
+                 xfbml: true, channelUrl  : 'http://www.baseball-reference.com/channel.html'});
+      };
+      (function() {
+        var fb_root = document.getElementById('fb-root');
+        if (fb_root) {
+           var e = document.createElement('script');
+           e.type = 'text/javascript';
+           e.src = document.location.protocol +
+              '//connect.facebook.net/en_US/all.js';
+           e.async = true;
+           fb_root.appendChild(e);
+        }
+      }());
+</script>
+
+</div><!-- div#Page container -->
+</body>
+</html>
