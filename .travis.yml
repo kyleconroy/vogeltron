@@ -4,4 +4,6 @@ python:
 # command to install dependencies
 install: "pip install -r requirements.txt --use-mirrors"
 # command to run tests
-script: make test
+script:
+ - flake8 tests reddit.py baseball.py bot.py
+ - nosetests tests
