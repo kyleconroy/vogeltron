@@ -1,12 +1,10 @@
 import requests
-import datetime
 from collections import namedtuple
 from bs4 import BeautifulSoup
 
 USER_AGENT = "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"
-STATS_URL = "http://www.baseball-reference.com/leagues/{}/{}.shtml"
-Standing = namedtuple('Standing',
-                      'name, abbr, wins, losses, ratio, games_back')
+STATS_URL = "http://espn.go.com/mlb/standings"
+Standing = namedtuple('Standing', 'name, wins, losses, ratio, games_back')
 
 
 def current_standings(league, division):
@@ -14,28 +12,47 @@ def current_standings(league, division):
 
     :returns: List of Standings
     """
-    url = STATS_URL.format(league, datetime.date.today().year)
+    standings = {
+        'NATIONAL': {
+            'EAST': [],
+            'WEST': [],
+            'CENTRAL': [],
+        },
+        'AMERICAN': {
+            'EAST': [],
+            'WEST': [],
+            'CENTRAL': [],
+        },
+    }
 
-    resp = requests.get(url, headers={'User-Agent': USER_AGENT})
+    resp = requests.get(STATS_URL, headers={'User-Agent': USER_AGENT})
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.content)
-    region_id = "standings_{}".format(division[0].upper())
 
-    table = soup.find(id=region_id)
+    table = soup.find("table", class_="tablehead")
 
-    standings = []
+    active_league = None
+    active_division = None
 
-    for tr in table.find('tbody').find_all('tr'):
-        link, abbr, wins, losses, ratio, games_back = tr.find_all('td')
-        s = Standing(
-            link.find('a')['title'],
-            abbr.text.upper(),
-            int(wins.text),
-            int(losses.text),
-            float(ratio.text),
-            0.0 if games_back.text == "--" else float(games_back.text),
-        )
-        standings.append(s)
+    for tr in table.find_all("tr"):
+        if 'stathead' in tr['class']:  # League Row
+            active_league = tr.text.strip().upper().replace(" LEAGUE", "")
+            continue
 
-    return standings
+        if 'colhead' in tr['class']:  # Division Row
+            active_division = tr.find('td').text.strip().upper()
+            continue
+
+        current = standings[active_league][active_division]
+
+        d = tr.find_all('td')
+        current.append(Standing(
+            d[0].text,
+            int(d[1].text),
+            int(d[2].text),
+            float(d[3].text),
+            0.0 if d[4].text == "-" else float(d[4].text)
+        ))
+
+    return standings[league][division]

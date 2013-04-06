@@ -10,7 +10,7 @@ import logging
 import reddit
 
 SUBREDDIT = os.environ.get("SUBREDDIT", "SFGiants")
-LEAGUE = os.environ.get("MLB_LEAGUE", "NL")
+LEAGUE = os.environ.get("MLB_LEAGUE", "NATIONAL")
 DIVISION = os.environ.get("MLB_DIVISION", "WEST")
 
 
