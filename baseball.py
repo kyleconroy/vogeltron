@@ -69,6 +69,10 @@ def giants_schedule():
 
         status, _, team_name = d[1].find_all('li')
 
+        # Game currently in progress, ignore
+        if len(d[2].find_all('li')) == 1:
+            continue
+
         try:
             win_node, score_node = d[2].find_all('li')
             win = win_node.text.strip().upper() == 'W'
