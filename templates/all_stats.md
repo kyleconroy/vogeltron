@@ -9,7 +9,7 @@
 | {{ t.name }} | {{ t.wins }} | {{ t.losses }} | {{ t.ratio }} | {% if t.games_back < 0.5 %}--{%else%} {{ t.games_back }}{% endif %} |
 {% endfor %}
 | Date | vs. | W/L | Score |
-| ------ | ------ | ----- |
+| ------ | ------ | ----- | ----- | 
 {% for g in past -%}
 | {{ g.date }} | {{ g.opponent }} | {{ g.w }} | {{ g.score }} |
 {% endfor %}

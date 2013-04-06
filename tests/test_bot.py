@@ -17,7 +17,7 @@ sidebar = """
 | San Francisco | 3 | 1 | 0.75 | -- |
 
 | Date | vs. | W/L | Score |
-| ------ | ------ | ----- |
+| ------ | ------ | ----- | ----- |
 | January 1 | LA Dodgers | W | 1-1 |
 
 | Date | Time | Opponent |
