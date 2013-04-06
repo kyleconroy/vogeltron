@@ -8,21 +8,59 @@ Usage: In the sidebar description, add the tags [](/statsstart) and
 import os
 import logging
 import reddit
+import baseball
+import time
+import re
+from jinja2 import Template
+
+logger = logging.getLogger('sfgiants')
 
 SUBREDDIT = os.environ.get("SUBREDDIT", "SFGiants")
 LEAGUE = os.environ.get("MLB_LEAGUE", "NATIONAL")
 DIVISION = os.environ.get("MLB_DIVISION", "WEST")
 
 
+def timestamp():
+    return time.strftime("%Y-%m-%d %I:%M %p", time.localtime())
+
+
+def all_stats():
+    standings = baseball.current_standings(LEAGUE, DIVISION)
+    template = Template(open('templates/all_stats.md').read())
+    return template.render(standings=standings, timestamp=timestamp())
+
+
+def update_standings(current_description):
+    stats = all_stats()
+    return re.sub(r'\[\]\(/all_statsstart\).*\[\]\(/all_statsend\)',
+                  '[](/all_statsstart)\n' + stats + '\n[](/all_statsend)',
+                  current_description, flags=re.S)
+
+
+def update_sidebar():
+    r = reddit.Client(os.environ["REDDIT_USERNAME"],
+                      os.environ["REDDIT_PASSWORD"])
+
+    about = r.about(SUBREDDIT)
+
+    payload = {
+        'description': update_standings(about['description']),
+        'link_type': 'any',
+        'sr': about['subreddit_id'],
+        'title': about['title'],
+        'type': about['subreddit_type'],
+        'wikimode': about['wikimode'],
+    }
+
+    return r.update_about(SUBREDDIT, payload)
+
+
 if __name__ == "__main__":
-    logging.info('Starting bot')
+    logger.info('Starting bot')
 
     assert "REDDIT_USERNAME" in os.environ, "REDDIT_USERNAME required"
     assert "REDDIT_PASSWORD" in os.environ, "REDDIT_PASSWORD required"
 
-    # Initiate a reddit session
-    r = reddit.Client(os.environ["REDDIT_USERNAME"],
-                      os.environ["REDDIT_PASSWORD"],
-                      SUBREDDIT)
+    update_sidebar()
 
-    logging.info('Stopping bot')
+    logger.info('Stopping bot')

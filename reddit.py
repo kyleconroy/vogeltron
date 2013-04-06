@@ -5,36 +5,49 @@ HEADERS = {'User-Agent': "/r/SFGiants Sidebar Bot"}
 
 class Client(object):
 
-    def __init__(self, user_agent):
-        self.user_agent = user_agent
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
-    def _authenticate(self, auth):
-        username, password = auth
-        payload = {'user': username, 'passwd': password}
+        payload = {'user': self.username, 'passwd': self.password}
 
         resp = requests.post('https://ssl.reddit.com/api/login',
                              data=payload, headers=HEADERS)
         resp.raise_for_status()
 
-        return resp.cookies
+        self.s = requests.Session()
+        self.s.cookies = resp.cookies
+        self.s.headers.update(HEADERS)
 
-    def submit(self, subreddit, title, text='', auth=None):
-        cookies = self._authenticate(auth)
-
-        resp = requests.get('http://www.reddit.com/api/me.json',
-                            cookies=cookies, headers=HEADERS)
+        resp = self.s.get('http://www.reddit.com/api/me.json')
         resp.raise_for_status()
 
+        self.user_hash = resp.json()['data']['modhash']
+
+    def about(self, subreddit):
+        url = "http://www.reddit.com/r/{}/about/edit/.json".format(subreddit)
+        resp = self.s.get(url)
+        resp.raise_for_status()
+        return resp.json()['data']
+
+    def update_about(self, subreddit, data):
+        data['uh'] = self.user_hash
+
+        resp = self.s.post("http://www.reddit.com/api/site_admin", data=data)
+        resp.raise_for_status()
+
+        return resp.json()
+
+    def submit(self, subreddit, title, text=''):
         payload = {
             'kind': 'self',
             'sr': subreddit,
             'title': title,
             'text': text,
-            'uh': resp.json()['data']['modhash'],
+            'uh': self.user_hash,
         }
 
-        resp = requests.post('http://www.reddit.com/api/submit',
-                             headers=HEADERS, data=payload, cookies=cookies)
+        resp = self.s.post('http://www.reddit.com/api/submit', data=payload)
         resp.raise_for_status()
 
-        return resp
+        return resp.json()

@@ -47,12 +47,13 @@ def current_standings(league, division):
         current = standings[active_league][active_division]
 
         d = tr.find_all('td')
+
         current.append(Standing(
-            d[0].text,
-            int(d[1].text),
-            int(d[2].text),
-            float(d[3].text),
-            0.0 if d[4].text == "-" else float(d[4].text)
+            d[0].text,  # Team name
+            int(d[1].text),  # Wins
+            int(d[2].text),  # Losses
+            float(d[3].text),  # Win Percentage
+            0.0 if d[4].text == "-" else float(d[4].text)  # Games back
         ))
 
     return standings[league][division]
