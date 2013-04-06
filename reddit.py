@@ -25,7 +25,7 @@ class Client(object):
         self.user_hash = resp.json()['data']['modhash']
 
     def about(self, subreddit):
-        url = "http://www.reddit.com/r/{}/about.json".format(subreddit)
+        url = "http://www.reddit.com/r/{}/about/edit/.json".format(subreddit)
         resp = self.s.get(url)
         resp.raise_for_status()
         return resp.json()['data']
