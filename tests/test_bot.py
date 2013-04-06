@@ -13,7 +13,7 @@ sidebar = """
 | San Francisco | 3 | 1 | 0.75 | -- |
 | San Francisco | 3 | 1 | 0.75 | -- |
 
-Last Updated @ 2013-04-06 12:31 AM PST
+Last Updated @ 2013-04-06 12:31 AM
 """
 
 markdown = """
