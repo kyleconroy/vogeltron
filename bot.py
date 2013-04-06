@@ -23,8 +23,8 @@ DIVISION = os.environ.get("MLB_DIVISION", "WEST")
 
 def timestamp():
     pacific = timezone('US/Pacific')
-    now = pacific.localize(datetime.datetime.utcnow())
-    return now.strftime("%Y-%m-%d %I:%M %p %Z")
+    now = datetime.datetime.now(datetime.timezone.utc)
+    return now.astimezone(pacific).strftime("%Y-%m-%d %I:%M %p %Z")
 
 
 def all_stats():
