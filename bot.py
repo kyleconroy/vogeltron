@@ -46,7 +46,7 @@ def update_sidebar():
     r = reddit.Client(os.environ["REDDIT_USERNAME"],
                       os.environ["REDDIT_PASSWORD"])
 
-    about = r.about(SUBREDDIT)
+    about = r.settings(SUBREDDIT)
 
     payload = {
         'description': update_standings(about['description']),
@@ -57,7 +57,7 @@ def update_sidebar():
         'wikimode': about['wikimode'],
     }
 
-    return r.update_about(SUBREDDIT, payload)
+    return r.admin(SUBREDDIT, payload)
 
 
 if __name__ == "__main__":

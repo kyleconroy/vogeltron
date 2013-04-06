@@ -25,12 +25,18 @@ class Client(object):
         self.user_hash = resp.json()['data']['modhash']
 
     def about(self, subreddit):
+        url = "http://www.reddit.com/r/{}/about.json".format(subreddit)
+        resp = self.s.get(url)
+        resp.raise_for_status()
+        return resp.json()['data']
+
+    def settings(self, subreddit):
         url = "http://www.reddit.com/r/{}/about/edit/.json".format(subreddit)
         resp = self.s.get(url)
         resp.raise_for_status()
         return resp.json()['data']
 
-    def update_about(self, subreddit, data):
+    def admin(self, subreddit, data):
         data['uh'] = self.user_hash
 
         resp = self.s.post("http://www.reddit.com/api/site_admin", data=data)
