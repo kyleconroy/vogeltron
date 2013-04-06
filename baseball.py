@@ -33,6 +33,14 @@ class Game(object):
     def time(self):
         return self.datetime.strftime("%I:%M%p")
 
+    @property
+    def w(self):
+        return "W" if self.win else "L"
+
+    @property
+    def description(self):
+        return "{} {}".format("vs" if self.home else "at", self.opponent)
+
 
 def parse_gametime(date, time):
     today = datetime.date.today()
@@ -51,6 +59,7 @@ def giants_schedule():
 
     past = []
     future = []
+    pacific = pytz.timezone('US/Pacific')
 
     for tr in table.find_all("tr"):
         if 'stathead' in tr['class'] or 'colhead' in tr['class']:  # League Row
@@ -75,7 +84,7 @@ def giants_schedule():
         home = status.text.strip().upper() == "VS"
         opponent = team_name.text.strip()
 
-        game = Game(opponent, gametime, home, win, score)
+        game = Game(opponent, gametime.astimezone(pacific), home, win, score)
 
         if win is None:
             future.append(game)

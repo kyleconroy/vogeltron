@@ -20,6 +20,10 @@ def test_game_time():
     assert_equals(game.time, '08:05PM')
 
 
+def test_game_description():
+    assert_equals(game.description, 'at LA Dodgers')
+
+
 @mock.patch('requests.get')
 def test_results(_get):
     _get().content = open('tests/fixtures/stats.html').read()

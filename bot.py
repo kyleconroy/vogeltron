@@ -29,8 +29,10 @@ def timestamp():
 
 def all_stats():
     standings = baseball.current_standings(LEAGUE, DIVISION)
+    past, future = baseball.giants_schedule()
     template = Template(open('templates/all_stats.md').read())
-    return template.render(standings=standings, timestamp=timestamp())
+    return template.render(standings=standings, past=past, future=future,
+                           timestamp=timestamp())
 
 
 def update_standings(current_description):
