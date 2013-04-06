@@ -45,3 +45,7 @@ def test_all_stats(_standings, _timestamp):
     ]
 
     assert_equals(sidebar.strip(), bot.all_stats())
+
+
+def test_timestamp():
+    assert ('PST' in bot.timestamp() or 'PDT' in bot.timestamp())

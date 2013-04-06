@@ -9,8 +9,9 @@ import os
 import logging
 import reddit
 import baseball
-import time
+import datetime
 import re
+from pytz import timezone
 from jinja2 import Template
 
 logger = logging.getLogger('sfgiants')
@@ -21,7 +22,9 @@ DIVISION = os.environ.get("MLB_DIVISION", "WEST")
 
 
 def timestamp():
-    return time.strftime("%Y-%m-%d %I:%M %p", time.localtime())
+    pacific = timezone('US/Pacific')
+    now = pacific.localize(datetime.datetime.utcnow())
+    return now.strftime("%Y-%m-%d %I:%M %p %Z")
 
 
 def all_stats():
