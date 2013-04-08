@@ -28,11 +28,11 @@ Giants, please change them for your team.
 $ heroku config:add VOGELTRON_USERNAME=redditbot
 $ heroku config:add VOGELTRON_PASSWORD=supersecret
 $ heroku config:add VOGELTRON_SUBREDDIT=SFGiants
-$ heroku config:add VOGELTRON_TEAM=SFG
+$ heroku config:add VOGELTRON_TEAM=Giants
 ```
 
-The `VOGELTRON_TEAM` acronym for your team can be found in [this list on
-wikipedia][wiki].
+The `VOGELTRON_TEAM` value can be either the full name (San Francisco Giants)
+or just the team name (Giants) as seen in [this list on ESPN][espn].
 
 To get league standings and team schedules to show up in your subreddit's side
 bar, add the following markdown to your sidebar
@@ -48,10 +48,10 @@ Once finished, just deploy to Heroku.
 
 Your personal Vogeltron is now up and running.
 
-[wiki]: 
-[git]:
-[heroku]:
-[account]:
+[espn]: http://espn.go.com/mlb/teams
+[git]: http://git-scm.com/downloads
+[heroku]: https://toolbelt.herokuapp.com
+[account]: https://id.heroku.com/signup
 
 
 ## Development
