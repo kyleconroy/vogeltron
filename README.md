@@ -1,6 +1,6 @@
 ![Vogeltron: a bot for sports subreddit](header.png)
 
-[![Build Status](https://travis-ci.org/kyleconroy/sfgiantsbot.png?branch=master)](https://travis-ci.org/kyleconroy/sfgiantsbot)
+[![Build Status](https://travis-ci.org/kyleconroy/sfgiantsbot.png?branch=master)](https://travis-ci.org/kyleconroy/vogeltron)
 
 A Reddit bot for posting MLB game schedules, league standings, and gameday
 threads. Currently serving duty in /r/SFGiants. Built to run on Python 3.3 and
