@@ -1,10 +1,68 @@
-# /r/SFGiants Bot 
+![Vogeltron: a bot for sports subreddit](header.png)
 
 [![Build Status](https://travis-ci.org/kyleconroy/sfgiantsbot.png?branch=master)](https://travis-ci.org/kyleconroy/sfgiantsbot)
 
-A Reddit bot to update the sidebar on
-[/r/SFGiants](http://reddit.com/r/sfgiants) for Python 3.3.
+A Reddit bot for posting MLB game schedules, league standings, and gameday
+threads. Currently serving duty in /r/SFGiants. Built to run on Python 3.3 and
+Heroku.
 
-To install and test, just run
+## History
 
-    $ make install test
+While Vogeltron was built for the [San Francisco Giants subreddit][sr], it will
+work for any MLB team. 
+
+[sr]: http://www.reddit.com/r/sfgiants
+
+## Deploying Vogeltron
+
+Before deploying Vogeltron, you'll need [git][git], the [Heroku
+toolbet][heroku], and a [Heroku account][account].  Inside the Vogeltron
+directory run
+
+    $ heroku create
+
+Next, you'll need to configure Vogeltron. These are the settings for the
+Giants, please change them for your team.
+
+```
+$ heroku config:add VOGELTRON_USERNAME=redditbot
+$ heroku config:add VOGELTRON_PASSWORD=supersecret
+$ heroku config:add VOGELTRON_SUBREDDIT=SFGiants
+$ heroku config:add VOGELTRON_TEAM=SFG
+```
+
+The `VOGELTRON_TEAM` acronym for your team can be found in [this list on
+wikipedia][wiki].
+
+To get league standings and team schedules to show up in your subreddit's side
+bar, add the following markdown to your sidebar
+
+```markdown
+[](/statsstart)
+[](/statsend)
+```
+
+Once finished, just deploy to Heroku.
+
+    $ git push heroku master
+
+Your personal Vogeltron is now up and running.
+
+[wiki]: 
+[git]:
+[heroku]:
+[account]:
+
+
+## Development
+
+Pull requests are always welcome. Please make sure the tests pass, and any new
+functionality has tests. To install and test locally, just run:
+
+``` 
+$ make install test
+```
+
+## Acknowledgements
+
+- [Justin Crisostomo](justincrisostomo.com) for the awesome Vogeltron image

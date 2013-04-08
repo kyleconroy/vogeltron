@@ -16,9 +16,9 @@ from jinja2 import Template
 
 logger = logging.getLogger('sfgiants')
 
-SUBREDDIT = os.environ.get("SUBREDDIT", "SFGiants")
-LEAGUE = os.environ.get("MLB_LEAGUE", "NATIONAL")
-DIVISION = os.environ.get("MLB_DIVISION", "WEST")
+SUBREDDIT = os.environ.get("VOGELTRON_SUBREDDIT", "SFGiants")
+LEAGUE = os.environ.get("VOGELTRON_LEAGUE", "NATIONAL")
+DIVISION = os.environ.get("VOGELTRON_DIVISION", "WEST")
 
 
 def timestamp():
@@ -83,11 +83,11 @@ if __name__ == "__main__":
 
     logger.info('Starting bot')
 
-    assert "REDDIT_USERNAME" in os.environ, "REDDIT_USERNAME required"
-    assert "REDDIT_PASSWORD" in os.environ, "REDDIT_PASSWORD required"
+    assert "VOGELTRON_USERNAME" in os.environ, "VOGELTRON_USERNAME required"
+    assert "VOGELTRON_PASSWORD" in os.environ, "VOGELTRON_PASSWORD required"
 
-    r = reddit.Client(os.environ["REDDIT_USERNAME"],
-                      os.environ["REDDIT_PASSWORD"])
+    r = reddit.Client(os.environ["VOGELTRON_USERNAME"],
+                      os.environ["VOGELTRON_PASSWORD"])
 
     update_sidebar(r)
     update_game_thread(r)
