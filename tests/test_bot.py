@@ -63,5 +63,23 @@ def test_all_stats(_schedule, _standings, _timestamp):
     assert_equals(sidebar.strip(), bot.all_stats())
 
 
+def check_thread(start, end, opened):
+    assert_equals(bot.thread_open(start, end), opened)
+
+
+def test_thread_window():
+    dt1 = datetime.datetime(2013, 4, 16, 12)
+    dt2 = datetime.datetime(2013, 4, 16, 16)
+    dt3 = datetime.datetime(2013, 4, 16, 15)
+    dt4 = datetime.datetime(2013, 4, 16, 20)
+
+    yield check_thread, dt1, dt2, True
+    yield check_thread, dt2, dt1, True
+    yield check_thread, dt2, dt2, True
+    yield check_thread, dt2, dt3, True
+    yield check_thread, dt1, dt4, False
+    yield check_thread, dt4, dt1, False
+
+
 def test_timestamp():
     assert ('PST' in bot.timestamp() or 'PDT' in bot.timestamp())

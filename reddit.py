@@ -24,6 +24,15 @@ class Client(object):
 
         self.user_hash = resp.json()['data']['modhash']
 
+    def _user_where(self, user, where):
+        url = "http://www.reddit.com/user/{}/{}.json".format(user, where)
+        resp = self.s.get(url)
+        resp.raise_for_status()
+        return resp.json()['data']
+
+    def submitted(self, user):
+        return self._user_where(user, 'submitted')
+
     def about(self, subreddit):
         url = "http://www.reddit.com/r/{}/about.json".format(subreddit)
         resp = self.s.get(url)

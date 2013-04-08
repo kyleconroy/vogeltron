@@ -1,6 +1,8 @@
 import requests
 import datetime
 import pytz
+import re
+from urllib import parse
 from collections import namedtuple
 from bs4 import BeautifulSoup
 
@@ -44,10 +46,42 @@ class Game(object):
 
 def parse_gametime(date, time):
     today = datetime.date.today()
-    timestamp = "{} {} {}".format(date, time, today.year)
+    timestamp = "{} {} {}".format(date.strip(), time.strip(), today.year)
     gametime = datetime.datetime.strptime(timestamp, "%a, %b %d %I:%M %p %Y")
     eastern = pytz.timezone('US/Eastern')
     return eastern.localize(gametime).astimezone(pytz.utc)
+
+
+def next_game():
+    resp = requests.get(SCHEDULE_URL, headers={'User-Agent': USER_AGENT})
+    resp.raise_for_status()
+
+    soup = BeautifulSoup(resp.content)
+    table = soup.find("table", class_="tablehead")
+
+    for tr in table.find_all("tr"):
+        if 'stathead' in tr['class'] or 'colhead' in tr['class']:  # League Row
+            continue
+
+        d = tr.find_all('td')
+
+        if len(d[2].find_all('li')) > 1:
+            continue
+
+        preview_link = d[2].find('a')
+
+        if not preview_link:
+            continue
+
+        if 'gamecast' in preview_link.get('onclick', []):
+            match = re.search('gamecast(\d+)', preview_link['onclick'])
+            return datetime.datetime.utcnow(), match.group(1)
+        else:
+            parts = parse.urlparse(preview_link['href'])
+            query = parse.parse_qs(parts.query)
+            return parse_gametime(d[0].text, d[2].text), query['id'].pop()
+
+    return None, None  # Game currently in progress
 
 
 def giants_schedule():

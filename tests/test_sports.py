@@ -26,7 +26,7 @@ def test_game_description():
 
 @mock.patch('requests.get')
 def test_results(_get):
-    _get().content = open('tests/fixtures/stats.html').read()
+    _get().content = open('tests/fixtures/schedule.html').read()
     results, _ = baseball.giants_schedule()
     assert_equals(results, [
         baseball.Game('LA Dodgers', april(1, 20, 5), False, False, '4-0'),
@@ -37,8 +37,23 @@ def test_results(_get):
 
 
 @mock.patch('requests.get')
+def test_no_next_game(_get):
+    _get().content = open('tests/fixtures/schedule_current_game.html').read()
+    game_time, game_id = baseball.next_game()
+    assert_equals(game_id, '330406126')
+
+
+@mock.patch('requests.get')
+def test_next_game(_get):
+    _get().content = open('tests/fixtures/schedule.html').read()
+    game_time, game_id = baseball.next_game()
+    assert_equals(game_id, '330406126')
+    assert_equals(game_time, april(6, 20, 5))
+
+
+@mock.patch('requests.get')
 def test_upcoming(_get):
-    _get().content = open('tests/fixtures/stats.html').read()
+    _get().content = open('tests/fixtures/schedule.html').read()
     _, upcoming = baseball.giants_schedule()
     assert_equals(upcoming, [
         baseball.Game('St. Louis', april(6, 20, 5), True, None, '0-0'),

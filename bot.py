@@ -42,10 +42,7 @@ def update_standings(current_description):
                   current_description, flags=re.S)
 
 
-def update_sidebar():
-    r = reddit.Client(os.environ["REDDIT_USERNAME"],
-                      os.environ["REDDIT_PASSWORD"])
-
+def update_sidebar(r):
     about = r.settings(SUBREDDIT)
 
     payload = {
@@ -60,12 +57,40 @@ def update_sidebar():
     return r.admin(SUBREDDIT, payload)
 
 
+def thread_open(gametime, now):
+    return abs((gametime - now).total_seconds()) <= 14400
+
+
+def update_game_thread(r):
+    gametime, espn_id = baseball.next_game()
+
+    if not thread_open(gametime - datetime.datetime.utcnow()):
+        return
+
+    pass
+
+
+def update_post_game_thread(r):
+    pass
+
+
 if __name__ == "__main__":
+    # Setup logging
+    logger.setLevel(logging.INFO)
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
+    logger.addHandler(ch)
+
     logger.info('Starting bot')
 
     assert "REDDIT_USERNAME" in os.environ, "REDDIT_USERNAME required"
     assert "REDDIT_PASSWORD" in os.environ, "REDDIT_PASSWORD required"
 
-    update_sidebar()
+    r = reddit.Client(os.environ["REDDIT_USERNAME"],
+                      os.environ["REDDIT_PASSWORD"])
+
+    update_sidebar(r)
+    update_game_thread(r)
+    update_post_game_thread(r)
 
     logger.info('Stopping bot')
