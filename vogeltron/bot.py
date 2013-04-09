@@ -45,6 +45,10 @@ def update_standings(current_description, stats):
                   current_description, flags=re.S)
 
 
+def gamethread_post(espn_id, team_name, team_zone):
+    return "HEY", "YOU"
+
+
 def update_sidebar(r, subreddit, team):
     about = r.settings(subreddit)
     stats = all_stats(team['league'], team['division'],
@@ -66,10 +70,18 @@ def update_game_thread(r, subreddit, team):
     gametime, espn_id = baseball.next_game(team['links']['schedule'])
     now = datetime.datetime.now(datetime.timezone.utc)
 
-    if not thread_open(gametime, now):
+    if espn_id is None:
+        logging.info("No game_id yet, can't make thread")
         return
 
-    pass
+    if not thread_open(gametime, now):
+        logging.info("Not time yet for game {}".format(espn_id))
+        return
+
+    teamzone = baseball.division_timezone(team['division'])
+    title, post = gamethread_post(espn_id, team['name'].lower(), teamzone)
+
+    # Get posts from user
 
 
 def update_post_game_thread(r, subreddit, team):

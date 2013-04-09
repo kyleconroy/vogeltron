@@ -9,8 +9,9 @@ from collections import namedtuple
 from bs4 import BeautifulSoup
 
 USER_AGENT = "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"
-STATS_URL = "http://espn.go.com/mlb/standings"
+STANDINGS_URL = "http://espn.go.com/mlb/standings"
 TEAMS_URL = "http://espn.go.com/mlb/teams"
+BOXSCORE_URL = "http://espn.go.com/mlb/boxscore?gameId={}"
 
 
 Standing = namedtuple('Standing', 'name, wins, losses, ratio, games_back')
@@ -54,8 +55,29 @@ def parse_gametime(date, time):
     return eastern.localize(gametime).astimezone(pytz.utc)
 
 
+def make_soup(url):
+    resp = requests.get(TEAMS_URL, headers={'User-Agent': USER_AGENT})
+    resp.raise_for_status()
+    return BeautifulSoup(resp.content)
+
+
+def division_timezone(division):
+    """For a given division, return the correct timezone"""
+    if division == 'EAST':
+        return pytz.timezone('US/Eastern')
+    elif division == 'CENTRAL':
+        return pytz.timezone('US/Central')
+    else:
+        return pytz.timezone('US/Pacific')
+
+
 def normalize(name):
     return name.upper().replace(" ", "").replace("-", "")
+
+
+def game_info(espn_id):
+    # soup = make_soup(BOXSCORE_URL.format(espn_id))
+    return {}
 
 
 def team_info(name):
@@ -70,10 +92,7 @@ def team_info(name):
 
 
 def teams():
-    resp = requests.get(TEAMS_URL, headers={'User-Agent': USER_AGENT})
-    resp.raise_for_status()
-
-    soup = BeautifulSoup(resp.content)
+    soup = make_soup(TEAMS_URL)
     divisions = soup.find_all("div", class_="mod-open-list")
 
     teams = []
@@ -102,10 +121,7 @@ def teams():
 
 
 def next_game(schedule_url):
-    resp = requests.get(schedule_url, headers={'User-Agent': USER_AGENT})
-    resp.raise_for_status()
-
-    soup = BeautifulSoup(resp.content)
+    soup = make_soup(schedule_url)
     table = soup.find("table", class_="tablehead")
 
     for tr in table.find_all("tr"):
@@ -135,21 +151,11 @@ def next_game(schedule_url):
 
 
 def schedule(division, schedule_url):
-    resp = requests.get(schedule_url, headers={'User-Agent': USER_AGENT})
-    resp.raise_for_status()
-
-    soup = BeautifulSoup(resp.content)
+    soup = make_soup(schedule_url)
     table = soup.find("table", class_="tablehead")
 
     past = []
     future = []
-
-    if division == 'EAST':
-        team_zone = pytz.timezone('US/Eastern')
-    elif division == 'CENTRAL':
-        team_zone = pytz.timezone('US/Central')
-    else:
-        team_zone = pytz.timezone('US/Pacific')
 
     for tr in table.find_all("tr"):
         if 'stathead' in tr['class'] or 'colhead' in tr['class']:  # League Row
@@ -158,6 +164,7 @@ def schedule(division, schedule_url):
         d = tr.find_all('td')
 
         status, _, team_name = d[1].find_all('li')
+        team_zone = division_timezone(division)
 
         # Game currently in progress, ignore
         if len(d[2].find_all('li')) == 1:
@@ -206,10 +213,7 @@ def current_standings(league, division):
         },
     }
 
-    resp = requests.get(STATS_URL, headers={'User-Agent': USER_AGENT})
-    resp.raise_for_status()
-
-    soup = BeautifulSoup(resp.content)
+    soup = make_soup(STANDINGS_URL)
 
     table = soup.find("table", class_="tablehead")
 
