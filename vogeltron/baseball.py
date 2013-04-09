@@ -124,7 +124,8 @@ def next_game(schedule_url):
 
         if 'gamecast' in preview_link.get('onclick', []):
             match = re.search('gamecast(\d+)', preview_link['onclick'])
-            return datetime.datetime.utcnow(), match.group(1)
+            now = datetime.datetime.now(datetime.timezone.utc)
+            return now, match.group(1)
         else:
             parts = parse.urlparse(preview_link['href'])
             query = parse.parse_qs(parts.query)
