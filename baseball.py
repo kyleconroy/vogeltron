@@ -52,6 +52,38 @@ def parse_gametime(date, time):
     return eastern.localize(gametime).astimezone(pytz.utc)
 
 
+def teams():
+    resp = requests.get(SCHEDULE_URL, headers={'User-Agent': USER_AGENT})
+    resp.raise_for_status()
+
+    soup = BeautifulSoup(resp.content)
+    divisions = soup.find_all("div", class_="mod-open-list")
+
+    teams = []
+
+    for div in divisions:
+        league, division = div.find('div', class_='stathead').text.split(' ')
+
+        for li in div.find_all('li'):
+            menu = li.find_all('span')[-1]
+
+            links = {}
+
+            for a in menu.find_all('a'):
+                links[a.text.lower()] = 'http://espn.go.com' + a['href']
+
+            team = {
+                'league': 'NATIONAL' if league == 'NL' else 'AMERICAN',
+                'division': division.upper(),
+                'name': li.find('h5').text,
+                'links': links,
+            }
+
+            teams.append(team)
+
+    return teams
+
+
 def next_game():
     resp = requests.get(SCHEDULE_URL, headers={'User-Agent': USER_AGENT})
     resp.raise_for_status()

@@ -25,6 +25,25 @@ def test_game_description():
 
 
 @mock.patch('requests.get')
+def test_all_teams(_get):
+    _get().content = open('tests/fixtures/teams.html').read()
+    teams = baseball.teams()
+    assert_equals(len(teams), 30)
+
+
+@mock.patch('requests.get')
+def test_first_teams(_get):
+    _get().content = open('tests/fixtures/teams.html').read()
+    team = baseball.teams()[0]
+
+    assert_equals(team['name'], 'Baltimore Orioles')
+    assert_equals(team['league'], 'AMERICAN')
+    assert_equals(team['division'], 'EAST')
+    assert_equals(team['links']['schedule'],
+                  'http://espn.go.com/mlb/teams/schedule?team=bal')
+
+
+@mock.patch('requests.get')
 def test_results(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
     results, _ = baseball.giants_schedule()
