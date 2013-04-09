@@ -120,7 +120,7 @@ def next_game(schedule_url):
         preview_link = d[2].find('a')
 
         if not preview_link:
-            continue
+            return parse_gametime(d[0].text, d[2].text), None
 
         if 'gamecast' in preview_link.get('onclick', []):
             match = re.search('gamecast(\d+)', preview_link['onclick'])

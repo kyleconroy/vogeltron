@@ -17,4 +17,4 @@ deploy:
 	git push heroku master
 
 run:
-	heroku run python vogeltron/bot.py
+	heroku run python -m vogeltron.bot
