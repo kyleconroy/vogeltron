@@ -42,6 +42,15 @@ bar, add the following markdown to your sidebar
 [](/statsend)
 ```
 
+Add the [Heroku Scheduler Add-on][sched] to your app (Don't worry, it's free).
+
+    $ heroku addons:add scheduler:standard
+
+Next, [you'll need to schedule Vogeltron][setup] to run this task every 10
+minutes:
+
+    python vogeltron
+
 Once finished, just deploy to Heroku.
 
     $ git push heroku master
@@ -52,6 +61,8 @@ Your personal Vogeltron is now up and running.
 [git]: http://git-scm.com/downloads
 [heroku]: https://toolbelt.herokuapp.com
 [account]: https://id.heroku.com/signup
+[sched]: https://addons.heroku.com/scheduler
+[setup]: https://devcenter.heroku.com/articles/scheduler#scheduling-jobs
 
 
 ## Development
