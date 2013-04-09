@@ -11,7 +11,7 @@ test:
 	venv/bin/nosetests tests
 
 teams:
-	. venv/bin/activate; python scripts/generate_teams.py
+	. venv/bin/activate; python generate_teams.py
 
 deploy:
 	git push heroku master

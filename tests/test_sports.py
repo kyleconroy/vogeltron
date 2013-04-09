@@ -1,7 +1,7 @@
 import mock
 import datetime
 import pytz
-from nose.tools import assert_equals
+from nose.tools import assert_equals, assert_raises
 from vogeltron import baseball
 
 
@@ -46,7 +46,7 @@ def test_first_teams(_get):
 @mock.patch('requests.get')
 def test_results(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
-    results, _ = baseball.giants_schedule()
+    results, _ = baseball.schedule('WEST', 'http://example.com')
     assert_equals(results, [
         baseball.Game('LA Dodgers', april(1, 20, 5), False, False, '4-0'),
         baseball.Game('LA Dodgers', april(2, 20, 5), False, True, '3-0'),
@@ -58,14 +58,14 @@ def test_results(_get):
 @mock.patch('requests.get')
 def test_no_next_game(_get):
     _get().content = open('tests/fixtures/schedule_current_game.html').read()
-    game_time, game_id = baseball.next_game()
+    game_time, game_id = baseball.next_game('http://example.com')
     assert_equals(game_id, '330406126')
 
 
 @mock.patch('requests.get')
 def test_next_game(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
-    game_time, game_id = baseball.next_game()
+    game_time, game_id = baseball.next_game('http://example.com')
     assert_equals(game_id, '330406126')
     assert_equals(game_time, april(6, 20, 5))
 
@@ -73,7 +73,7 @@ def test_next_game(_get):
 @mock.patch('requests.get')
 def test_upcoming(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
-    _, upcoming = baseball.giants_schedule()
+    _, upcoming = baseball.schedule('WEST', 'http://example.com')
     assert_equals(upcoming, [
         baseball.Game('St. Louis', april(6, 20, 5), True, None, '0-0'),
         baseball.Game('St. Louis', april(7, 20, 5), True, None, '0-0'),
@@ -99,3 +99,19 @@ def test_standings(_get):
 def test_parse_gametime():
     gt = baseball.parse_gametime("Mon, Apr 1", "4:05 PM")
     assert_equals(pytz.utc.localize(datetime.datetime(2013, 4, 1, 20, 5)), gt)
+
+
+def test_no_team_info():
+    with assert_raises(Exception):
+        baseball.team_info('Giantssjk')
+
+
+def test_team_info():
+    team = baseball.team_info('Giants')
+    assert_equals(team['name'], 'San Francisco Giants')
+
+
+def test_normalize():
+    assert_equals(baseball.normalize('Giants'), 'GIANTS')
+    assert_equals(baseball.normalize('Francisco Giants'), 'FRANCISCOGIANTS')
+    assert_equals(baseball.normalize('Red-Sox'), 'REDSOX')

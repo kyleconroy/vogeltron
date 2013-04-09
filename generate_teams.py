@@ -1,6 +1,6 @@
 import json
-import baseball
+from vogeltron import baseball
 
-with open('teams.json', 'w') as f:
+with open('vogeltron/teams.json', 'w') as f:
     json.dump(baseball.teams(), f)
 

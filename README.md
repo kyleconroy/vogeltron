@@ -49,7 +49,7 @@ Add the [Heroku Scheduler Add-on][sched] to your app (Don't worry, it's free).
 Next, [you'll need to schedule Vogeltron][setup] to run this task every 10
 minutes:
 
-    python vogeltron
+    python -m vogeltron.bot
 
 Once finished, just deploy to Heroku.
 

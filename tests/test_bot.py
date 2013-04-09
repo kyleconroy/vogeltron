@@ -40,15 +40,14 @@ bar
 """
 
 
-@mock.patch('vogeltron.bot.all_stats')
-def test_update_description(_stats):
-    _stats.return_value = "bar"
-    assert_equals(exp_markdown.strip(), bot.update_standings(markdown).strip())
+def test_update_description():
+    assert_equals(exp_markdown.strip(),
+                  bot.update_standings(markdown, 'bar').strip())
 
 
 @mock.patch('vogeltron.bot.timestamp')
 @mock.patch('vogeltron.baseball.current_standings')
-@mock.patch('vogeltron.baseball.giants_schedule')
+@mock.patch('vogeltron.baseball.schedule')
 def test_all_stats(_schedule, _standings, _timestamp):
     _timestamp.return_value = "2013-04-06 12:31 AM"
     _schedule.return_value = (
@@ -60,7 +59,7 @@ def test_all_stats(_schedule, _standings, _timestamp):
         Standing('San Francisco', 3, 1, .75, 0.0),
     ]
 
-    assert_equals(sidebar.strip(), bot.all_stats())
+    assert_equals(sidebar.strip(), bot.all_stats('NATIONAL', 'WEST', 'foo'))
 
 
 def check_thread(start, end, opened):

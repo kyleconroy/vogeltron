@@ -2,14 +2,16 @@ import requests
 import datetime
 import pytz
 import re
+import json
+import os
 from urllib import parse
 from collections import namedtuple
 from bs4 import BeautifulSoup
 
 USER_AGENT = "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"
 STATS_URL = "http://espn.go.com/mlb/standings"
-SCHEDULE_URL = ("http://espn.go.com/mlb/team/schedule/"
-                "_/name/sf/san-francisco-giants")
+TEAMS_URL = "http://espn.go.com/mlb/teams"
+
 
 Standing = namedtuple('Standing', 'name, wins, losses, ratio, games_back')
 
@@ -52,8 +54,23 @@ def parse_gametime(date, time):
     return eastern.localize(gametime).astimezone(pytz.utc)
 
 
+def normalize(name):
+    return name.upper().replace(" ", "").replace("-", "")
+
+
+def team_info(name):
+    path = os.path.join(os.path.dirname(__file__), 'teams.json')
+    teams = json.load(open(path))
+
+    for team in teams:
+        if normalize(team['name']).endswith(normalize(name)):
+            return team
+
+    raise Exception("No team found for {}".format(name))
+
+
 def teams():
-    resp = requests.get(SCHEDULE_URL, headers={'User-Agent': USER_AGENT})
+    resp = requests.get(TEAMS_URL, headers={'User-Agent': USER_AGENT})
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.content)
@@ -84,8 +101,8 @@ def teams():
     return teams
 
 
-def next_game():
-    resp = requests.get(SCHEDULE_URL, headers={'User-Agent': USER_AGENT})
+def next_game(schedule_url):
+    resp = requests.get(schedule_url, headers={'User-Agent': USER_AGENT})
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.content)
@@ -116,8 +133,8 @@ def next_game():
     return None, None  # Game currently in progress
 
 
-def giants_schedule():
-    resp = requests.get(SCHEDULE_URL, headers={'User-Agent': USER_AGENT})
+def schedule(division, schedule_url):
+    resp = requests.get(schedule_url, headers={'User-Agent': USER_AGENT})
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.content)
@@ -125,7 +142,13 @@ def giants_schedule():
 
     past = []
     future = []
-    pacific = pytz.timezone('US/Pacific')
+
+    if division == 'EAST':
+        team_zone = pytz.timezone('US/Eastern')
+    elif division == 'CENTRAL':
+        team_zone = pytz.timezone('US/Central')
+    else:
+        team_zone = pytz.timezone('US/Pacific')
 
     for tr in table.find_all("tr"):
         if 'stathead' in tr['class'] or 'colhead' in tr['class']:  # League Row
@@ -154,7 +177,7 @@ def giants_schedule():
         home = status.text.strip().upper() == "VS"
         opponent = team_name.text.strip()
 
-        game = Game(opponent, gametime.astimezone(pacific), home, win, score)
+        game = Game(opponent, gametime.astimezone(team_zone), home, win, score)
 
         if win is None:
             future.append(game)

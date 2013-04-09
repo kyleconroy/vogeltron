@@ -16,12 +16,6 @@ from jinja2 import Template
 from . import baseball
 from . import reddit
 
-logger = logging.getLogger('sfgiants')
-
-SUBREDDIT = os.environ.get("VOGELTRON_SUBREDDIT", "SFGiants")
-LEAGUE = os.environ.get("VOGELTRON_LEAGUE", "NATIONAL")
-DIVISION = os.environ.get("VOGELTRON_DIVISION", "WEST")
-
 
 def timestamp():
     pacific = timezone('US/Pacific')
@@ -29,26 +23,34 @@ def timestamp():
     return now.astimezone(pacific).strftime("%Y-%m-%d %I:%M %p %Z")
 
 
-def all_stats():
-    standings = baseball.current_standings(LEAGUE, DIVISION)
-    past, future = baseball.giants_schedule()
-    template = Template(open('templates/all_stats.md').read())
+def all_stats(league, division, schedule_url):
+    path = os.path.join(os.path.dirname(__file__), 'templates/all_stats.md')
+    template = Template(open(path).read())
+
+    standings = baseball.current_standings(league, division)
+    past, future = baseball.schedule(division, schedule_url)
+
     return template.render(standings=standings, past=past, future=future,
                            timestamp=timestamp())
 
 
-def update_standings(current_description):
-    stats = all_stats()
+def thread_open(gametime, now):
+    return abs((gametime - now).total_seconds()) <= 14400
+
+
+def update_standings(current_description, stats):
     return re.sub(r'\[\]\(/all_statsstart\).*\[\]\(/all_statsend\)',
                   '[](/all_statsstart)\n' + stats + '\n[](/all_statsend)',
                   current_description, flags=re.S)
 
 
-def update_sidebar(r):
-    about = r.settings(SUBREDDIT)
+def update_sidebar(r, subreddit, team):
+    about = r.settings(subreddit)
+    stats = all_stats(team['league'], team['division'],
+                      team['links']['schedule'])
 
     payload = {
-        'description': update_standings(about['description']),
+        'description': update_standings(about['description'], stats),
         'link_type': 'any',
         'sr': about['subreddit_id'],
         'title': about['title'],
@@ -56,15 +58,11 @@ def update_sidebar(r):
         'wikimode': about['wikimode'],
     }
 
-    return r.admin(SUBREDDIT, payload)
+    return r.admin(subreddit, payload)
 
 
-def thread_open(gametime, now):
-    return abs((gametime - now).total_seconds()) <= 14400
-
-
-def update_game_thread(r):
-    gametime, espn_id = baseball.next_game()
+def update_game_thread(r, subreddit, team):
+    gametime, espn_id = baseball.next_game(team['links']['schedule'])
 
     if not thread_open(gametime - datetime.datetime.utcnow()):
         return
@@ -72,27 +70,22 @@ def update_game_thread(r):
     pass
 
 
-def update_post_game_thread(r):
+def update_post_game_thread(r, subreddit, team):
     pass
 
 
 if __name__ == "__main__":
-    # Setup logging
-    logger.setLevel(logging.INFO)
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.INFO)
-    logger.addHandler(ch)
+    logging.basicConfig(level=logging.INFO)
+    logging.info('Starting bot')
 
-    logger.info('Starting bot')
+    r = reddit.Client(os.environ['VOGELTRON_USERNAME'],
+                      os.environ['VOGELTRON_PASSWORD'])
 
-    assert "VOGELTRON_USERNAME" in os.environ, "VOGELTRON_USERNAME required"
-    assert "VOGELTRON_PASSWORD" in os.environ, "VOGELTRON_PASSWORD required"
+    team = baseball.team_info(os.environ['VOGELTRON_TEAM'])
+    subreddit = os.environ['VOGELTRON_SUBREDDIT']
 
-    r = reddit.Client(os.environ["VOGELTRON_USERNAME"],
-                      os.environ["VOGELTRON_PASSWORD"])
+    update_sidebar(r, subreddit, team)
+    update_game_thread(r, subreddit, team)
+    update_post_game_thread(r, subreddit, team)
 
-    update_sidebar(r)
-    update_game_thread(r)
-    update_post_game_thread(r)
-
-    logger.info('Stopping bot')
+    logging.info('Stopping bot')
