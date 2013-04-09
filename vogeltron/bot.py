@@ -65,7 +65,7 @@ def update_game_thread(r, subreddit, team):
     gametime, espn_id = baseball.next_game(team['links']['schedule'])
     now = datetime.datetime.now(datetime.timezone.utc)
 
-    if not thread_open(gametime - now):
+    if not thread_open(gametime, now):
         return
 
     pass
