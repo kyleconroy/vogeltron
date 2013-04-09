@@ -56,7 +56,7 @@ def parse_gametime(date, time):
 
 
 def make_soup(url):
-    resp = requests.get(TEAMS_URL, headers={'User-Agent': USER_AGENT})
+    resp = requests.get(url, headers={'User-Agent': USER_AGENT})
     resp.raise_for_status()
     return BeautifulSoup(resp.content)
 

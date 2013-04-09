@@ -14,7 +14,7 @@ teams:
 	. venv/bin/activate; python generate_teams.py
 
 deploy:
-	git push heroku master
+	git push staging master
 
 run:
-	heroku run python -m vogeltron.bot
+	heroku run python -m vogeltron.bot --app sfgiants-staging
