@@ -1,8 +1,8 @@
 import mock
-import baseball
 import datetime
 import pytz
 from nose.tools import assert_equals
+from vogeltron import baseball
 
 
 def april(day, hour, minute):

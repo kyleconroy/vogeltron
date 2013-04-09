@@ -7,7 +7,7 @@ venv:
 	virtualenv --python=python3.3 venv
 
 test:
-	venv/bin/flake8 tests reddit.py baseball.py bot.py
+	venv/bin/flake8 tests vogeltron
 	venv/bin/nosetests tests
 
 teams:
@@ -17,4 +17,4 @@ deploy:
 	git push heroku master
 
 run:
-	heroku run python bot.py
+	heroku run python vogeltron/bot.py

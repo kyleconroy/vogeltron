@@ -5,14 +5,16 @@ newest Baseball data!
 Usage: In the sidebar description, add the tags [](/statsstart) and
 [](/statsend) where you want the table to go.
 """
+
 import os
 import logging
-import reddit
-import baseball
 import datetime
 import re
 from pytz import timezone
 from jinja2 import Template
+
+from . import baseball
+from . import reddit
 
 logger = logging.getLogger('sfgiants')
 

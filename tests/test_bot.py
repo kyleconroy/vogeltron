@@ -1,7 +1,7 @@
-import bot
 import mock
 import datetime
-from baseball import Standing, Game
+from vogeltron import bot
+from vogeltron.baseball import Standing, Game
 from nose.tools import assert_equals
 
 
@@ -40,15 +40,15 @@ bar
 """
 
 
-@mock.patch('bot.all_stats')
+@mock.patch('vogeltron.bot.all_stats')
 def test_update_description(_stats):
     _stats.return_value = "bar"
     assert_equals(exp_markdown.strip(), bot.update_standings(markdown).strip())
 
 
-@mock.patch('bot.timestamp')
-@mock.patch('baseball.current_standings')
-@mock.patch('baseball.giants_schedule')
+@mock.patch('vogeltron.bot.timestamp')
+@mock.patch('vogeltron.baseball.current_standings')
+@mock.patch('vogeltron.baseball.giants_schedule')
 def test_all_stats(_schedule, _standings, _timestamp):
     _timestamp.return_value = "2013-04-06 12:31 AM"
     _schedule.return_value = (
