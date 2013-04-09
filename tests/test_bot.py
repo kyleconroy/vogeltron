@@ -72,10 +72,10 @@ def test_thread_window():
     dt3 = datetime.datetime(2013, 4, 16, 15)
     dt4 = datetime.datetime(2013, 4, 16, 20)
 
-    yield check_thread, dt1, dt2, True
     yield check_thread, dt2, dt1, True
     yield check_thread, dt2, dt2, True
     yield check_thread, dt2, dt3, True
+    yield check_thread, dt1, dt2, False
     yield check_thread, dt1, dt4, False
     yield check_thread, dt4, dt1, False
 

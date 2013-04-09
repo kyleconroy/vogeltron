@@ -35,7 +35,8 @@ def all_stats(league, division, schedule_url):
 
 
 def thread_open(gametime, now):
-    return abs((gametime - now).total_seconds()) <= 14400
+    seconds = (gametime - now).total_seconds()
+    return seconds > -600 and seconds <= 25200
 
 
 def update_standings(current_description, stats):
