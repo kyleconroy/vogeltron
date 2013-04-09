@@ -40,6 +40,10 @@ bar
 """
 
 
+def test_update_description_amps():
+    assert_equals("&", bot.update_standings("&amp;amp;amp;", 'bar').strip())
+
+
 def test_update_description():
     assert_equals(exp_markdown.strip(),
                   bot.update_standings(markdown, 'bar').strip())

@@ -40,9 +40,10 @@ def thread_open(gametime, now):
 
 
 def update_standings(current_description, stats):
+    amps = re.sub(r'&(amp;)+', '&', current_description)
     return re.sub(r'\[\]\(/all_statsstart\).*\[\]\(/all_statsend\)',
                   '[](/all_statsstart)\n' + stats + '\n[](/all_statsend)',
-                  current_description, flags=re.S)
+                  amps, flags=re.S)
 
 
 def gamethread_post(espn_id, team_name, team_zone):
@@ -63,7 +64,7 @@ def update_sidebar(r, subreddit, team):
         'wikimode': about['wikimode'],
     }
 
-    return r.admin(subreddit, payload)
+    r.admin(subreddit, payload)
 
 
 def update_game_thread(r, subreddit, team):
