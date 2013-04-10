@@ -133,7 +133,10 @@ if __name__ == "__main__":
     subreddit = os.environ['VOGELTRON_SUBREDDIT']
 
     update_sidebar(r, subreddit, team)
-    update_game_thread(r, subreddit, team)
+
+    if not os.environ.get('VOGELTRON_GAMEDAY_THREAD', '').lower() == 'false':
+        update_game_thread(r, subreddit, team)
+
     update_post_game_thread(r, subreddit, team)
 
     logging.info('Stopping bot')
