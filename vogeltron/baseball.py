@@ -4,6 +4,7 @@ import pytz
 import re
 import json
 import os
+import collections
 from urllib import parse
 from collections import namedtuple
 from bs4 import BeautifulSoup
@@ -75,9 +76,55 @@ def normalize(name):
     return name.upper().replace(" ", "").replace("-", "")
 
 
+Player = collections.namedtuple('Player', 'name, position')
+Team = collections.namedtuple('Team', 'name, record, lineup')
+Boxscore = collections.namedtuple('Boxscore', 'teams, start_time')
+
+
 def game_info(espn_id):
-    # soup = make_soup(BOXSCORE_URL.format(espn_id))
-    return {}
+    soup = make_soup(BOXSCORE_URL.format(espn_id))
+    boxes = soup.find_all('table', class_='mlb-box')
+
+    teams = []
+
+    for i, databox in enumerate(boxes):
+        if len(databox.find_all('thead')) > 2:
+            continue
+
+        team_name = databox.find('thead').find('tr').text
+        player_type = databox.find('thead').find_all('tr')[1].text
+
+        if 'pitchers' in player_type.lower():
+            continue
+
+        players = databox.find_all('tbody')[0]
+
+        lineup = []
+
+        for player in players:
+            name = player.find('td')
+
+            if name.find('div'):  # Not starting
+                continue
+
+            full_name, position = name.text.rsplit(' ', 1)
+            _, last_name = full_name.split(' ', 1)
+
+            lineup.append(Player(last_name, position))
+
+        # Gross
+        print(int(i / 2))
+        info_box = soup.find_all('div', class_='team-info')[int(i / 2)]
+        record = info_box.find('p').text.replace('(', '').split(',')[0]
+
+        teams.append(Team(team_name, record, lineup))
+
+    timestamp = soup.find('div', class_='game-time-location').find('p').text
+    gametime = datetime.datetime.strptime(timestamp.replace("ET", ""),
+                                          "%I:%M %p , %B %d, %Y")
+    eastern = pytz.timezone('US/Eastern')
+
+    return Boxscore(teams, eastern.localize(gametime).astimezone(pytz.utc))
 
 
 def team_info(name):

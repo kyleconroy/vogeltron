@@ -1,13 +1,13 @@
 import mock
-import datetime
+from datetime import datetime, timezone, date
 import pytz
 from nose.tools import assert_equals, assert_raises
 from vogeltron import baseball
 
 
 def april(day, hour, minute):
-    year = datetime.date.today().year
-    return pytz.utc.localize(datetime.datetime(year, 4, day, hour, minute))
+    year = date.today().year
+    return pytz.utc.localize(datetime(year, 4, day, hour, minute))
 
 game = baseball.Game('LA Dodgers', april(1, 20, 5), False, False, '4-0')
 
@@ -98,7 +98,7 @@ def test_standings(_get):
 
 def test_parse_gametime():
     gt = baseball.parse_gametime("Mon, Apr 1", "4:05 PM")
-    assert_equals(pytz.utc.localize(datetime.datetime(2013, 4, 1, 20, 5)), gt)
+    assert_equals(pytz.utc.localize(datetime(2013, 4, 1, 20, 5)), gt)
 
 
 def test_no_team_info():
@@ -115,3 +115,34 @@ def test_normalize():
     assert_equals(baseball.normalize('Giants'), 'GIANTS')
     assert_equals(baseball.normalize('Francisco Giants'), 'FRANCISCOGIANTS')
     assert_equals(baseball.normalize('Red-Sox'), 'REDSOX')
+
+
+@mock.patch('requests.get')
+def test_boxscore_early(_get):
+    _get().content = open('tests/fixtures/boxscore_early.html').read()
+    game = baseball.game_info('345')
+    a, b = game.teams
+
+    assert_equals(len(a.lineup), 9)
+    assert_equals(len(b.lineup), 9)
+    assert_equals(game.start_time,
+                  datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
+
+
+@mock.patch('requests.get')
+def test_boxscore(_get):
+    _get().content = open('tests/fixtures/boxscore.html').read()
+    game = baseball.game_info('345')
+    rockies, giants = game.teams
+
+    assert_equals(len(giants.lineup), 9)
+    assert_equals(len(rockies.lineup), 9)
+
+    assert_equals(giants.name, 'San Francisco Giants')
+    assert_equals(giants.record, '4-3')
+
+    assert_equals(rockies.name, 'Colorado Rockies')
+    assert_equals(rockies.record, '5-2')
+
+    assert_equals(game.start_time,
+                  datetime(2013, 4, 9, 2, 15, tzinfo=timezone.utc))
