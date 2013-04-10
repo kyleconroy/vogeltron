@@ -88,6 +88,13 @@ def update_sidebar(r, subreddit, team):
     r.admin(subreddit, payload)
 
 
+def find_post(r, prefix):
+    for post in r.submitted(r.username):
+        if prefix in post['data']['url']:
+            return post['data']['id']
+    return None
+
+
 def update_game_thread(r, subreddit, team):
     gametime, espn_id = baseball.next_game(team['links']['schedule'])
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -103,7 +110,12 @@ def update_game_thread(r, subreddit, team):
     teamzone = baseball.division_timezone(team['division'])
     title, post = gamethread_post(espn_id, teamzone)
 
-    # Get posts from user
+    post_id = find_post(r, post_url_prefix(title))
+
+    if not post_id:
+        r.submit(subreddit, title, post)
+    else:
+        r.edit(post_id, post)
 
 
 def update_post_game_thread(r, subreddit, team):

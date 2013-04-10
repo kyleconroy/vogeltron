@@ -28,7 +28,7 @@ class Client(object):
         url = "http://www.reddit.com/user/{}/{}.json".format(user, where)
         resp = self.s.get(url)
         resp.raise_for_status()
-        return resp.json()['data']
+        return resp.json()['data']['children']
 
     def submitted(self, user):
         return self._user_where(user, 'submitted')
@@ -53,7 +53,7 @@ class Client(object):
 
         return resp.json()
 
-    def submit(self, subreddit, title, text=''):
+    def submit(self, subreddit, title, text):
         payload = {
             'kind': 'self',
             'sr': subreddit,
@@ -64,5 +64,16 @@ class Client(object):
 
         resp = self.s.post('http://www.reddit.com/api/submit', data=payload)
         resp.raise_for_status()
+        return resp.json()
 
+    def edit(self, post_id, body):
+        payload = {
+            'thing_id': post_id,
+            'text': body,
+            'uh': self.user_hash,
+        }
+
+        resp = self.s.post('http://www.reddit.com/api/editusertext',
+                           data=payload)
+        resp.raise_for_status()
         return resp.json()
