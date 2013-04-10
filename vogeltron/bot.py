@@ -10,17 +10,15 @@ import os
 import logging
 import datetime
 import re
-from pytz import timezone
 from jinja2 import Template
 
 from . import baseball
 from . import reddit
 
 
-def timestamp():
-    pacific = timezone('US/Pacific')
+def timestamp(team_zone):
     now = datetime.datetime.now(datetime.timezone.utc)
-    return now.astimezone(pacific).strftime("%Y-%m-%d %I:%M %p %Z")
+    return now.astimezone(team_zone).strftime("%Y-%m-%d %I:%M %p %Z")
 
 
 def all_stats(league, division, schedule_url):
@@ -29,9 +27,10 @@ def all_stats(league, division, schedule_url):
 
     standings = baseball.current_standings(league, division)
     past, future = baseball.schedule(division, schedule_url)
+    ts = timestamp(baseball.division_timezone(division))
 
     return template.render(standings=standings, past=past, future=future,
-                           timestamp=timestamp())
+                           timestamp=ts)
 
 
 def thread_open(gametime, now):
@@ -46,8 +45,26 @@ def update_standings(current_description, stats):
                   amps, flags=re.S)
 
 
-def gamethread_post(espn_id, team_name, team_zone):
-    return "HEY", "YOU"
+def gamethread_post(espn_id, team_zone):
+    game = baseball.game_info(espn_id)
+    start = game.start_time.astimezone(team_zone)
+
+    title = "Gameday Thread {}: {} at {} ({})".format(
+        start.strftime("%-m/%-d/%y"),
+        game.teams[0].name,
+        game.teams[1].name,
+        start.strftime("%-I:%M%p"))
+
+    path = os.path.join(os.path.dirname(__file__), 'templates/gameday.md')
+    template = Template(open(path).read())
+
+    home, away = game.teams
+    players = zip(home.lineup, away.lineup)
+
+    post = template.render(home=home, away=away, players=players,
+                           timestamp=timestamp(team_zone))
+
+    return title, post
 
 
 def update_sidebar(r, subreddit, team):
@@ -80,7 +97,7 @@ def update_game_thread(r, subreddit, team):
         return
 
     teamzone = baseball.division_timezone(team['division'])
-    title, post = gamethread_post(espn_id, team['name'].lower(), teamzone)
+    title, post = gamethread_post(espn_id, teamzone)
 
     # Get posts from user
 

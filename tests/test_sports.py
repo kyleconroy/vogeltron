@@ -138,10 +138,10 @@ def test_boxscore(_get):
     assert_equals(len(giants.lineup), 9)
     assert_equals(len(rockies.lineup), 9)
 
-    assert_equals(giants.name, 'San Francisco Giants')
+    assert_equals(giants.name, 'Giants')
     assert_equals(giants.record, '4-3')
 
-    assert_equals(rockies.name, 'Colorado Rockies')
+    assert_equals(rockies.name, 'Rockies')
     assert_equals(rockies.record, '5-2')
 
     assert_equals(game.start_time,

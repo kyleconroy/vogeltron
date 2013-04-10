@@ -1,8 +1,9 @@
 import mock
-import datetime
+import pytz
 from vogeltron import bot
-from vogeltron.baseball import Standing, Game
+from vogeltron.baseball import Standing, Game, Boxscore, Team, Player
 from nose.tools import assert_equals
+from datetime import datetime, timezone
 
 
 sidebar = """
@@ -55,8 +56,8 @@ def test_update_description():
 def test_all_stats(_schedule, _standings, _timestamp):
     _timestamp.return_value = "2013-04-06 12:31 AM"
     _schedule.return_value = (
-        [Game('LA Dodgers', datetime.datetime(2013, 1, 1), True, True, "1-1")],
-        [Game('LA Dodgers', datetime.datetime(2013, 1, 2), True, None, "0-0")],
+        [Game('LA Dodgers', datetime(2013, 1, 1), True, True, "1-1")],
+        [Game('LA Dodgers', datetime(2013, 1, 2), True, None, "0-0")],
     )
     _standings.return_value = [
         Standing('San Francisco', 3, 1, .75, 0.0),
@@ -71,10 +72,10 @@ def check_thread(start, end, opened):
 
 
 def test_thread_window():
-    dt1 = datetime.datetime(2013, 4, 16, 12)
-    dt2 = datetime.datetime(2013, 4, 16, 16)
-    dt3 = datetime.datetime(2013, 4, 16, 15)
-    dt4 = datetime.datetime(2013, 4, 16, 20)
+    dt1 = datetime(2013, 4, 16, 12)
+    dt2 = datetime(2013, 4, 16, 16)
+    dt3 = datetime(2013, 4, 16, 15)
+    dt4 = datetime(2013, 4, 16, 20)
 
     yield check_thread, dt2, dt1, True
     yield check_thread, dt2, dt2, True
@@ -85,4 +86,47 @@ def test_thread_window():
 
 
 def test_timestamp():
-    assert ('PST' in bot.timestamp() or 'PDT' in bot.timestamp())
+    zone = pytz.timezone('US/Pacific')
+
+    assert ('PST' in bot.timestamp(zone) or
+            'PDT' in bot.timestamp(zone))
+
+teams = [
+    Team('Rockies', '5-1', [Player('Foo', 'P')]),
+    Team('Giants', '4-2', [Player('Bar', 'P')]),
+]
+
+game = Boxscore(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
+
+
+@mock.patch('vogeltron.baseball.game_info')
+def test_gameday_title(_game_info):
+    _game_info.return_value = game
+
+    title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+
+    assert_equals(title, ("Gameday Thread 4/9/13: Rockies "
+                          "at Giants (7:15PM)"))
+
+
+exp_post = """
+| Rockies (5-1) | Giants (4-2) |
+| ------ | ------ |
+| Rockies Lineup | Giants Lineup |
+| Foo P | Bar P |
+
+| UPVOTE FOR VISIBILITY/PRAISE HIM |
+
+Last Updated @ foo
+"""
+
+
+@mock.patch('vogeltron.bot.timestamp')
+@mock.patch('vogeltron.baseball.game_info')
+def test_gameday_post(_game_info, _timestamp):
+    _timestamp.return_value = 'foo'
+    _game_info.return_value = game
+
+    _, post = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+
+    assert_equals(exp_post.strip(), post)

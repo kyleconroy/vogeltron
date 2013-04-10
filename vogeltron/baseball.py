@@ -91,7 +91,6 @@ def game_info(espn_id):
         if len(databox.find_all('thead')) > 2:
             continue
 
-        team_name = databox.find('thead').find('tr').text
         player_type = databox.find('thead').find_all('tr')[1].text
 
         if 'pitchers' in player_type.lower():
@@ -115,6 +114,7 @@ def game_info(espn_id):
         # Gross
         print(int(i / 2))
         info_box = soup.find_all('div', class_='team-info')[int(i / 2)]
+        team_name = info_box.find('h3').find('a').text
         record = info_box.find('p').text.replace('(', '').split(',')[0]
 
         teams.append(Team(team_name, record, lineup))
