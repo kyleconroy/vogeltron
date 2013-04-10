@@ -109,6 +109,11 @@ def test_gameday_title(_game_info):
                           "at Giants (7:15PM)"))
 
 
+def test_reddit_url():
+    title = "Gameday Thread 4/9/13: Rockies at Giants (7:15PM)"
+    assert_equals(bot.post_url_prefix(title), "gameday_thread_4913")
+
+
 exp_post = """
 | Rockies (5-1) | Giants (4-2) |
 | ------ | ------ |

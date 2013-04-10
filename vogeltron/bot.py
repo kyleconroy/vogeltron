@@ -21,6 +21,10 @@ def timestamp(team_zone):
     return now.astimezone(team_zone).strftime("%Y-%m-%d %I:%M %p %Z")
 
 
+def post_url_prefix(title):
+    return title.split(':')[0].replace(' ', '_').replace('/', '').lower()
+
+
 def all_stats(league, division, schedule_url):
     path = os.path.join(os.path.dirname(__file__), 'templates/all_stats.md')
     template = Template(open(path).read())
