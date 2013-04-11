@@ -25,6 +25,12 @@ def post_url_prefix(title):
     return title.split(':')[0].replace(' ', '_').replace('/', '').lower()
 
 
+def post_game_url_prefix(title):
+    return title.rsplit('--', 1)[0].strip().replace('-', '')\
+        .replace(':', '').replace(' ', '_')\
+        .replace('/', '').replace('__', '_').lower()
+
+
 def all_stats(league, division, schedule_url):
     path = os.path.join(os.path.dirname(__file__), 'templates/all_stats.md')
     template = Template(open(path).read())
@@ -120,8 +126,35 @@ def update_game_thread(r, subreddit, team):
         r.edit(post_id, post)
 
 
+def postgame_thread_post(game, name, team_zone):
+    fmt = ("POSTGAME THREAD {} -- {} vs {} -- Join the Giants game / baseball "
+           "discussion and social thread!")
+
+    start = game.datetime.astimezone(team_zone)
+
+    title = fmt.format(start.strftime("%-m/%-d"), name, game.opponent)
+
+    path = os.path.join(os.path.dirname(__file__), 'templates/postgame.md')
+    template = Template(open(path).read())
+
+    post = template.render()
+
+    return title, post
+
+
 def update_post_game_thread(r, subreddit, team):
-    pass
+    past, _ = baseball.schedule(team['division'],
+                                team['links']['schedule'])
+    game = past[-1]
+
+    teamzone = baseball.division_timezone(team['division'])
+    title, post = postgame_thread_post(game, team['name'], teamzone)
+
+    post_id = find_post(r, post_game_url_prefix(title))
+
+    if not post_id:
+        logging.info("Creating postgame thread")
+        r.submit(subreddit, title, post)
 
 
 if __name__ == "__main__":

@@ -116,6 +116,14 @@ def test_reddit_url():
     assert_equals(bot.post_url_prefix(title), "gameday_thread_4913")
 
 
+def test_postgame_reddit_url():
+    title = ("POSTGAME THREAD: 4/11 -- Giants vs Cubs -- Join the Giants "
+             "game / baseball discussion and social thread!")
+
+    assert_equals(bot.post_game_url_prefix(title),
+                  "postgame_thread_411_giants_vs_cubs")
+
+
 exp_post = """
 | Rockies (5-1) | Giants (4-2) |
 | ------ | ------ |
