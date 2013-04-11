@@ -1,7 +1,7 @@
 import mock
 import pytz
 from vogeltron import bot
-from vogeltron.baseball import Standing, Game, Boxscore, Team, Player
+from vogeltron.baseball import Standing, Game, Boxscore, Team, Player, Pitcher
 from nose.tools import assert_equals
 from datetime import datetime, timezone
 
@@ -92,8 +92,10 @@ def test_timestamp():
             'PDT' in bot.timestamp(zone))
 
 teams = [
-    Team('Rockies', '5-1', [Player('Foo', 'P')], None),
-    Team('Giants', '4-2', [Player('Bar', 'P')], None),
+    Team('Rockies', '5-1', [Player('Foo', 'P')],
+         Pitcher('Francis', '1-0', 1.5)),
+    Team('Giants', '4-2', [Player('Bar', 'P')],
+         Pitcher('Zito', '1-0', 0.0)),
 ]
 
 game = Boxscore(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
@@ -117,7 +119,8 @@ def test_reddit_url():
 exp_post = """
 | Rockies (5-1) | Giants (4-2) |
 | ------ | ------ |
-| Rockies Lineup | Giants Lineup |
+| *Francis*: 1-0 1.50 ERA | *Zito*: 1-0 0.00 ERA |
+| *Rockies Lineup* | *Giants Lineup* |
 | Foo P | Bar P |
 
 | UPVOTE FOR VISIBILITY/PRAISE HIM |
