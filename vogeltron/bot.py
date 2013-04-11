@@ -57,7 +57,7 @@ def gamethread_post(espn_id, team_zone):
         start.strftime("%-m/%-d/%y"),
         game.teams[0].name,
         game.teams[1].name,
-        start.strftime("%-I:%M%p"))
+        start.strftime("%-I:%M %p %Z"))
 
     path = os.path.join(os.path.dirname(__file__), 'templates/gameday.md')
     template = Template(open(path).read())

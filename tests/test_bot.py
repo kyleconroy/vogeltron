@@ -108,11 +108,11 @@ def test_gameday_title(_game_info):
     title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
 
     assert_equals(title, ("Gameday Thread 4/9/13: Rockies "
-                          "at Giants (7:15PM)"))
+                          "at Giants (7:15 PM PDT)"))
 
 
 def test_reddit_url():
-    title = "Gameday Thread 4/9/13: Rockies at Giants (7:15PM)"
+    title = "Gameday Thread 4/9/13: Rockies at Giants (7:15 PM PST)"
     assert_equals(bot.post_url_prefix(title), "gameday_thread_4913")
 
 
