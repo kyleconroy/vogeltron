@@ -91,7 +91,7 @@ def update_sidebar(r, subreddit, team):
 def find_post(r, prefix):
     for post in r.submitted(r.username):
         if prefix in post['data']['url']:
-            return post['data']['id']
+            return post['data']['name']
     return None
 
 

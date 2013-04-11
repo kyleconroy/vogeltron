@@ -130,12 +130,33 @@ Last Updated @ foo
 """
 
 
+exp_post_no_pitchers = """
+| Rockies (5-1) | Giants (4-2) |
+| ------ | ------ |
+| **Rockies Lineup** | **Giants Lineup** |
+| Foo P | Bar P |
+
+| UPVOTE FOR VISIBILITY/PRAISE HIM |
+| ------ |
+
+Last Updated @ foo
+"""
+
+
 @mock.patch('vogeltron.bot.timestamp')
 @mock.patch('vogeltron.baseball.game_info')
-def test_gameday_post(_game_info, _timestamp):
+def test_gameday_post_no_pitchers(_game_info, _timestamp):
+    teams = [
+        Team('Rockies', '5-1', [Player('Foo', 'P')], None),
+        Team('Giants', '4-2', [Player('Bar', 'P')], None),
+    ]
+
+    g = Boxscore(teams,
+                 datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
+
     _timestamp.return_value = 'foo'
-    _game_info.return_value = game
+    _game_info.return_value = g
 
     _, post = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
 
-    assert_equals(exp_post.strip(), post)
+    assert_equals(exp_post_no_pitchers.strip(), post)
