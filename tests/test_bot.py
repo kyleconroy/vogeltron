@@ -119,11 +119,12 @@ def test_reddit_url():
 exp_post = """
 | Rockies (5-1) | Giants (4-2) |
 | ------ | ------ |
-| *Francis*: 1-0 1.50 ERA | *Zito*: 1-0 0.00 ERA |
-| *Rockies Lineup* | *Giants Lineup* |
+| **Francis**: 1-0 1.50 ERA | **Zito**: 1-0 0.00 ERA |
+| **Rockies Lineup** | **Giants Lineup** |
 | Foo P | Bar P |
 
 | UPVOTE FOR VISIBILITY/PRAISE HIM |
+| ------ |
 
 Last Updated @ foo
 """
