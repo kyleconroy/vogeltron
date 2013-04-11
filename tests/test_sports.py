@@ -118,6 +118,25 @@ def test_normalize():
 
 
 @mock.patch('requests.get')
+def test_boxscore_super_early(_get):
+    _get().content = open('tests/fixtures/boxscore_super_early.html').read()
+    game = baseball.game_info('345')
+    rockies, giants = game.teams
+
+    assert_equals(len(rockies.lineup), 0)
+    assert_equals(len(giants.lineup), 0)
+
+    assert_equals(giants.name, 'Giants')
+    assert_equals(giants.record, '5-3')
+
+    assert_equals(rockies.name, 'Rockies')
+    assert_equals(rockies.record, '5-3')
+
+    assert_equals(game.start_time,
+                  datetime(2013, 4, 10, 19, 45, tzinfo=timezone.utc))
+
+
+@mock.patch('requests.get')
 def test_boxscore_early(_get):
     _get().content = open('tests/fixtures/boxscore_early.html').read()
     game = baseball.game_info('345')
@@ -125,8 +144,6 @@ def test_boxscore_early(_get):
 
     assert_equals(len(a.lineup), 9)
     assert_equals(len(b.lineup), 9)
-    assert_equals(game.start_time,
-                  datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
 
 
 @mock.patch('requests.get')
@@ -137,12 +154,3 @@ def test_boxscore(_get):
 
     assert_equals(len(giants.lineup), 9)
     assert_equals(len(rockies.lineup), 9)
-
-    assert_equals(giants.name, 'Giants')
-    assert_equals(giants.record, '4-3')
-
-    assert_equals(rockies.name, 'Rockies')
-    assert_equals(rockies.record, '5-2')
-
-    assert_equals(game.start_time,
-                  datetime(2013, 4, 9, 2, 15, tzinfo=timezone.utc))

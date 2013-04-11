@@ -87,10 +87,16 @@ def game_info(espn_id):
 
     teams = []
 
+    for info_box in soup.find_all('div', class_='team-info'):
+        team_name = info_box.find('h3').find('a').text
+        record = info_box.find('p').text.replace('(', '').split(',')[0]
+        teams.append(Team(team_name, record, []))
+
     for i, databox in enumerate(boxes):
         if len(databox.find_all('thead')) > 2:
             continue
 
+        team_name = databox.find('thead').find_all('tr')[0].text
         player_type = databox.find('thead').find_all('tr')[1].text
 
         if 'pitchers' in player_type.lower():
@@ -98,7 +104,7 @@ def game_info(espn_id):
 
         players = databox.find_all('tbody')[0]
 
-        lineup = []
+        team = [t for t in teams if team_name.endswith(t.name)].pop()
 
         for player in players:
             name = player.find('td')
@@ -109,15 +115,7 @@ def game_info(espn_id):
             full_name, position = name.text.rsplit(' ', 1)
             _, last_name = full_name.split(' ', 1)
 
-            lineup.append(Player(last_name, position))
-
-        # Gross
-        print(int(i / 2))
-        info_box = soup.find_all('div', class_='team-info')[int(i / 2)]
-        team_name = info_box.find('h3').find('a').text
-        record = info_box.find('p').text.replace('(', '').split(',')[0]
-
-        teams.append(Team(team_name, record, lineup))
+            team.lineup.append(Player(last_name, position))
 
     timestamp = soup.find('div', class_='game-time-location').find('p').text
     gametime = datetime.datetime.strptime(timestamp.replace("ET", ""),

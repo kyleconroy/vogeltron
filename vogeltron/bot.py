@@ -104,7 +104,7 @@ def update_game_thread(r, subreddit, team):
         return
 
     if not thread_open(gametime, now):
-        logging.info("Not time yet for game {}".format(espn_id))
+        logging.info("Not time yet for game #{}".format(espn_id))
         return
 
     teamzone = baseball.division_timezone(team['division'])
@@ -113,8 +113,10 @@ def update_game_thread(r, subreddit, team):
     post_id = find_post(r, post_url_prefix(title))
 
     if not post_id:
+        logging.info("Creating game #{} thread".format(espn_id))
         r.submit(subreddit, title, post)
     else:
+        logging.info("Editing game #{} thread".format(espn_id))
         r.edit(post_id, post)
 
 
