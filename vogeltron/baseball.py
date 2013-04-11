@@ -77,9 +77,36 @@ def normalize(name):
 
 
 Player = collections.namedtuple('Player', 'name, position')
-Pitcher = collections.namedtuple('Pitcher', 'name, record, era')
-Team = collections.namedtuple('Team', 'name, record, lineup, pitcher')
 Boxscore = collections.namedtuple('Boxscore', 'teams, start_time')
+
+
+class Pitcher(object):
+
+    def __init__(self, name, record, era):
+        self.name = name
+        self.record = record
+        self.era = era
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
+    def __str__(self):
+        if self.record is None or self.era is None:
+            return "**{}**".format(self.name)
+        fmt = "**{}**: {} {:0.2f} ERA"
+        return fmt.format(self.name, self.record, self.era)
+
+
+class Team(object):
+
+    def __init__(self, name, record, lineup, pitcher):
+        self.name = name
+        self.record = record
+        self.lineup = lineup
+        self.pitcher = pitcher
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
 
 
 def game_info(espn_id):
@@ -98,6 +125,7 @@ def game_info(espn_id):
 
         if note is not None:
             m = re.search('(.*): (.*) \((.*), (.*) ERA\)', note.text)
+
             if m is not None:
                 pitcher = Pitcher(m.group(2), m.group(3), float(m.group(4)))
 
@@ -105,17 +133,23 @@ def game_info(espn_id):
 
     for i, databox in enumerate(boxes):
         if len(databox.find_all('thead')) > 2:
-            continue
+            team_name = databox.find_all('thead')[0].find('tr').text
+            player_type = databox.find_all('thead')[1].find('tr').text
+        else:
+            team_name = databox.find('thead').find_all('tr')[0].text
+            player_type = databox.find('thead').find_all('tr')[1].text
 
-        team_name = databox.find('thead').find_all('tr')[0].text
-        player_type = databox.find('thead').find_all('tr')[1].text
-
-        if 'pitchers' in player_type.lower():
-            continue
+        team = [t for t in teams if team_name.endswith(t.name)].pop()
 
         players = databox.find_all('tbody')[0]
 
-        team = [t for t in teams if team_name.endswith(t.name)].pop()
+        if 'pitchers' in player_type.lower():
+            if team.pitcher is None:
+                pitcher = players.find('td').text
+                pitcher = pitcher.split('(')[0].split(' ', 1)[1]
+                print(pitcher)
+                team.pitcher = Pitcher(pitcher, None, None)
+            continue
 
         for player in players:
             name = player.find('td')

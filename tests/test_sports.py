@@ -146,6 +146,7 @@ def test_boxscore_early(_get):
 
     assert_equals(len(a.lineup), 9)
     assert_equals(len(b.lineup), 9)
+    assert_equals(b.pitcher.name, 'Lincecum')
 
 
 @mock.patch('requests.get')
@@ -156,3 +157,4 @@ def test_boxscore(_get):
 
     assert_equals(len(giants.lineup), 9)
     assert_equals(len(rockies.lineup), 9)
+    assert_equals(giants.pitcher.name, 'Bumgarner')
