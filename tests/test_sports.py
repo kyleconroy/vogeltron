@@ -128,9 +128,11 @@ def test_boxscore_super_early(_get):
 
     assert_equals(giants.name, 'Giants')
     assert_equals(giants.record, '5-3')
+    assert_equals(giants.pitcher, baseball.Pitcher('Zito', '1-0', 0.0))
 
     assert_equals(rockies.name, 'Rockies')
     assert_equals(rockies.record, '5-3')
+    assert_equals(rockies.pitcher, baseball.Pitcher('Francis', '1-0', 1.5))
 
     assert_equals(game.start_time,
                   datetime(2013, 4, 10, 19, 45, tzinfo=timezone.utc))

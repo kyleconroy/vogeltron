@@ -77,7 +77,8 @@ def normalize(name):
 
 
 Player = collections.namedtuple('Player', 'name, position')
-Team = collections.namedtuple('Team', 'name, record, lineup')
+Pitcher = collections.namedtuple('Pitcher', 'name, record, era')
+Team = collections.namedtuple('Team', 'name, record, lineup, pitcher')
 Boxscore = collections.namedtuple('Boxscore', 'teams, start_time')
 
 
@@ -87,10 +88,20 @@ def game_info(espn_id):
 
     teams = []
 
-    for info_box in soup.find_all('div', class_='team-info'):
+    for i, info_box in enumerate(soup.find_all('div', class_='team-info')):
         team_name = info_box.find('h3').find('a').text
         record = info_box.find('p').text.replace('(', '').split(',')[0]
-        teams.append(Team(team_name, record, []))
+
+        notes = soup.find('div', class_='game-notes')
+        note = notes.find_all('p')[i + 1]
+        pitcher = None
+
+        if note is not None:
+            m = re.search('(.*): (.*) \((.*), (.*) ERA\)', note.text)
+            if m is not None:
+                pitcher = Pitcher(m.group(2), m.group(3), float(m.group(4)))
+
+        teams.append(Team(team_name, record, [], pitcher))
 
     for i, databox in enumerate(boxes):
         if len(databox.find_all('thead')) > 2:

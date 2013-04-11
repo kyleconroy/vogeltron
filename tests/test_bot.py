@@ -92,8 +92,8 @@ def test_timestamp():
             'PDT' in bot.timestamp(zone))
 
 teams = [
-    Team('Rockies', '5-1', [Player('Foo', 'P')]),
-    Team('Giants', '4-2', [Player('Bar', 'P')]),
+    Team('Rockies', '5-1', [Player('Foo', 'P')], None),
+    Team('Giants', '4-2', [Player('Bar', 'P')], None),
 ]
 
 game = Boxscore(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
