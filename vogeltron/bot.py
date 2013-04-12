@@ -59,11 +59,13 @@ def gamethread_post(espn_id, team_zone):
     game = baseball.game_info(espn_id)
     start = game.start_time.astimezone(team_zone)
 
-    title = "Gameday Thread {}: {} at {} ({})".format(
+    title = "Gameday Thread {}: {} ({}) at {} ({}) ({})".format(
         start.strftime("%-m/%-d/%y"),
         game.teams[0].name,
+        game.teams[0].pitcher.name if game.teams[1].pitcher else 'TBA',
         game.teams[1].name,
-        start.strftime("%-I:%M %p %Z"))
+        game.teams[1].pitcher.name if game.teams[1].pitcher else 'TBA',
+        start.strftime("%-I:%M%p"))
 
     path = os.path.join(os.path.dirname(__file__), 'templates/gameday.md')
     template = Template(open(path).read())
