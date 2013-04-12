@@ -121,7 +121,7 @@ def test_postgame_reddit_url():
              "game / baseball discussion and social thread!")
 
     assert_equals(bot.post_game_url_prefix(title),
-                  "postgame_thread_411_giants_vs_cubs")
+                  "postgame_thread_411")
 
 
 exp_post = """

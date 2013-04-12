@@ -26,9 +26,8 @@ def post_url_prefix(title):
 
 
 def post_game_url_prefix(title):
-    return title.rsplit('--', 1)[0].strip().replace('-', '')\
-        .replace(':', '').replace(' ', '_')\
-        .replace('/', '').replace('__', '_').lower()
+    return title.split('--', 1)[0].strip().lower()\
+        .replace(':', '').replace(' ', '_').replace('/', '')
 
 
 def all_stats(league, division, schedule_url):
