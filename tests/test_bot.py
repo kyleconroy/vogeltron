@@ -132,6 +132,9 @@ exp_post = """
 | **Rockies Lineup** | **Giants Lineup** |
 | Foo P | Bar P |
 
+| 64 Clear |
+| ------ |
+
 | UPVOTE FOR VISIBILITY/PRAISE HIM |
 | ------ |
 
@@ -153,6 +156,17 @@ exp_post_no_pitchers = """
 
 Last Updated @ foo
 """
+
+
+@mock.patch('vogeltron.bot.timestamp')
+@mock.patch('vogeltron.baseball.game_info')
+def test_gameday_post(_game_info, _timestamp):
+    _timestamp.return_value = 'foo'
+    _game_info.return_value = game
+
+    _, post = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+
+    assert_equals(exp_post.strip(), post)
 
 
 @mock.patch('vogeltron.bot.timestamp')
