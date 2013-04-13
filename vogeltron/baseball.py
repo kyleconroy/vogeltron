@@ -77,7 +77,7 @@ def normalize(name):
 
 
 Player = collections.namedtuple('Player', 'name, position')
-Boxscore = collections.namedtuple('Boxscore', 'teams, start_time')
+Boxscore = collections.namedtuple('Boxscore', 'teams, start_time, weather')
 
 
 class Pitcher(object):
@@ -166,8 +166,10 @@ def game_info(espn_id):
     gametime = datetime.datetime.strptime(timestamp.replace("ET", ""),
                                           "%I:%M %p , %B %d, %Y")
     eastern = pytz.timezone('US/Eastern')
+    weather = soup.find('p', class_='weather').text.replace('°', '° ')
 
-    return Boxscore(teams, eastern.localize(gametime).astimezone(pytz.utc))
+    return Boxscore(teams, eastern.localize(gametime).astimezone(pytz.utc),
+                    weather)
 
 
 def team_info(name):

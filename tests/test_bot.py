@@ -98,7 +98,8 @@ teams = [
          Pitcher('Zito', '1-0', 0.0)),
 ]
 
-game = Boxscore(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
+game = Boxscore(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
+                '64 Clear')
 
 
 @mock.patch('vogeltron.baseball.game_info')
@@ -160,7 +161,8 @@ def test_gameday_post_no_pitchers(_game_info, _timestamp):
     ]
 
     g = Boxscore(teams,
-                 datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc))
+                 datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
+                 '64 Clear')
 
     _timestamp.return_value = 'foo'
     _game_info.return_value = g

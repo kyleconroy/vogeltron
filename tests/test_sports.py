@@ -123,6 +123,8 @@ def test_boxscore_super_early(_get):
     game = baseball.game_info('345')
     rockies, giants = game.teams
 
+    assert_equals(game.weather, '64° Clear')
+
     assert_equals(len(rockies.lineup), 0)
     assert_equals(len(giants.lineup), 0)
 
