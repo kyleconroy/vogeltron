@@ -5,6 +5,9 @@
 {% for player1, player2 in players -%}
 | {{ player1.name }} {{ player1.position }} | {{ player2.name }} {{ player2.position }} |
 {% endfor %}
+| {{ weather }} |
+| ------ |
+
 | UPVOTE FOR VISIBILITY/PRAISE HIM |
 | ------ |
 

@@ -73,7 +73,8 @@ def gamethread_post(espn_id, team_zone):
     players = zip(home.lineup, away.lineup)
 
     post = template.render(home=home, away=away, players=players,
-                           timestamp=timestamp(team_zone))
+                           timestamp=timestamp(team_zone),
+                           weather=game.weather)
 
     return title, post
 

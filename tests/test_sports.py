@@ -3,6 +3,7 @@ from datetime import datetime, timezone, date
 import pytz
 from nose.tools import assert_equals, assert_raises
 from vogeltron import baseball
+from bs4 import BeautifulSoup
 
 
 def april(day, hour, minute):
@@ -117,46 +118,38 @@ def test_normalize():
     assert_equals(baseball.normalize('Red-Sox'), 'REDSOX')
 
 
-@mock.patch('requests.get')
-def test_boxscore_super_early(_get):
-    _get().content = open('tests/fixtures/boxscore_super_early.html').read()
-    game = baseball.game_info('345')
-    rockies, giants = game.teams
-
-    assert_equals(game.weather, '64° Clear')
-
-    assert_equals(len(rockies.lineup), 0)
-    assert_equals(len(giants.lineup), 0)
-
-    assert_equals(giants.name, 'Giants')
-    assert_equals(giants.record, '5-3')
-    assert_equals(giants.pitcher, baseball.Pitcher('Zito', '1-0', 0.0))
-
-    assert_equals(rockies.name, 'Rockies')
-    assert_equals(rockies.record, '5-3')
-    assert_equals(rockies.pitcher, baseball.Pitcher('Francis', '1-0', 1.5))
-
-    assert_equals(game.start_time,
-                  datetime(2013, 4, 10, 19, 45, tzinfo=timezone.utc))
+def test_preview_weather():
+    soup = BeautifulSoup(open('tests/fixtures/preview_during.html'))
+    assert_equals(baseball.parse_weather(soup), '40° Broken Clouds')
 
 
-@mock.patch('requests.get')
-def test_boxscore_early(_get):
-    _get().content = open('tests/fixtures/boxscore_early.html').read()
-    game = baseball.game_info('345')
-    a, b = game.teams
-
-    assert_equals(len(a.lineup), 9)
-    assert_equals(len(b.lineup), 9)
-    assert_equals(b.pitcher.name, 'Lincecum')
+def test_preview_gametime():
+    soup = BeautifulSoup(open('tests/fixtures/preview_during.html'))
+    assert_equals(baseball.parse_game_time(soup),
+                  datetime(2013, 4, 13, 17, 5, tzinfo=timezone.utc))
 
 
-@mock.patch('requests.get')
-def test_boxscore(_get):
-    _get().content = open('tests/fixtures/boxscore.html').read()
-    game = baseball.game_info('345')
-    rockies, giants = game.teams
+def test_preview_teamname():
+    soup = BeautifulSoup(open('tests/fixtures/preview_during.html'))
+    name, record = baseball.parse_team_info(soup, 0)
+    assert_equals(name, "Giants")
+    assert_equals(record, "7-4")
 
-    assert_equals(len(giants.lineup), 9)
-    assert_equals(len(rockies.lineup), 9)
-    assert_equals(giants.pitcher.name, 'Bumgarner')
+
+def test_preview_pitcher():
+    soup = BeautifulSoup(open('tests/fixtures/preview_during.html'))
+    pitcher = baseball.parse_starting_pitcher(soup, 0)
+
+    assert_equals(pitcher.name, "Bumgarner")
+    assert_equals(pitcher.era, 0.96)
+    assert_equals(pitcher.record, '2-0')
+
+
+def test_preview_lineup():
+    soup = BeautifulSoup(open('tests/fixtures/preview_during.html'))
+    lineup = baseball.parse_starting_lineup(soup, 0)
+    blanco = lineup[0]
+
+    assert_equals(len(lineup), 9)
+    assert_equals(blanco.name, 'Blanco')
+    assert_equals(blanco.position, 'CF')

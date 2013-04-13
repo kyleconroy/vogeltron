@@ -5,6 +5,7 @@ import re
 import json
 import os
 import collections
+import logging
 from urllib import parse
 from collections import namedtuple
 from bs4 import BeautifulSoup
@@ -12,7 +13,7 @@ from bs4 import BeautifulSoup
 USER_AGENT = "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"
 STANDINGS_URL = "http://espn.go.com/mlb/standings"
 TEAMS_URL = "http://espn.go.com/mlb/teams"
-BOXSCORE_URL = "http://espn.go.com/mlb/boxscore?gameId={}"
+PREVIEW_URL = "http://espn.go.com/mlb/preview?gameId={}"
 
 
 Standing = namedtuple('Standing', 'name, wins, losses, ratio, games_back')
@@ -109,67 +110,102 @@ class Team(object):
         return self.__dict__ == other.__dict__
 
 
-def game_info(espn_id):
-    soup = make_soup(BOXSCORE_URL.format(espn_id))
-    boxes = soup.find_all('table', class_='mlb-box')
+def parse_weather(soup):
+    """Return the weather"""
+    return soup.find('p', class_='weather').text.replace('°', '° ')
 
-    teams = []
 
-    for i, info_box in enumerate(soup.find_all('div', class_='team-info')):
-        team_name = info_box.find('h3').find('a').text
-        record = info_box.find('p').text.replace('(', '').split(',')[0]
+def parse_team(soup, index):
+    """Return the teams playing"""
+    name, record = parse_team_info(soup, index)
+    return Team(name, record, parse_starting_lineup(soup, index),
+                parse_starting_pitcher(soup, index))
 
-        notes = soup.find('div', class_='game-notes')
-        note = notes.find_all('p')[i + 1]
-        pitcher = None
 
-        if note is not None:
-            m = re.search('(.*): (.*) \((.*), (.*) ERA\)', note.text)
+def _find_info_table(soup, headline):
+    for div in soup.find_all('div', class_='mod-open-gamepack'):
+        header = div.find('h4')
 
-            if m is not None:
-                pitcher = Pitcher(m.group(2), m.group(3), float(m.group(4)))
-
-        teams.append(Team(team_name, record, [], pitcher))
-
-    for i, databox in enumerate(boxes):
-        if len(databox.find_all('thead')) > 2:
-            team_name = databox.find_all('thead')[0].find('tr').text
-            player_type = databox.find_all('thead')[1].find('tr').text
-        else:
-            team_name = databox.find('thead').find_all('tr')[0].text
-            player_type = databox.find('thead').find_all('tr')[1].text
-
-        team = [t for t in teams if team_name.endswith(t.name)].pop()
-
-        players = databox.find_all('tbody')[0]
-
-        if 'pitchers' in player_type.lower():
-            if team.pitcher is None:
-                pitcher = players.find('td').text
-                pitcher = pitcher.split('(')[0].split(' ', 1)[1]
-                print(pitcher)
-                team.pitcher = Pitcher(pitcher, None, None)
+        if header is None:
             continue
 
-        for player in players:
-            name = player.find('td')
+        if header.text.lower().strip() == headline.lower().strip():
+            return div.find('table')
 
-            if name.find('div'):  # Not starting
-                continue
+    return None
 
-            full_name, position = name.text.rsplit(' ', 1)
-            _, last_name = full_name.split(' ', 1)
 
-            team.lineup.append(Player(last_name, position))
+def parse_starting_pitcher(soup, index):
+    """Return the starting home and away pitchers"""
+    table = _find_info_table(soup, 'Pitching Matchup')
 
+    if table is None:
+        logging.error("Can't find starting pitchers")
+        return None
+
+    tds = table.find_all('td')
+
+    if len(tds) != 4:
+        logging.error("Not enough table cells in pitching info")
+        return None
+
+    info = tds[index * 2 + 1].text.replace("\n", " ")
+    m = re.search('(.*)\. (.*) (.*), (.*) ERA', info)
+
+    if m is None:
+        logging.error("Can't match the pitching info")
+        return None
+
+    return Pitcher(m.group(2), m.group(3), float(m.group(4)))
+
+
+def parse_starting_lineup(soup, index):
+    """Return the starting home and away lineup"""
+    table = _find_info_table(soup, 'Gameday Lineups')
+
+    if table is None:
+        logging.error("Can't find starting lineup")
+        return []
+
+    players = []
+
+    for row in table.find_all('tr'):
+        cells = row.find_all('td')
+
+        if not cells:  # Headers
+            continue
+
+        text = row.find_all('td')[index + 1].text
+
+        _, namepos = text.split('. ', 1)
+        name, position = namepos.split(', ', 1)
+
+        players.append(Player(name, position))
+
+    return players
+
+
+def parse_team_info(soup, index):
+    info_box = soup.find_all('div', class_='team-info')[index]
+    team_name = info_box.find('h3').find('a').text
+    record = info_box.find('p').text.replace('(', '').split(',')[0]
+    return team_name, record
+
+
+def parse_game_time(soup):
+    """Return the start time in UTC"""
     timestamp = soup.find('div', class_='game-time-location').find('p').text
     gametime = datetime.datetime.strptime(timestamp.replace("ET", ""),
                                           "%I:%M %p , %B %d, %Y")
     eastern = pytz.timezone('US/Eastern')
-    weather = soup.find('p', class_='weather').text.replace('°', '° ')
+    return eastern.localize(gametime).astimezone(pytz.utc)
 
-    return Boxscore(teams, eastern.localize(gametime).astimezone(pytz.utc),
-                    weather)
+
+def game_info(espn_id):
+    soup = make_soup(PREVIEW_URL.format(espn_id))
+
+    return Boxscore([parse_team(soup, 0), parse_team(soup, 1)],
+                    parse_game_time(soup), parse_weather(soup))
 
 
 def team_info(name):

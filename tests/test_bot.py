@@ -145,6 +145,9 @@ exp_post_no_pitchers = """
 | **Rockies Lineup** | **Giants Lineup** |
 | Foo P | Bar P |
 
+| 64 Clear |
+| ------ |
+
 | UPVOTE FOR VISIBILITY/PRAISE HIM |
 | ------ |
 
