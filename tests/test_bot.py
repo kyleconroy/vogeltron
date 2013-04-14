@@ -14,8 +14,8 @@ sidebar = """
 
 | Team | W | L | W/L% | GB |
 | ------ | ------ | ----- | ----- | ----- |
-| San Francisco | 3 | 1 | 0.75 | -- |
-| San Francisco | 3 | 1 | 0.75 | -- |
+| San Francisco | 3 | 1 | .750 | -- |
+| San Francisco | 3 | 1 | .750 | -- |
 
 | Date | vs. | W/L | Score |
 | ------ | ------ | ----- | ----- |
@@ -64,6 +64,7 @@ def test_all_stats(_schedule, _standings, _timestamp):
         Standing('San Francisco', 3, 1, .75, 0.0),
     ]
 
+    print(bot.all_stats('NATIONAL', 'WEST', 'foo'))
     assert_equals(sidebar.strip(), bot.all_stats('NATIONAL', 'WEST', 'foo'))
 
 
