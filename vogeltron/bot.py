@@ -17,7 +17,7 @@ from . import reddit
 
 
 def _load_template(filename):
-    subreddit = os.environ.get('VOGELTRON_SUBREDDIT', 'default')
+    subreddit = os.environ.get('VOGELTRON_TEAM', 'default').lower()
 
     subreddit_path = os.path.join(os.path.dirname(__file__), 'templates',
                                   subreddit, filename)

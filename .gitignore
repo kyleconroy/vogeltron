@@ -1,5 +1,8 @@
 *.py[cod]
 
+# Subreddit Details
+scripts/*.ini
+
 # C extensions
 *.so
 
@@ -35,3 +38,4 @@ nosetests.xml
 .project
 .pydevproject
 venv
+
