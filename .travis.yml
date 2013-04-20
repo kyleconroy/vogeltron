@@ -5,5 +5,5 @@ python:
 install: "pip install -r requirements.txt --use-mirrors"
 # command to run tests
 script:
- - flake8 tests reddit.py baseball.py bot.py
+ - flake8 tests vogeltron
  - nosetests tests
