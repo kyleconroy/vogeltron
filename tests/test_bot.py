@@ -7,20 +7,18 @@ from datetime import datetime, timezone
 
 
 sidebar = """
-##Standings
-##Last 5
-##Next 5 Games
-------------
-
+## Standings
 | Team | W | L | W/L% | GB |
 | ------ | ------ | ----- | ----- | ----- |
 | San Francisco | 3 | 1 | .750 | -- |
 | San Francisco | 3 | 1 | .750 | -- |
 
+## Last 5 Games
 | Date | vs. | W/L | Score |
 | ------ | ------ | ----- | ----- |
 | January 1 | LA Dodgers | W | 1-1 |
 
+## Upcoming Games
 | Date | Time | Opponent |
 | ------ | ------ | ----- |
 | January 2 | 12:00AM | vs LA Dodgers |
@@ -136,7 +134,7 @@ exp_post = """
 | 64 Clear |
 | ------ |
 
-| UPVOTE FOR VISIBILITY/PRAISE HIM |
+| UPVOTE FOR VISIBILITY |
 | ------ |
 
 Last Updated @ foo
@@ -152,7 +150,7 @@ exp_post_no_pitchers = """
 | 64 Clear |
 | ------ |
 
-| UPVOTE FOR VISIBILITY/PRAISE HIM |
+| UPVOTE FOR VISIBILITY |
 | ------ |
 
 Last Updated @ foo
