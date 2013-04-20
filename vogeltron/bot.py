@@ -16,6 +16,20 @@ from . import baseball
 from . import reddit
 
 
+def _load_template(filename):
+    subreddit = os.environ.get('VOGELTRON_SUBREDDIT', 'default')
+
+    subreddit_path = os.path.join(os.path.dirname(__file__), 'templates',
+                                  subreddit, filename)
+    default_path = os.path.join(os.path.dirname(__file__), 'templates',
+                                'default', filename)
+
+    if os.path.exists(subreddit_path):
+        return Template(open(subreddit_path).read())
+    else:
+        return Template(open(default_path).read())
+
+
 def timestamp(team_zone):
     now = datetime.datetime.now(datetime.timezone.utc)
     return now.astimezone(team_zone).strftime("%Y-%m-%d %I:%M %p %Z")
@@ -31,8 +45,7 @@ def post_game_url_prefix(title):
 
 
 def all_stats(league, division, schedule_url):
-    path = os.path.join(os.path.dirname(__file__), 'templates/all_stats.md')
-    template = Template(open(path).read())
+    template = _load_template('all_stats.md')
 
     standings = baseball.current_standings(league, division)
     past, future = baseball.schedule(division, schedule_url)
@@ -66,8 +79,7 @@ def gamethread_post(espn_id, team_zone):
         game.teams[1].pitcher.name if game.teams[1].pitcher else 'TBA',
         start.strftime("%-I:%M%p"))
 
-    path = os.path.join(os.path.dirname(__file__), 'templates/gameday.md')
-    template = Template(open(path).read())
+    template = _load_template('gameday.md')
 
     home, away = game.teams
     players = zip(home.lineup, away.lineup)
@@ -136,8 +148,7 @@ def postgame_thread_post(game, name, team_zone):
 
     title = fmt.format(start.strftime("%-m/%-d"), name, game.opponent)
 
-    path = os.path.join(os.path.dirname(__file__), 'templates/postgame.md')
-    template = Template(open(path).read())
+    template = _load_template('postgame.md')
 
     post = template.render()
 
