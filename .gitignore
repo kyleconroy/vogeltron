@@ -1,7 +1,8 @@
 *.py[cod]
 
 # Subreddit Details
-scripts/*.ini
+reddits
+repos
 
 # C extensions
 *.so

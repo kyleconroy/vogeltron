@@ -1,4 +1,5 @@
-.PHONY: test install deploy run teams
+.PHONY: test install deploy run teams stage
+
 
 install: venv
 	venv/bin/pip install -r requirements.txt
@@ -11,10 +12,13 @@ test:
 	venv/bin/nosetests tests
 
 teams:
-	. venv/bin/activate; python generate_teams.py
+	venv/bin/python -m vogeltron.teams
+
+stage:
+	venv/bin/python -m vogeltron.deploy reddits/test.json
 
 deploy:
-	git push staging master
+	venv/bin/python -m vogeltron.deploy reddits/subs.json
 
 run:
 	heroku run python -m vogeltron.bot --app sfgiants-staging

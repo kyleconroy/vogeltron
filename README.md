@@ -74,6 +74,28 @@ functionality has tests. To install and test locally, just run:
 $ make install test
 ```
 
+
+## Multiple Deployment
+
+We have multiple subreddits using Vogeltron. Instead of having to push changes
+manually to each bot, we've automated this process:
+
+```js
+{
+  "raven": "SENTRY_API_KEY"
+  "heroku": "HEROKU_API_KEY",
+  "subreddits": [
+    {
+      "name": "sfgiants",
+      "team": "Giants",
+      "username": "bot",
+      "password": "password"
+    },
+    ...
+  ]
+}
+```
+
 ## Acknowledgements
 
 - [Justin Crisostomo](justincrisostomo.com) for the awesome Vogeltron image
