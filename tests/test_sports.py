@@ -88,13 +88,16 @@ def test_upcoming(_get):
 def test_standings(_get):
     _get().content = open('tests/fixtures/standings.html').read()
     standings = baseball.current_standings('NATIONAL', 'WEST')
-    assert_equals(standings, [
-        baseball.Standing('San Francisco', 3, 1, .75, 0.0),
-        baseball.Standing('Colorado', 3, 1, .75, 0.0),
-        baseball.Standing('Arizona', 2, 1, .667, 0.5),
-        baseball.Standing('LA Dodgers', 1, 2, .333, 1.5),
-        baseball.Standing('San Diego', 1, 3, .250, 2.0),
-    ])
+
+    examples = [
+        baseball.Standing('San Francisco', 'SF', 3, 1, .75, 0.0, 'Won 3'),
+        baseball.Standing('Colorado', 'COL', 3, 1, .75, 0.0, 'Won 3'),
+        baseball.Standing('Arizona', 'ARI', 2, 1, .667, 0.5, 'Won 1'),
+        baseball.Standing('LA Dodgers', 'LAD', 1, 2, .333, 1.5, 'Lost 2'),
+        baseball.Standing('San Diego', 'SD', 1, 3, .250, 2.0, 'Lost 1'),
+    ]
+
+    assert_equals(standings, examples)
 
 
 def test_parse_gametime():

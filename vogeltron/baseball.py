@@ -7,7 +7,6 @@ import os
 import collections
 import logging
 from urllib import parse
-from collections import namedtuple
 from bs4 import BeautifulSoup
 
 USER_AGENT = "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"
@@ -16,7 +15,31 @@ TEAMS_URL = "http://espn.go.com/mlb/teams"
 PREVIEW_URL = "http://espn.go.com/mlb/preview?gameId={}"
 
 
-Standing = namedtuple('Standing', 'name, wins, losses, ratio, games_back')
+class Standing(object):
+
+    def __init__(self, name, abbr, wins, losses, ratio, games_back, streak):
+        self.team_abbr = abbr
+        self.name = name
+        self.wins = wins
+        self.losses = losses
+        self.ratio = ratio
+        self.games_back = games_back
+
+        result, length = streak.split(' ')
+        self.streak = "{}{}".format(result[0], length).upper()
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
+    @property
+    def record(self):
+        return "{0:0.3f}".format(self.ratio).lstrip('0')
+
+    @property
+    def back(self):
+        if self.games_back < 0.5:
+            return "--"
+        return self.games_back
 
 
 class Game(object):
@@ -360,13 +383,17 @@ def current_standings(league, division):
         current = standings[active_league][active_division]
 
         d = tr.find_all('td')
+        link = d[0].find('a')
+        uri = link['href'].replace('http://espn.go.com/mlb/team/_/name/', '')
 
         current.append(Standing(
             d[0].text,  # Team name
+            uri[:3].upper().replace('/', ''),
             int(d[1].text),  # Wins
             int(d[2].text),  # Losses
             float(d[3].text),  # Win Percentage
-            0.0 if d[4].text == "-" else float(d[4].text)  # Games back
+            0.0 if d[4].text == "-" else float(d[4].text),  # Games back
+            d[10].text.replace('  ', ' ').strip()  # Streak
         ))
 
     return standings[league][division]

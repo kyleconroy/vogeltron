@@ -26,6 +26,14 @@ sidebar = """
 Last Updated @ 2013-04-06 12:31 AM
 """
 
+nationals_sidebar = """**NL East Standings**
+
+|        | W | L | PCT | GB | STRK |
+| :---: |:---: | :---: | :---: | :---: | :---: |
+| [](/SFG) | 3 | 1 | .750 | -- | W2 |
+| [](/SFG) | 3 | 1 | .750 | -- | W2 |
+"""
+
 markdown = """
 [](/all_statsstart)
 foo
@@ -51,6 +59,22 @@ def test_update_description():
 @mock.patch('vogeltron.bot.timestamp')
 @mock.patch('vogeltron.baseball.current_standings')
 @mock.patch('vogeltron.baseball.schedule')
+def test_nationals_stats(_schedule, _standings, _timestamp):
+    _timestamp.return_value = "2013-04-06 12:31 AM"
+    _schedule.return_value = [mock.Mock(), mock.Mock()]
+    _standings.return_value = [
+        Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
+        Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
+    ]
+
+    with mock.patch.dict('os.environ', {'VOGELTRON_TEAM': 'nationals'}):
+        assert_equals(nationals_sidebar,
+                      bot.all_stats('NATIONAL', 'EAST', 'foo'))
+
+
+@mock.patch('vogeltron.bot.timestamp')
+@mock.patch('vogeltron.baseball.current_standings')
+@mock.patch('vogeltron.baseball.schedule')
 def test_all_stats(_schedule, _standings, _timestamp):
     _timestamp.return_value = "2013-04-06 12:31 AM"
     _schedule.return_value = (
@@ -58,11 +82,10 @@ def test_all_stats(_schedule, _standings, _timestamp):
         [Game('LA Dodgers', datetime(2013, 1, 2), True, None, "0-0")],
     )
     _standings.return_value = [
-        Standing('San Francisco', 3, 1, .75, 0.0),
-        Standing('San Francisco', 3, 1, .75, 0.0),
+        Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
+        Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
     ]
 
-    print(bot.all_stats('NATIONAL', 'WEST', 'foo'))
     assert_equals(sidebar.strip(), bot.all_stats('NATIONAL', 'WEST', 'foo'))
 
 
