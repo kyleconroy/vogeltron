@@ -11,11 +11,11 @@
 | Date | vs. | W/L | Score |
 | ------ | ------ | ----- | ----- |
 {% for g in past -%}
-| {{ g.date }} | {{ g.opponent }} | {{ g.w }} | {{ g.score }} |
+| {{ g.pretty_date }} | {{ g.opponent }} | {{ g.w }} | {{ g.score }} |
 {% endfor %}
 | Date | Time | Opponent |
 | ------ | ------ | ----- |
 {% for g in future -%}
-| {{ g.date }} | {{ g.time }} | {{ g.description }} |
+| {{ g.pretty_date }} | {{ g.pretty_time }} | {{ g.description }} |
 {% endfor %}
 Last Updated @ {{ timestamp }}

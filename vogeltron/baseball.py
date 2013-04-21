@@ -42,25 +42,36 @@ class Standing(object):
         return self.games_back
 
 
-class Game(object):
+class Result(object):
 
-    def __init__(self, opponent, datetime, home, win, score):
+    def __init__(self, opponent, datetime, home, win=None,
+                 score=None, pitchers=None, attendance=0):
         self.opponent = opponent
         self.datetime = datetime
         self.home = home
         self.win = win
         self.score = score
+        self.pitchers = pitchers or []
+        self.attendance = attendance
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
     @property
     def date(self):
+        return self.datetime.date()
+
+    @property
+    def time(self):
+        return self.datetime.time()
+
+    @property
+    def pretty_date(self):
         return "{} {}".format(self.datetime.strftime("%B"),
                               int(self.datetime.strftime("%d")))
 
     @property
-    def time(self):
+    def pretty_time(self):
         return self.datetime.strftime("%I:%M%p")
 
     @property
@@ -72,36 +83,26 @@ class Game(object):
         return "{} {}".format("vs" if self.home else "at", self.opponent)
 
 
-def parse_gametime(date, time):
-    today = datetime.date.today()
-    timestamp = "{} {} {}".format(date.strip(), time.strip(), today.year)
-    gametime = datetime.datetime.strptime(timestamp, "%a, %b %d %I:%M %p %Y")
-    eastern = pytz.timezone('US/Eastern')
-    return eastern.localize(gametime).astimezone(pytz.utc)
-
-
-def make_soup(url):
-    resp = requests.get(url, headers={'User-Agent': USER_AGENT})
-    resp.raise_for_status()
-    return BeautifulSoup(resp.content)
-
-
-def division_timezone(division):
-    """For a given division, return the correct timezone"""
-    if division == 'EAST':
-        return pytz.timezone('US/Eastern')
-    elif division == 'CENTRAL':
-        return pytz.timezone('US/Central')
-    else:
-        return pytz.timezone('US/Pacific')
-
-
-def normalize(name):
-    return name.upper().replace(" ", "").replace("-", "")
-
-
 Player = collections.namedtuple('Player', 'name, position')
-Boxscore = collections.namedtuple('Boxscore', 'teams, start_time, weather')
+
+
+class Game(object):
+
+    def __init__(self, teams, datetime, weather):
+        self.teams = teams
+        self.datetime = datetime
+        self.weather = weather
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
+    @property
+    def date(self):
+        return self.datetime.date()
+
+    @property
+    def time(self):
+        return self.datetime.time()
 
 
 class Pitcher(object):
@@ -131,6 +132,38 @@ class Team(object):
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+
+
+def parse_gametime(date, time):
+    today = datetime.date.today()
+
+    if time.strip() == "POSTPONED":
+        time = "4:05 PM"
+
+    timestamp = "{} {} {}".format(date.strip(), time.strip(), today.year)
+    gametime = datetime.datetime.strptime(timestamp, "%a, %b %d %I:%M %p %Y")
+    eastern = pytz.timezone('US/Eastern')
+    return eastern.localize(gametime).astimezone(pytz.utc)
+
+
+def make_soup(url):
+    resp = requests.get(url, headers={'User-Agent': USER_AGENT})
+    resp.raise_for_status()
+    return BeautifulSoup(resp.content)
+
+
+def division_timezone(division):
+    """For a given division, return the correct timezone"""
+    if division == 'EAST':
+        return pytz.timezone('US/Eastern')
+    elif division == 'CENTRAL':
+        return pytz.timezone('US/Central')
+    else:
+        return pytz.timezone('US/Pacific')
+
+
+def normalize(name):
+    return name.upper().replace(" ", "").replace("-", "")
 
 
 def parse_weather(soup):
@@ -227,8 +260,8 @@ def parse_game_time(soup):
 def game_info(espn_id):
     soup = make_soup(PREVIEW_URL.format(espn_id))
 
-    return Boxscore([parse_team(soup, 0), parse_team(soup, 1)],
-                    parse_game_time(soup), parse_weather(soup))
+    return Game([parse_team(soup, 0), parse_team(soup, 1)],
+                parse_game_time(soup), parse_weather(soup))
 
 
 def team_info(name):
@@ -324,7 +357,7 @@ def schedule(division, schedule_url):
         try:
             win_node, score_node = d[2].find_all('li')
             win = win_node.text.strip().upper() == 'W'
-            score = score_node.text.strip().upper()
+            score = score_node.text.strip().upper().split(' ')[0]
             clock = "04:05 PM"
         except ValueError:
             clock = d[2].text.strip()
@@ -336,7 +369,8 @@ def schedule(division, schedule_url):
         home = status.text.strip().upper() == "VS"
         opponent = team_name.text.strip()
 
-        game = Game(opponent, gametime.astimezone(team_zone), home, win, score)
+        game = Result(opponent, gametime.astimezone(team_zone), home,
+                      win=win, score=score)
 
         if win is None:
             future.append(game)

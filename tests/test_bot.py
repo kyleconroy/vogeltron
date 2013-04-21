@@ -1,7 +1,8 @@
 import mock
 import pytz
 from vogeltron import bot
-from vogeltron.baseball import Standing, Game, Boxscore, Team, Player, Pitcher
+from vogeltron.baseball import Standing, Result, Game
+from vogeltron.baseball import Team, Player, Pitcher
 from nose.tools import assert_equals, assert_true, assert_false
 from datetime import datetime, timezone
 
@@ -78,8 +79,8 @@ def test_nationals_stats(_schedule, _standings, _timestamp):
 def test_all_stats(_schedule, _standings, _timestamp):
     _timestamp.return_value = "2013-04-06 12:31 AM"
     _schedule.return_value = (
-        [Game('LA Dodgers', datetime(2013, 1, 1), True, True, "1-1")],
-        [Game('LA Dodgers', datetime(2013, 1, 2), True, None, "0-0")],
+        [Result('LA Dodgers', datetime(2013, 1, 1), True, True, "1-1")],
+        [Result('LA Dodgers', datetime(2013, 1, 2), True, None, "0-0")],
     )
     _standings.return_value = [
         Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
@@ -117,8 +118,8 @@ teams = [
          Pitcher('Zito', '1-0', 0.0)),
 ]
 
-game = Boxscore(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
-                '64 Clear')
+game = Game(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
+            '64 Clear')
 
 
 @mock.patch('vogeltron.baseball.game_info')
@@ -196,9 +197,9 @@ def test_gameday_post_no_pitchers(_game_info, _timestamp):
         Team('Giants', '4-2', [Player('Bar', 'P')], None),
     ]
 
-    g = Boxscore(teams,
-                 datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
-                 '64 Clear')
+    g = Game(teams,
+             datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
+             '64 Clear')
 
     _timestamp.return_value = 'foo'
     _game_info.return_value = g

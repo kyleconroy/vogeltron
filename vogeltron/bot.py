@@ -72,7 +72,7 @@ def update_standings(current_description, stats):
 
 def gamethread_post(espn_id, team_zone):
     game = baseball.game_info(espn_id)
-    start = game.start_time.astimezone(team_zone)
+    start = game.datetime.astimezone(team_zone)
 
     title = "Gameday Thread {}: {} ({}) at {} ({}) ({})".format(
         start.strftime("%-m/%-d/%y"),

@@ -10,15 +10,15 @@ def april(day, hour, minute):
     year = date.today().year
     return pytz.utc.localize(datetime(year, 4, day, hour, minute))
 
-game = baseball.Game('LA Dodgers', april(1, 20, 5), False, False, '4-0')
+game = baseball.Result('LA Dodgers', april(1, 20, 5), False, False, '4-0')
 
 
 def test_game_date():
-    assert_equals(game.date, 'April 1')
+    assert_equals(game.pretty_date, 'April 1')
 
 
 def test_game_time():
-    assert_equals(game.time, '08:05PM')
+    assert_equals(game.pretty_time, '08:05PM')
 
 
 def test_game_description():
@@ -49,10 +49,10 @@ def test_results(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
     results, _ = baseball.schedule('WEST', 'http://example.com')
     assert_equals(results, [
-        baseball.Game('LA Dodgers', april(1, 20, 5), False, False, '4-0'),
-        baseball.Game('LA Dodgers', april(2, 20, 5), False, True, '3-0'),
-        baseball.Game('LA Dodgers', april(3, 20, 5), False, True, '5-3'),
-        baseball.Game('St. Louis', april(5, 20, 5), True, True, '1-0'),
+        baseball.Result('LA Dodgers', april(1, 20, 5), False, False, '4-0'),
+        baseball.Result('LA Dodgers', april(2, 20, 5), False, True, '3-0'),
+        baseball.Result('LA Dodgers', april(3, 20, 5), False, True, '5-3'),
+        baseball.Result('St. Louis', april(5, 20, 5), True, True, '1-0'),
     ])
 
 
@@ -76,11 +76,11 @@ def test_upcoming(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
     _, upcoming = baseball.schedule('WEST', 'http://example.com')
     assert_equals(upcoming, [
-        baseball.Game('St. Louis', april(6, 20, 5), True, None, '0-0'),
-        baseball.Game('St. Louis', april(7, 20, 5), True, None, '0-0'),
-        baseball.Game('Colorado', april(9, 2, 15), True, None, '0-0'),
-        baseball.Game('Colorado', april(10, 2, 15), True, None, '0-0'),
-        baseball.Game('Colorado', april(10, 19, 45), True, None, '0-0'),
+        baseball.Result('St. Louis', april(6, 20, 5), True, None, '0-0'),
+        baseball.Result('St. Louis', april(7, 20, 5), True, None, '0-0'),
+        baseball.Result('Colorado', april(9, 2, 15), True, None, '0-0'),
+        baseball.Result('Colorado', april(10, 2, 15), True, None, '0-0'),
+        baseball.Result('Colorado', april(10, 19, 45), True, None, '0-0'),
     ])
 
 
@@ -98,6 +98,11 @@ def test_standings(_get):
     ]
 
     assert_equals(standings, examples)
+
+
+def test_parse_gametime_postponed():
+    gt = baseball.parse_gametime("Mon, Apr 1", "POSTPONED")
+    assert_equals(pytz.utc.localize(datetime(2013, 4, 1, 20, 5)), gt)
 
 
 def test_parse_gametime():
