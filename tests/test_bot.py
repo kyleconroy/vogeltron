@@ -2,7 +2,7 @@ import mock
 import pytz
 from vogeltron import bot
 from vogeltron.baseball import Standing, Game, Boxscore, Team, Player, Pitcher
-from nose.tools import assert_equals
+from nose.tools import assert_equals, assert_true, assert_false
 from datetime import datetime, timezone
 
 
@@ -186,3 +186,13 @@ def test_gameday_post_no_pitchers(_game_info, _timestamp):
     _, post = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
 
     assert_equals(exp_post_no_pitchers.strip(), post)
+
+
+@mock.patch.dict('os.environ', {'FOO': ''})
+def test_enabled_true():
+    assert_true(bot.enabled('FOO'))
+
+
+@mock.patch.dict('os.environ', {'FOO': 'false'})
+def test_enabled_false():
+    assert_false(bot.enabled('FOO'))

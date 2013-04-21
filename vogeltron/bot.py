@@ -10,6 +10,7 @@ import os
 import logging
 import datetime
 import re
+import raven
 from jinja2 import Template
 
 from . import baseball
@@ -170,22 +171,33 @@ def update_post_game_thread(r, subreddit, team):
         r.submit(subreddit, title, post)
 
 
+def enabled(key):
+    return os.environ.get(key, '').lower() != 'false'
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     logging.info('Starting bot')
 
-    r = reddit.Client(os.environ['VOGELTRON_USERNAME'],
-                      os.environ['VOGELTRON_PASSWORD'])
+    sentry = raven.Client(os.environ.get('VOGELTRON_SENTRY_DSN', ''))
 
-    team = baseball.team_info(os.environ['VOGELTRON_TEAM'])
-    subreddit = os.environ['VOGELTRON_SUBREDDIT']
+    try:
 
-    update_sidebar(r, subreddit, team)
+        r = reddit.Client(os.environ['VOGELTRON_USERNAME'],
+                          os.environ['VOGELTRON_PASSWORD'])
 
-    if not os.environ.get('VOGELTRON_GAMEDAY_THREAD', '').lower() == 'false':
-        update_game_thread(r, subreddit, team)
+        team = baseball.team_info(os.environ['VOGELTRON_TEAM'])
+        subreddit = os.environ['VOGELTRON_SUBREDDIT']
 
-    if not os.environ.get('VOGELTRON_POSTGAME_THREAD', '').lower() == 'false':
-        update_post_game_thread(r, subreddit, team)
+        update_sidebar(r, subreddit, team)
 
-    logging.info('Stopping bot')
+        if enabled('VOGELTRON_GAMEDAY_THREAD'):
+            update_game_thread(r, subreddit, team)
+
+        if enabled('VOGELTRON_POSTGAME_THREAD'):
+            update_post_game_thread(r, subreddit, team)
+
+        logging.info('Stopping bot')
+
+    except:
+        sentry.captureException()

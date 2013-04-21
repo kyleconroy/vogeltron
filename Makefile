@@ -15,10 +15,10 @@ teams:
 	venv/bin/python -m vogeltron.teams
 
 stage:
-	venv/bin/python -m vogeltron.deploy reddits/test.json
+	time venv/bin/python -m vogeltron.deploy reddits/test.json
 
 deploy:
-	venv/bin/python -m vogeltron.deploy reddits/subs.json
+	time venv/bin/python -m vogeltron.deploy reddits/subs.json
 
 run:
 	heroku run python -m vogeltron.bot --app sfgiants-staging

@@ -2,7 +2,6 @@ import argparse
 import json
 import multiprocessing
 import os
-import requests
 import subprocess
 
 REPO_URL = 'https://github.com/kyleconroy/vogeltron.git'
@@ -55,11 +54,11 @@ def deploy_bot(section):
     repo = os.path.join('repos', subreddit)
 
     if not os.path.exists(repo):
-        subprocess.check_output(['git', 'clone', REPO_URL, repo], 
+        subprocess.check_output(['git', 'clone', REPO_URL, repo],
                                 stderr=subprocess.STDOUT)
 
     os.chdir(repo)
-    
+
     subprocess.check_output(['git', 'pull', 'origin', 'master'],
                             stderr=subprocess.STDOUT)
 
@@ -78,7 +77,7 @@ def main():
     parser.add_argument('config', type=argparse.FileType('r'),
                         help='Path to a config file')
     args = parser.parse_args()
-    
+
     config = json.load(args.config)
 
     for subreddit in config['subreddits']:
