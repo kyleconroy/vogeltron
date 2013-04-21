@@ -3,6 +3,7 @@ import json
 import multiprocessing
 import os
 import subprocess
+import logging
 
 REPO_URL = 'https://github.com/kyleconroy/vogeltron.git'
 
@@ -20,6 +21,7 @@ def app_config(section):
         'VOGELTRON_PASSWORD': section['password'],
         'VOGELTRON_TEAM': section['team'],
         'VOGELTRON_SENTRY_DSN': section['raven'],
+        'VOGELTRON_POSTGAME_THRED': section.get('postgame', 'true'),
     }
 
 
@@ -29,6 +31,8 @@ def deploy_bot(section):
         os.mkdir('repos')
     except OSError:
         pass
+
+    logging.info('Creating Heroku resources')
 
     # Heroku
     subreddit = section['name']
@@ -48,9 +52,10 @@ def deploy_bot(section):
     # Scale the dyno
     client.install_addon(botname, 'scheduler')
 
-    # Config the scheduler
 
     # Git
+    logging.info('Creating git resources')
+
     repo = os.path.join('repos', subreddit)
 
     if not os.path.exists(repo):
@@ -68,10 +73,13 @@ def deploy_bot(section):
         subprocess.check_output(['git', 'remote', 'add', 'heroku',
                                 'git@heroku.com:' + botname + '.git'])
 
+    logging.info('Deploying to heroku')
     subprocess.check_output(['git', 'push', 'heroku', 'master'])
+    subprocess.call(['heroku', 'run', 'python', '-m', 'vogeltron.bot'])
 
 
 def main():
+    logging.basicConfig(level=logging.INFO)
     description = 'Deploy the latest version of Vogeltron'
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('config', type=argparse.FileType('r'),
