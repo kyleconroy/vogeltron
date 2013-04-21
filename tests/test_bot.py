@@ -95,16 +95,13 @@ def check_thread(start, end, opened):
 
 def test_thread_window():
     dt1 = datetime(2013, 4, 16, 12)
-    dt2 = datetime(2013, 4, 16, 16)
-    dt3 = datetime(2013, 4, 16, 15)
-    dt4 = datetime(2013, 4, 16, 20)
+    dt2 = datetime(2013, 4, 17, 16)
+    dt3 = datetime(2013, 4, 16, 7)
+    dt4 = datetime(2013, 4, 16, 8)
 
-    yield check_thread, dt2, dt1, True
-    yield check_thread, dt2, dt2, True
-    yield check_thread, dt2, dt3, True
     yield check_thread, dt1, dt2, False
-    yield check_thread, dt1, dt4, False
-    yield check_thread, dt4, dt1, False
+    yield check_thread, dt1, dt3, False
+    yield check_thread, dt1, dt4, True
 
 
 def test_timestamp():

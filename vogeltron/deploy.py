@@ -52,7 +52,6 @@ def deploy_bot(section):
     # Scale the dyno
     client.install_addon(botname, 'scheduler')
 
-
     # Git
     logging.info('Creating git resources')
 

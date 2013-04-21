@@ -57,8 +57,10 @@ def all_stats(league, division, schedule_url):
 
 
 def thread_open(gametime, now):
-    seconds = (gametime - now).total_seconds()
-    return seconds > -600 and seconds <= 25200
+    if not gametime.date() == now.date():
+        return False
+
+    return now.hour >= 8
 
 
 def update_standings(current_description, stats):
@@ -118,17 +120,18 @@ def find_post(r, prefix):
 
 def update_game_thread(r, subreddit, team):
     gametime, espn_id = baseball.next_game(team['links']['schedule'])
-    now = datetime.datetime.now(datetime.timezone.utc)
 
     if espn_id is None:
         logging.info("No game_id yet, can't make thread")
         return
 
-    if not thread_open(gametime, now):
+    teamzone = baseball.division_timezone(team['division'])
+    now = datetime.datetime.now(teamzone)
+
+    if not thread_open(gametime.astimezone(teamzone), now):
         logging.info("Not time yet for game #{}".format(espn_id))
         return
 
-    teamzone = baseball.division_timezone(team['division'])
     title, post = gamethread_post(espn_id, teamzone)
 
     post_id = find_post(r, post_url_prefix(title))
