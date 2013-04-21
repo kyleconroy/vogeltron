@@ -192,7 +192,8 @@ if __name__ == "__main__":
         team = baseball.team_info(os.environ['VOGELTRON_TEAM'])
         subreddit = os.environ['VOGELTRON_SUBREDDIT']
 
-        update_sidebar(r, subreddit, team)
+        if enabled('VOGELTRON_SIDEBAR'):
+            update_sidebar(r, subreddit, team)
 
         if enabled('VOGELTRON_GAMEDAY_THREAD'):
             update_game_thread(r, subreddit, team)

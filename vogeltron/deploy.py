@@ -21,7 +21,8 @@ def app_config(section):
         'VOGELTRON_PASSWORD': section['password'],
         'VOGELTRON_TEAM': section['team'],
         'VOGELTRON_SENTRY_DSN': section['raven'],
-        'VOGELTRON_POSTGAME_THRED': section.get('postgame', 'true'),
+        'VOGELTRON_POSTGAME_THREAD': section.get('postgame', 'true'),
+        'VOGELTRON_SIDEBAR': section.get('sidebar', 'true'),
     }
 
 
@@ -88,8 +89,14 @@ def main():
     config = json.load(args.config)
 
     for subreddit in config['subreddits']:
-        subreddit['heroku'] = config['heroku']
-        subreddit['raven'] = config['raven']
+        subreddit['heroku'] = config['defaults']['heroku']
+        subreddit['raven'] = config['defaults']['raven']
+
+        if 'username' not in subreddit:
+            subreddit['username'] = config['defaults']['username']
+
+        if 'password' not in subreddit:
+            subreddit['password'] = config['defaults']['password']
 
     p = multiprocessing.Pool(5)
     p.map(deploy_bot, config['subreddits'])
