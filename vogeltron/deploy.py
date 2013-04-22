@@ -21,6 +21,7 @@ def app_config(section):
         'VOGELTRON_PASSWORD': section['password'],
         'VOGELTRON_TEAM': section['team'],
         'VOGELTRON_SENTRY_DSN': section['raven'],
+        'VOGELTRON_GAMEDAY_THREAD': section.get('gameday', 'true'),
         'VOGELTRON_POSTGAME_THREAD': section.get('postgame', 'true'),
         'VOGELTRON_SIDEBAR': section.get('sidebar', 'true'),
     }
