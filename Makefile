@@ -21,4 +21,4 @@ deploy:
 	time venv/bin/python -m vogeltron.deploy reddits/subs.json
 
 run:
-	heroku run python -m vogeltron.bot --app sfgiants-staging
+	heroku run python -m vogeltron.bot
