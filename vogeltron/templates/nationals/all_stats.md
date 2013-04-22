@@ -5,3 +5,4 @@
 {% for t in standings -%}
 | [](/{{ t.team_abbr }}) | {{ t.wins }} | {{ t.losses }} | {{ t.record }} | {{ t.back }} | {{ t.streak }} |
 {% endfor %}
+Last Updated @ {{ timestamp }}

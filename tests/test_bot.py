@@ -33,7 +33,8 @@ nationals_sidebar = """**NL East Standings**
 | :---: |:---: | :---: | :---: | :---: | :---: |
 | [](/SFG) | 3 | 1 | .750 | -- | W2 |
 | [](/SFG) | 3 | 1 | .750 | -- | W2 |
-"""
+
+Last Updated @ 2013-04-06 12:31 AM"""
 
 markdown = """
 [](/all_statsstart)

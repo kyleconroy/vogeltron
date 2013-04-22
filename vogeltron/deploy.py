@@ -98,8 +98,15 @@ def main():
         if 'password' not in subreddit:
             subreddit['password'] = config['defaults']['password']
 
-    p = multiprocessing.Pool(5)
-    p.map(deploy_bot, config['subreddits'])
+    jobs = []
+
+    for subreddit in config['subreddits']:
+        p = multiprocessing.Process(target=deploy_bot, args=(subreddit,))
+        p.start()
+        jobs.append(p)
+
+    for job in jobs:
+        job.join()
 
 
 if __name__ == "__main__":
