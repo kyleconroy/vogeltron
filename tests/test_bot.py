@@ -31,8 +31,8 @@ nationals_sidebar = """**NL East Standings**
 
 |        | W | L | PCT | GB | STRK |
 | :---: |:---: | :---: | :---: | :---: | :---: |
-| [](/SFG) | 3 | 1 | .750 | -- | W2 |
-| [](/SFG) | 3 | 1 | .750 | -- | W2 |
+| [](/WAS1) | 3 | 1 | .750 | -- | W2 |
+| [](/NYM1) | 3 | 1 | .750 | -- | W2 |
 
 Last Updated @ 2013-04-06 12:31 AM"""
 
@@ -65,8 +65,8 @@ def test_nationals_stats(_schedule, _standings, _timestamp):
     _timestamp.return_value = "2013-04-06 12:31 AM"
     _schedule.return_value = [mock.Mock(), mock.Mock()]
     _standings.return_value = [
-        Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
-        Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
+        Standing('San Francisco', 'WAS', 3, 1, .75, 0.0, 'Won 2'),
+        Standing('San Francisco', 'NYM', 3, 1, .75, 0.0, 'Won 2'),
     ]
 
     with mock.patch.dict('os.environ', {'VOGELTRON_TEAM': 'nationals'}):
