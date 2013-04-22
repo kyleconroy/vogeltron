@@ -11,24 +11,24 @@ import logging
 import datetime
 import re
 import raven
-from jinja2 import Template
+import jinja2
 
 from . import baseball
 from . import reddit
+from . import filters
+
+
+loader = jinja2.PackageLoader('vogeltron', 'templates')
+env = jinja2.Environment(loader=loader)
+env.filters['nationals_team_abbr'] = filters.nationals_team_abbr
 
 
 def _load_template(filename):
     subreddit = os.environ.get('VOGELTRON_TEAM', 'default').lower()
-
-    subreddit_path = os.path.join(os.path.dirname(__file__), 'templates',
-                                  subreddit, filename)
-    default_path = os.path.join(os.path.dirname(__file__), 'templates',
-                                'default', filename)
-
-    if os.path.exists(subreddit_path):
-        return Template(open(subreddit_path).read())
-    else:
-        return Template(open(default_path).read())
+    try:
+        return env.get_template(os.path.join(subreddit, filename))
+    except jinja2.TemplateNotFound:
+        return env.get_template(os.path.join('default', filename))
 
 
 def timestamp(team_zone):

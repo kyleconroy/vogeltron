@@ -65,7 +65,7 @@ def test_nationals_stats(_schedule, _standings, _timestamp):
     _timestamp.return_value = "2013-04-06 12:31 AM"
     _schedule.return_value = [mock.Mock(), mock.Mock()]
     _standings.return_value = [
-        Standing('San Francisco', 'WAS', 3, 1, .75, 0.0, 'Won 2'),
+        Standing('San Francisco', 'WSH', 3, 1, .75, 0.0, 'Won 2'),
         Standing('San Francisco', 'NYM', 3, 1, .75, 0.0, 'Won 2'),
     ]
 
