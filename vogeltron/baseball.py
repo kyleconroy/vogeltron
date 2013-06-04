@@ -317,9 +317,13 @@ def next_game(schedule_url):
         if len(d[2].find_all('li')) > 1:
             continue
 
+        if d[2].text.strip().lower() == 'postponed':
+            continue
+
         preview_link = d[2].find('a')
 
         if not preview_link:
+            print("Can't find preview link")
             return parse_gametime(d[0].text, d[2].text), None
 
         if 'gamecast' in preview_link.get('onclick', []):

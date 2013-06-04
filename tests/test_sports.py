@@ -64,6 +64,16 @@ def test_no_next_game(_get):
 
 
 @mock.patch('requests.get')
+def test_next_game_against_bluejays(_get):
+    _get().content = \
+        open('tests/fixtures/bluejays_with_double_header.html').read()
+    game_time, game_id = baseball.next_game('http://example.com')
+
+    assert game_time is not None
+    assert_equals('330604126', game_id)
+
+
+@mock.patch('requests.get')
 def test_next_game(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
     game_time, game_id = baseball.next_game('http://example.com')
