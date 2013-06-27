@@ -57,6 +57,10 @@ class Result(object):
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+    def __repr__(self):
+        items = ["{}={}".format(k, v) for k, v in self.__dict__.items()]
+        return '<Result {}>'.format(' '.join(items))
+
     @property
     def date(self):
         return self.datetime.date()
@@ -356,6 +360,9 @@ def schedule(division, schedule_url):
 
         # Game currently in progress, ignore
         if len(d[2].find_all('li')) == 1:
+            continue
+
+        if d[2].text.strip().lower() == 'postponed':
             continue
 
         try:

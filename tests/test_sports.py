@@ -1,14 +1,23 @@
 import mock
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone
 import pytz
 from nose.tools import assert_equals, assert_raises
 from vogeltron import baseball
 from bs4 import BeautifulSoup
 
 
+def date_for_month(month, day, hour, minute):
+    timez = pytz.timezone('US/Pacific')
+    return timez.localize(datetime(2013, month, day, hour, minute))
+
+
 def april(day, hour, minute):
-    year = date.today().year
-    return pytz.utc.localize(datetime(year, 4, day, hour, minute))
+    return date_for_month(4, day, hour, minute)
+
+
+def june(day, hour, minute):
+    return date_for_month(6, day, hour, minute)
+
 
 game = baseball.Result('LA Dodgers', april(1, 20, 5), False, False, '4-0')
 
@@ -49,10 +58,10 @@ def test_results(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
     results, _ = baseball.schedule('WEST', 'http://example.com')
     assert_equals(results, [
-        baseball.Result('LA Dodgers', april(1, 20, 5), False, False, '4-0'),
-        baseball.Result('LA Dodgers', april(2, 20, 5), False, True, '3-0'),
-        baseball.Result('LA Dodgers', april(3, 20, 5), False, True, '5-3'),
-        baseball.Result('St. Louis', april(5, 20, 5), True, True, '1-0'),
+        baseball.Result('LA Dodgers', april(1, 13, 5), False, False, '4-0'),
+        baseball.Result('LA Dodgers', april(2, 13, 5), False, True, '3-0'),
+        baseball.Result('LA Dodgers', april(3, 13, 5), False, True, '5-3'),
+        baseball.Result('St. Louis', april(5, 13, 5), True, True, '1-0'),
     ])
 
 
@@ -78,7 +87,7 @@ def test_next_game(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
     game_time, game_id = baseball.next_game('http://example.com')
     assert_equals(game_id, '330406126')
-    assert_equals(game_time, april(6, 20, 5))
+    assert_equals(game_time, april(6, 13, 5))
 
 
 @mock.patch('requests.get')
@@ -86,11 +95,28 @@ def test_upcoming(_get):
     _get().content = open('tests/fixtures/schedule.html').read()
     _, upcoming = baseball.schedule('WEST', 'http://example.com')
     assert_equals(upcoming, [
-        baseball.Result('St. Louis', april(6, 20, 5), True, None, '0-0'),
-        baseball.Result('St. Louis', april(7, 20, 5), True, None, '0-0'),
-        baseball.Result('Colorado', april(9, 2, 15), True, None, '0-0'),
-        baseball.Result('Colorado', april(10, 2, 15), True, None, '0-0'),
-        baseball.Result('Colorado', april(10, 19, 45), True, None, '0-0'),
+        baseball.Result('St. Louis', april(6, 13, 5), True, None, '0-0'),
+        baseball.Result('St. Louis', april(7, 13, 5), True, None, '0-0'),
+        baseball.Result('Colorado', april(8, 19, 15), True, None, '0-0'),
+        baseball.Result('Colorado', april(9, 19, 15), True, None, '0-0'),
+        baseball.Result('Colorado', april(10, 12, 45), True, None, '0-0'),
+    ])
+
+
+@mock.patch('requests.get')
+def test_upcoming_with_skipped(_get):
+    webpage = open('tests/fixtures/bluejays_with_double_header.html').read()
+    _get().content = webpage
+    _, upcoming = baseball.schedule('WEST', 'http://example.com')
+
+    print(upcoming[0].opponent)
+
+    assert_equals(upcoming, [
+        baseball.Result('Toronto', june(4, 19, 15), True, None, '0-0'),
+        baseball.Result('Toronto', june(5, 12, 45), True, None, '0-0'),
+        baseball.Result('Arizona', june(7, 18, 40), False, None, '0-0'),
+        baseball.Result('Arizona', june(8, 19, 10), False, None, '0-0'),
+        baseball.Result('Arizona', june(9, 13, 10), False, None, '0-0'),
     ])
 
 
