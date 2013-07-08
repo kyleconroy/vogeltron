@@ -1,4 +1,5 @@
 import mock
+import os
 import pytz
 from vogeltron import bot
 from vogeltron.baseball import Standing, Result, Game
@@ -129,8 +130,19 @@ def test_gameday_title(_game_info):
 
     title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
 
-    assert_equals(title, ("Gameday Thread 4/9/13: Rockies (Francis) "
-                          "at Giants (Zito) (7:15PM)"))
+    assert_equals(title, ("Gameday Thread 4/9/13: Giants (Zito) "
+                          "at Rockies (Francis) (7:15PM)"))
+
+
+@mock.patch('vogeltron.baseball.game_info')
+def test_gameday_title_with_template(_game_info):
+    _game_info.return_value = game
+
+    with mock.patch.dict(os.environ, {'VOGELTRON_TEAM': 'athletics'}):
+        title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+
+    assert_equals(title, ("GAMEDAY THREAD 4/9/13: Giants (4-2) "
+                          "@ Rockies (5-1)"))
 
 
 def test_reddit_url():

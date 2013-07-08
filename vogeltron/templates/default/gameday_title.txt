@@ -1,0 +1,1 @@
+Gameday Thread {{ start.strftime("%-m/%-d/%y") }}: {{ away.name }} ({% if away.pitcher %}{{ away.pitcher.name }}{% else %}TBA{% endif %}) at {{ home.name }} ({% if home.pitcher %}{{ home.pitcher.name}}{% else %}TBA{% endif %}) ({{ start.strftime("%-I:%M%p") }})

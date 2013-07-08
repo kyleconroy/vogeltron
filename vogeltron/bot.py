@@ -74,22 +74,20 @@ def gamethread_post(espn_id, team_zone):
     game = baseball.game_info(espn_id)
     start = game.datetime.astimezone(team_zone)
 
-    title = "Gameday Thread {}: {} ({}) at {} ({}) ({})".format(
-        start.strftime("%-m/%-d/%y"),
-        game.teams[0].name,
-        game.teams[0].pitcher.name if game.teams[1].pitcher else 'TBA',
-        game.teams[1].name,
-        game.teams[1].pitcher.name if game.teams[1].pitcher else 'TBA',
-        start.strftime("%-I:%M%p"))
+    title_template = _load_template('gameday_title.txt')
+    post_template = _load_template('gameday.md')
 
-    template = _load_template('gameday.md')
+    #  start.strftime("%-m/%-d/%y"),
+    #  start.strftime("%-I:%M%p"))
 
     home, away = game.teams
     players = zip(home.lineup, away.lineup)
 
-    post = template.render(home=home, away=away, players=players,
-                           timestamp=timestamp(team_zone),
-                           weather=game.weather)
+    post = post_template.render(home=home, away=away, players=players,
+                                timestamp=timestamp(team_zone),
+                                weather=game.weather)
+
+    title = title_template.render(home=home, away=away, start=start)
 
     return title, post
 

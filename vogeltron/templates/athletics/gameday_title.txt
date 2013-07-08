@@ -1,0 +1,1 @@
+GAMEDAY THREAD {{ start.strftime("%-m/%-d/%y") }}: {{ away.name }} ({{ away.record }}) @ {{ home.name }} ({{ home.record }})
