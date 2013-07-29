@@ -144,6 +144,9 @@ def parse_gametime(date, time):
     if time.strip() == "POSTPONED":
         time = "4:05 PM"
 
+    if time.strip() == "TBA":
+        time = "4:05 PM"
+
     timestamp = "{} {} {}".format(date.strip(), time.strip(), today.year)
     gametime = datetime.datetime.strptime(timestamp, "%a, %b %d %I:%M %p %Y")
     eastern = pytz.timezone('US/Eastern')

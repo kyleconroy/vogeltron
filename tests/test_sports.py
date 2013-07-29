@@ -136,6 +136,11 @@ def test_standings(_get):
     assert_equals(standings, examples)
 
 
+def test_parse_gametime_tba():
+    gt = baseball.parse_gametime("Mon, Apr 1", "TBA")
+    assert_equals(pytz.utc.localize(datetime(2013, 4, 1, 20, 5)), gt)
+
+
 def test_parse_gametime_postponed():
     gt = baseball.parse_gametime("Mon, Apr 1", "POSTPONED")
     assert_equals(pytz.utc.localize(datetime(2013, 4, 1, 20, 5)), gt)
