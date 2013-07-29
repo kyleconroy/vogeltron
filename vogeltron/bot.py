@@ -201,5 +201,6 @@ if __name__ == "__main__":
 
         logging.info('Stopping bot')
 
-    except:
+    except Exception as e:
         sentry.captureException()
+        raise e
