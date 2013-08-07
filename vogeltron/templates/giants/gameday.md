@@ -8,7 +8,4 @@
 | {{ weather }} |
 | ------ |
 
-| UPVOTE FOR VISIBILITY/PRAISE HIM |
-| ------ |
-
 Last Updated @ {{ timestamp }}

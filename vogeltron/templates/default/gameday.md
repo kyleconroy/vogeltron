@@ -8,7 +8,4 @@
 | {{ weather }} |
 | ------ |
 
-| UPVOTE FOR VISIBILITY |
-| ------ |
-
 Last Updated @ {{ timestamp }}

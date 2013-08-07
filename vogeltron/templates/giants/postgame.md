@@ -1,5 +1,3 @@
-Please upvote for attention; self.post, no karma
-
 Purpose of this thread
 
 - Discuss developing baseball action LIVE
