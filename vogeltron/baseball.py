@@ -267,7 +267,7 @@ def parse_game_time(soup):
 def game_info(espn_id):
     soup = make_soup(PREVIEW_URL.format(espn_id))
 
-    return Game([parse_team(soup, 0), parse_team(soup, 1)],
+    return Game([parse_team(soup, 1), parse_team(soup, 0)],
                 parse_game_time(soup), parse_weather(soup))
 
 

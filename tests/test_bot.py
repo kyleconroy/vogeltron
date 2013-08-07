@@ -114,10 +114,10 @@ def test_timestamp():
             'PDT' in bot.timestamp(zone))
 
 teams = [
-    Team('Rockies', '5-1', [Player('Foo', 'P')],
-         Pitcher('Francis', '1-0', 1.5)),
     Team('Giants', '4-2', [Player('Bar', 'P')],
          Pitcher('Zito', '1-0', 0.0)),
+    Team('Rockies', '5-1', [Player('Foo', 'P')],
+         Pitcher('Francis', '1-0', 1.5)),
 ]
 
 game = Game(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
@@ -130,8 +130,8 @@ def test_gameday_title(_game_info):
 
     title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
 
-    assert_equals(title, ("Gameday Thread 4/9/13: Giants (Zito) "
-                          "at Rockies (Francis) (7:15PM)"))
+    assert_equals(title, ("Gameday Thread 4/9/13: Rockies (Francis) "
+                          "at Giants (Zito) (7:15PM)"))
 
 
 @mock.patch('vogeltron.baseball.game_info')
@@ -141,8 +141,8 @@ def test_gameday_title_with_template(_game_info):
     with mock.patch.dict(os.environ, {'VOGELTRON_TEAM': 'athletics'}):
         title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
 
-    assert_equals(title, ("GAMEDAY THREAD 4/9/13: Giants (4-2) "
-                          "@ Rockies (5-1)"))
+    assert_equals(title, ("GAMEDAY THREAD 4/9/13: Rockies (5-1) @ "
+                          "Giants (4-2)"))
 
 
 def test_reddit_url():
@@ -159,16 +159,13 @@ def test_postgame_reddit_url():
 
 
 exp_post = """
-| Rockies (5-1) | Giants (4-2) |
+| Giants (4-2) | Rockies (5-1) |
 | ------ | ------ |
-| **Francis**: 1-0 1.50 ERA | **Zito**: 1-0 0.00 ERA |
-| **Rockies Lineup** | **Giants Lineup** |
-| Foo P | Bar P |
+| **Zito**: 1-0 0.00 ERA | **Francis**: 1-0 1.50 ERA |
+| **Giants Lineup** | **Rockies Lineup** |
+| Bar P | Foo P |
 
 | 64 Clear |
-| ------ |
-
-| UPVOTE FOR VISIBILITY |
 | ------ |
 
 Last Updated @ foo
@@ -176,15 +173,12 @@ Last Updated @ foo
 
 
 exp_post_no_pitchers = """
-| Rockies (5-1) | Giants (4-2) |
+| Giants (4-2) | Rockies (5-1) |
 | ------ | ------ |
-| **Rockies Lineup** | **Giants Lineup** |
-| Foo P | Bar P |
+| **Giants Lineup** | **Rockies Lineup** |
+| Bar P | Foo P |
 
 | 64 Clear |
-| ------ |
-
-| UPVOTE FOR VISIBILITY |
 | ------ |
 
 Last Updated @ foo
@@ -206,8 +200,8 @@ def test_gameday_post(_game_info, _timestamp):
 @mock.patch('vogeltron.baseball.game_info')
 def test_gameday_post_no_pitchers(_game_info, _timestamp):
     teams = [
-        Team('Rockies', '5-1', [Player('Foo', 'P')], None),
         Team('Giants', '4-2', [Player('Bar', 'P')], None),
+        Team('Rockies', '5-1', [Player('Foo', 'P')], None),
     ]
 
     g = Game(teams,
