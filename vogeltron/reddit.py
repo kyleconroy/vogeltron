@@ -53,6 +53,18 @@ class Client(object):
 
         return resp.json()
 
+    def sticky(self, postid):
+        payload = {
+            'id': postid,
+            'state': True,
+            'uh': self.user_hash,
+        }
+
+        resp = self.s.post('http://www.reddit.com/api/set_subreddit_sticky',
+                           data=payload)
+        resp.raise_for_status()
+        return resp.json()
+
     def submit(self, subreddit, title, text):
         payload = {
             'kind': 'self',

@@ -137,9 +137,13 @@ def update_game_thread(r, subreddit, team):
     if not post_id:
         logging.info("Creating game #{} thread".format(espn_id))
         r.submit(subreddit, title, post)
+
+        post_id = find_post(r, post_url_prefix(title))
+        r.sticky(post_id)
     else:
         logging.info("Editing game #{} thread".format(espn_id))
         r.edit(post_id, post)
+        r.sticky(post_id)
 
 
 def postgame_thread_post(game, name, team_zone):
@@ -171,6 +175,9 @@ def update_post_game_thread(r, subreddit, team):
         logging.info("Creating postgame thread")
         r.submit(subreddit, title, post)
 
+        post_id = find_post(r, post_game_url_prefix(title))
+        r.sticky(post_id)
+
 
 def enabled(key):
     return os.environ.get(key, '').lower() != 'false'
@@ -193,11 +200,11 @@ if __name__ == "__main__":
         if enabled('VOGELTRON_SIDEBAR'):
             update_sidebar(r, subreddit, team)
 
-        if enabled('VOGELTRON_GAMEDAY_THREAD'):
-            update_game_thread(r, subreddit, team)
-
         if enabled('VOGELTRON_POSTGAME_THREAD'):
             update_post_game_thread(r, subreddit, team)
+
+        if enabled('VOGELTRON_GAMEDAY_THREAD'):
+            update_game_thread(r, subreddit, team)
 
         logging.info('Stopping bot')
 
