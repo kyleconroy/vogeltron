@@ -23,10 +23,9 @@ env = jinja2.Environment(loader=loader)
 env.filters['nationals_team_abbr'] = filters.nationals_team_abbr
 
 
-def _load_template(filename):
-    subreddit = os.environ.get('VOGELTRON_TEAM', 'default').lower()
+def _load_template(subreddit, filename):
     try:
-        return env.get_template(os.path.join(subreddit, filename))
+        return env.get_template(os.path.join(subreddit.lower(), filename))
     except jinja2.TemplateNotFound:
         return env.get_template(os.path.join('default', filename))
 
@@ -46,7 +45,7 @@ def post_game_url_prefix(title):
 
 
 def all_stats(league, division, schedule_url):
-    template = _load_template('all_stats.md')
+    template = _load_template(subreddit, 'all_stats.md')
 
     standings = baseball.current_standings(league, division)
     past, future = baseball.schedule(division, schedule_url)
@@ -70,12 +69,12 @@ def update_standings(current_description, stats):
                   amps, flags=re.S)
 
 
-def gamethread_post(espn_id, team_zone):
+def gamethread_post(subreddit, espn_id, team_zone):
     game = baseball.game_info(espn_id)
     start = game.datetime.astimezone(team_zone)
 
-    title_template = _load_template('gameday_title.txt')
-    post_template = _load_template('gameday.md')
+    title_template = _load_template(subreddit, 'gameday_title.txt')
+    post_template = _load_template(subreddit, 'gameday.md')
 
     #  start.strftime("%-m/%-d/%y"),
     #  start.strftime("%-I:%M%p"))
@@ -94,7 +93,7 @@ def gamethread_post(espn_id, team_zone):
 
 def update_sidebar(r, subreddit, team):
     about = r.settings(subreddit)
-    stats = all_stats(team['league'], team['division'],
+    stats = all_stats(subreddit, team['league'], team['division'],
                       team['links']['schedule'])
 
     payload = {
@@ -130,7 +129,7 @@ def update_game_thread(r, subreddit, team):
         logging.info("Not time yet for game #{}".format(espn_id))
         return
 
-    title, post = gamethread_post(espn_id, teamzone)
+    title, post = gamethread_post(subreddit, espn_id, teamzone)
 
     post_id = find_post(r, post_url_prefix(title))
 
@@ -144,7 +143,7 @@ def update_game_thread(r, subreddit, team):
         r.edit(post_id, post)
 
 
-def postgame_thread_post(game, name, team_zone):
+def postgame_thread_post(subreddit, game, name, team_zone):
     fmt = ("POSTGAME THREAD {} -- {} vs {} -- Join the Giants game / baseball "
            "discussion and social thread!")
 
@@ -152,7 +151,7 @@ def postgame_thread_post(game, name, team_zone):
 
     title = fmt.format(start.strftime("%-m/%-d"), name, game.opponent)
 
-    template = _load_template('postgame.md')
+    template = _load_template(subreddit, 'postgame.md')
 
     post = template.render()
 
@@ -165,7 +164,9 @@ def update_post_game_thread(r, subreddit, team):
     game = past[-1]
 
     teamzone = baseball.division_timezone(team['division'])
-    title, post = postgame_thread_post(game, team['name'], teamzone)
+
+    title, post = postgame_thread_post(subreddit, game,
+                                       team['name'], teamzone)
 
     post_id = find_post(r, post_game_url_prefix(title))
 
@@ -205,16 +206,16 @@ if __name__ == "__main__":
     sentry = raven.Client(os.environ.get('SENTRY_DSN', ''))
 
     reddits = [{
-        'username': 'vogeltron',
-        'password': os.environ['VOGELTRON_PASSWORD'],
+        'username': os.environ['NATIONALS_USERNAME'],
+        'password': os.environ['NATIONALS_PASSWORD'],
         'team': 'Nationals',
-        'subreddit': 'nationals',
+        'subreddit': os.environ['NATIONALS_SUBREDDIT'],
         'sidebar': True,
     }, {
-        'username': 'sfgbot',
-        'password': os.environ['SFGBOT_PASSWORD'],
+        'username': os.environ['GIANTS_USERNAME'],
+        'password': os.environ['GIANTS_PASSWORD'],
         'team': 'Giants',
-        'subreddit': 'sfgiants',
+        'subreddit': os.environ['GIANTS_SUBREDDIT'],
         'sidebar': True,
         'postgame_thread': True,
         'gameday_thread': True,
