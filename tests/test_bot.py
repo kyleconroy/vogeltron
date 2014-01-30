@@ -1,5 +1,4 @@
 import mock
-import os
 import pytz
 from vogeltron import bot
 from vogeltron.baseball import Standing, Result, Game
@@ -7,6 +6,7 @@ from vogeltron.baseball import Team, Player, Pitcher
 from nose.tools import assert_equals, assert_true, assert_false
 from datetime import datetime, timezone
 
+PACIFIC = pytz.timezone('US/Pacific')
 
 sidebar = """
 ## Standings
@@ -70,9 +70,8 @@ def test_nationals_stats(_schedule, _standings, _timestamp):
         Standing('San Francisco', 'NYM', 3, 1, .75, 0.0, 'Won 2'),
     ]
 
-    with mock.patch.dict('os.environ', {'VOGELTRON_TEAM': 'nationals'}):
-        assert_equals(nationals_sidebar,
-                      bot.all_stats('NATIONAL', 'EAST', 'foo'))
+    assert_equals(nationals_sidebar,
+                  bot.all_stats('nationals', 'NATIONAL', 'EAST', 'foo'))
 
 
 @mock.patch('vogeltron.bot.timestamp')
@@ -89,7 +88,8 @@ def test_all_stats(_schedule, _standings, _timestamp):
         Standing('San Francisco', 'SFG', 3, 1, .75, 0.0, 'Won 2'),
     ]
 
-    assert_equals(sidebar.strip(), bot.all_stats('NATIONAL', 'WEST', 'foo'))
+    assert_equals(sidebar.strip(),
+                  bot.all_stats('default', 'NATIONAL', 'WEST', 'foo'))
 
 
 def check_thread(start, end, opened):
@@ -128,7 +128,7 @@ game = Game(teams, datetime(2013, 4, 10, 2, 15, tzinfo=timezone.utc),
 def test_gameday_title(_game_info):
     _game_info.return_value = game
 
-    title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+    title, _ = bot.gamethread_post('default', 'foo', PACIFIC)
 
     assert_equals(title, ("Gameday Thread 4/9/13: Rockies (Francis) "
                           "at Giants (Zito) (7:15PM)"))
@@ -138,8 +138,7 @@ def test_gameday_title(_game_info):
 def test_gameday_title_with_template(_game_info):
     _game_info.return_value = game
 
-    with mock.patch.dict(os.environ, {'VOGELTRON_TEAM': 'athletics'}):
-        title, _ = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+    title, _ = bot.gamethread_post('athletics', 'foo', PACIFIC)
 
     assert_equals(title, ("GAMEDAY THREAD 4/9/13: Rockies (5-1) @ "
                           "Giants (4-2)"))
@@ -191,7 +190,7 @@ def test_gameday_post(_game_info, _timestamp):
     _timestamp.return_value = 'foo'
     _game_info.return_value = game
 
-    _, post = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+    _, post = bot.gamethread_post('default', 'foo', PACIFIC)
 
     assert_equals(exp_post.strip(), post)
 
@@ -211,7 +210,7 @@ def test_gameday_post_no_pitchers(_game_info, _timestamp):
     _timestamp.return_value = 'foo'
     _game_info.return_value = g
 
-    _, post = bot.gamethread_post('foo', pytz.timezone('US/Pacific'))
+    _, post = bot.gamethread_post('default', 'foo', PACIFIC)
 
     assert_equals(exp_post_no_pitchers.strip(), post)
 

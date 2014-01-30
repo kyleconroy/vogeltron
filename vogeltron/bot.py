@@ -44,7 +44,7 @@ def post_game_url_prefix(title):
         .replace(':', '').replace(' ', '_').replace('/', '')
 
 
-def all_stats(league, division, schedule_url):
+def all_stats(subreddit, league, division, schedule_url):
     template = _load_template(subreddit, 'all_stats.md')
 
     standings = baseball.current_standings(league, division)
