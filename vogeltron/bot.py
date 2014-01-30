@@ -161,6 +161,10 @@ def postgame_thread_post(subreddit, game, name, team_zone):
 def update_post_game_thread(r, subreddit, team):
     past, _ = baseball.schedule(team['division'],
                                 team['links']['schedule'])
+    if len(past) == 0:
+        logging.info("No past games, so no post game thread")
+        return
+
     game = past[-1]
 
     teamzone = baseball.division_timezone(team['division'])
