@@ -1,6 +1,21 @@
 import requests
+import time
 
 HEADERS = {'User-Agent': "/r/SFGiants Sidebar Bot"}
+
+
+# Try a request 3 times, with a 1 second wait in between failures
+def _retry(session, method, *args, **kwargs):
+    for i in range(5):
+        try:
+            resp = session.request(method, *args, **kwargs)
+            resp.raise_for_status()
+            return resp
+        except requests.exceptions.RequestException as e:
+            if i >= 4:
+                raise e
+            else:
+                time.sleep(1)
 
 
 class Client(object):
@@ -11,23 +26,27 @@ class Client(object):
 
         payload = {'user': self.username, 'passwd': self.password}
 
-        resp = requests.post('https://ssl.reddit.com/api/login',
-                             data=payload, headers=HEADERS)
-        resp.raise_for_status()
+        resp = self.post('https://ssl.reddit.com/api/login',
+                         data=payload, headers=HEADERS)
 
         self.s = requests.Session()
         self.s.cookies = resp.cookies
         self.s.headers.update(HEADERS)
 
-        resp = self.s.get('http://www.reddit.com/api/me.json')
+        resp = self.get('http://www.reddit.com/api/me.json')
         resp.raise_for_status()
 
         self.user_hash = resp.json()['data']['modhash']
 
+    def get(self, *args, **kwargs):
+        return _retry(self.s or requests, 'GET', *args, **kwargs)
+
+    def post(self, *args, **kwargs):
+        return _retry(self.s or requests, 'POST', *args, **kwargs)
+
     def _user_where(self, user, where):
         url = "http://www.reddit.com/user/{}/{}.json".format(user, where)
-        resp = self.s.get(url)
-        resp.raise_for_status()
+        resp = self.get(url)
         return resp.json()['data']['children']
 
     def submitted(self, user):
@@ -35,21 +54,18 @@ class Client(object):
 
     def about(self, subreddit):
         url = "http://www.reddit.com/r/{}/about.json".format(subreddit)
-        resp = self.s.get(url)
-        resp.raise_for_status()
+        resp = self.get(url)
         return resp.json()['data']
 
     def settings(self, subreddit):
         url = "http://www.reddit.com/r/{}/about/edit/.json".format(subreddit)
-        resp = self.s.get(url)
-        resp.raise_for_status()
+        resp = self.get(url)
         return resp.json()['data']
 
     def admin(self, subreddit, data):
         data['uh'] = self.user_hash
 
-        resp = self.s.post("http://www.reddit.com/api/site_admin", data=data)
-        resp.raise_for_status()
+        resp = self.post("http://www.reddit.com/api/site_admin", data=data)
 
         return resp.json()
 
@@ -60,9 +76,8 @@ class Client(object):
             'uh': self.user_hash,
         }
 
-        resp = self.s.post('http://www.reddit.com/api/set_subreddit_sticky',
-                           data=payload)
-        resp.raise_for_status()
+        resp = self.post('http://www.reddit.com/api/set_subreddit_sticky',
+                         data=payload)
         return resp.json()
 
     def submit(self, subreddit, title, text):
@@ -74,8 +89,7 @@ class Client(object):
             'uh': self.user_hash,
         }
 
-        resp = self.s.post('http://www.reddit.com/api/submit', data=payload)
-        resp.raise_for_status()
+        resp = self.post('http://www.reddit.com/api/submit', data=payload)
         return resp.json()
 
     def edit(self, post_id, body):
@@ -85,7 +99,6 @@ class Client(object):
             'uh': self.user_hash,
         }
 
-        resp = self.s.post('http://www.reddit.com/api/editusertext',
-                           data=payload)
-        resp.raise_for_status()
+        resp = self.post('http://www.reddit.com/api/editusertext',
+                         data=payload)
         return resp.json()

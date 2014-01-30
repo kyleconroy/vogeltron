@@ -5,10 +5,12 @@ from nose.tools import assert_equals, assert_raises
 from vogeltron import baseball
 from bs4 import BeautifulSoup
 
+YEAR = datetime.today().year
+
 
 def date_for_month(month, day, hour, minute):
     timez = pytz.timezone('US/Pacific')
-    return timez.localize(datetime(2013, month, day, hour, minute))
+    return timez.localize(datetime(YEAR, month, day, hour, minute))
 
 
 def april(day, hour, minute):
@@ -138,17 +140,17 @@ def test_standings(_get):
 
 def test_parse_gametime_tba():
     gt = baseball.parse_gametime("Mon, Apr 1", "TBA")
-    assert_equals(pytz.utc.localize(datetime(2013, 4, 1, 20, 5)), gt)
+    assert_equals(pytz.utc.localize(datetime(YEAR, 4, 1, 20, 5)), gt)
 
 
 def test_parse_gametime_postponed():
     gt = baseball.parse_gametime("Mon, Apr 1", "POSTPONED")
-    assert_equals(pytz.utc.localize(datetime(2013, 4, 1, 20, 5)), gt)
+    assert_equals(pytz.utc.localize(datetime(YEAR, 4, 1, 20, 5)), gt)
 
 
 def test_parse_gametime():
     gt = baseball.parse_gametime("Mon, Apr 1", "4:05 PM")
-    assert_equals(pytz.utc.localize(datetime(2013, 4, 1, 20, 5)), gt)
+    assert_equals(pytz.utc.localize(datetime(YEAR, 4, 1, 20, 5)), gt)
 
 
 def test_no_team_info():

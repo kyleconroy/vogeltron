@@ -181,31 +181,48 @@ def enabled(key):
     return os.environ.get(key, '').lower() != 'false'
 
 
+def update(settings):
+    r = reddit.Client(settings['username'], settings['password'])
+
+    team = baseball.team_info(settings['team'])
+    subreddit = settings['subreddit']
+
+    logging.info('Starting update for /r/' + subreddit)
+
+    if settings.get('sidebar'):
+        update_sidebar(r, subreddit, team)
+
+    if settings.get('postgame_thread'):
+        update_post_game_thread(r, subreddit, team)
+
+    if settings.get('gameday_thread'):
+        update_game_thread(r, subreddit, team)
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    logging.info('Starting bot')
 
-    sentry = raven.Client(os.environ.get('VOGELTRON_SENTRY_DSN', ''))
+    sentry = raven.Client(os.environ.get('SENTRY_DSN', ''))
 
-    try:
+    reddits = [{
+        'username': 'vogeltron',
+        'password': os.environ['VOGELTRON_PASSWORD'],
+        'team': 'Nationals',
+        'subreddit': 'nationals',
+        'sidebar': True,
+    }, {
+        'username': 'sfgbot',
+        'password': os.environ['SFGBOT_PASSWORD'],
+        'team': 'Giants',
+        'subreddit': 'sfgiants',
+        'sidebar': True,
+        'postgame_thread': True,
+        'gameday_thread': True,
+    }]
 
-        r = reddit.Client(os.environ['VOGELTRON_USERNAME'],
-                          os.environ['VOGELTRON_PASSWORD'])
-
-        team = baseball.team_info(os.environ['VOGELTRON_TEAM'])
-        subreddit = os.environ['VOGELTRON_SUBREDDIT']
-
-        if enabled('VOGELTRON_SIDEBAR'):
-            update_sidebar(r, subreddit, team)
-
-        if enabled('VOGELTRON_POSTGAME_THREAD'):
-            update_post_game_thread(r, subreddit, team)
-
-        if enabled('VOGELTRON_GAMEDAY_THREAD'):
-            update_game_thread(r, subreddit, team)
-
-        logging.info('Stopping bot')
-
-    except Exception as e:
-        sentry.captureException()
-        raise e
+    for subreddit in reddits:
+        try:
+            update(subreddit)
+        except Exception as e:
+            sentry.captureException()
+            raise e
