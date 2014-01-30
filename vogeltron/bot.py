@@ -8,17 +8,44 @@ Usage: In the sidebar description, add the tags [](/statsstart) and
 
 import os
 import logging
+import logging.config
 import datetime
 import re
 import raven
 import jinja2
+
+LOG_SETTINGS = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'INFO',
+            'formatter': 'detailed',
+            'stream': 'ext://sys.stdout',
+        },
+    },
+    'formatters': {
+        'detailed': {
+            'format': ('%(asctime)s %(module)-17s line:%(lineno)-4d '
+                       '%(levelname)-8s %(message)s'),
+        },
+    },
+    'loggers': {
+        'vogeltron': {
+            'level': 'INFO',
+            'handlers': ['console'],
+        },
+    }
+}
+
+logging.config.dictConfig(LOG_SETTINGS)
 
 from . import baseball
 from . import reddit
 from . import filters
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('vogelton')
 
 loader = jinja2.PackageLoader('vogeltron', 'templates')
 env = jinja2.Environment(loader=loader)
@@ -207,8 +234,6 @@ def update(settings):
 
 
 if __name__ == "__main__":
-    logger.basicConfig(level=logger.INFO)
-
     sentry = raven.Client(os.environ.get('SENTRY_DSN', ''))
 
     reddits = [{
