@@ -18,6 +18,8 @@ from . import reddit
 from . import filters
 
 
+logger = logging.getLogger(__name__)
+
 loader = jinja2.PackageLoader('vogeltron', 'templates')
 env = jinja2.Environment(loader=loader)
 env.filters['nationals_team_abbr'] = filters.nationals_team_abbr
@@ -119,14 +121,14 @@ def update_game_thread(r, subreddit, team):
     gametime, espn_id = baseball.next_game(team['links']['schedule'])
 
     if espn_id is None:
-        logging.info("No game_id yet, can't make thread")
+        logger.info("No game_id yet, can't make thread")
         return
 
     teamzone = baseball.division_timezone(team['division'])
     now = datetime.datetime.now(teamzone)
 
     if not thread_open(gametime.astimezone(teamzone), now):
-        logging.info("Not time yet for game #{}".format(espn_id))
+        logger.info("Not time yet for game #{}".format(espn_id))
         return
 
     title, post = gamethread_post(subreddit, espn_id, teamzone)
@@ -134,12 +136,12 @@ def update_game_thread(r, subreddit, team):
     post_id = find_post(r, post_url_prefix(title))
 
     if not post_id:
-        logging.info("Creating game #{} thread".format(espn_id))
+        logger.info("Creating game #{} thread".format(espn_id))
         r.submit(subreddit, title, post)
         post_id = find_post(r, post_url_prefix(title))
         r.sticky(post_id)
     else:
-        logging.info("Editing game #{} thread".format(espn_id))
+        logger.info("Editing game #{} thread".format(espn_id))
         r.edit(post_id, post)
 
 
@@ -162,7 +164,7 @@ def update_post_game_thread(r, subreddit, team):
     past, _ = baseball.schedule(team['division'],
                                 team['links']['schedule'])
     if len(past) == 0:
-        logging.info("No past games, so no post game thread")
+        logger.info("No past games, so no post game thread")
         return
 
     game = past[-1]
@@ -175,7 +177,7 @@ def update_post_game_thread(r, subreddit, team):
     post_id = find_post(r, post_game_url_prefix(title))
 
     if not post_id:
-        logging.info("Creating postgame thread")
+        logger.info("Creating postgame thread")
         r.submit(subreddit, title, post)
 
         post_id = find_post(r, post_game_url_prefix(title))
@@ -192,7 +194,7 @@ def update(settings):
     team = baseball.team_info(settings['team'])
     subreddit = settings['subreddit']
 
-    logging.info('Starting update for /r/' + subreddit)
+    logger.info('Starting update for /r/' + subreddit)
 
     if settings.get('sidebar'):
         update_sidebar(r, subreddit, team)
@@ -205,7 +207,7 @@ def update(settings):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
+    logger.basicConfig(level=logger.INFO)
 
     sentry = raven.Client(os.environ.get('SENTRY_DSN', ''))
 

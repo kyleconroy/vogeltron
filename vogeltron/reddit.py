@@ -4,6 +4,8 @@ import logging
 
 HEADERS = {'User-Agent': "/r/SFGiants Sidebar Bot"}
 
+logger = logging.getLogger(__name__)
+
 
 # Try a request 3 times, with a 1 second wait in between failures
 def _retry(session, method, *args, **kwargs):
@@ -16,7 +18,7 @@ def _retry(session, method, *args, **kwargs):
             if i >= 4:
                 raise e
             else:
-                logging.warn('Retrying {} to {}'.format(method, args))
+                logger.warn('Retrying {} to {}'.format(method, args))
                 time.sleep(1)
 
 

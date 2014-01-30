@@ -9,6 +9,8 @@ import logging
 from urllib import parse
 from bs4 import BeautifulSoup
 
+logger = logging.getLogger(__name__)
+
 USER_AGENT = "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"
 STANDINGS_URL = "http://espn.go.com/mlb/standings"
 TEAMS_URL = "http://espn.go.com/mlb/teams"
@@ -203,20 +205,20 @@ def parse_starting_pitcher(soup, index):
     table = _find_info_table(soup, 'Pitching Matchup')
 
     if table is None:
-        logging.error("Can't find starting pitchers")
+        logger.error("Can't find starting pitchers")
         return None
 
     tds = table.find_all('td')
 
     if len(tds) != 4:
-        logging.error("Not enough table cells in pitching info")
+        logger.error("Not enough table cells in pitching info")
         return None
 
     info = tds[index * 2 + 1].text.replace("\n", " ")
     m = re.search('(.*)\. (.*) (.*), (.*) ERA', info)
 
     if m is None:
-        logging.error("Can't match the pitching info")
+        logger.error("Can't match the pitching info")
         return None
 
     return Pitcher(m.group(2), m.group(3), float(m.group(4)))
@@ -227,7 +229,7 @@ def parse_starting_lineup(soup, index):
     table = _find_info_table(soup, 'Gameday Lineups')
 
     if table is None:
-        logging.error("Can't find starting lineup")
+        logger.error("Can't find starting lineup")
         return []
 
     players = []
