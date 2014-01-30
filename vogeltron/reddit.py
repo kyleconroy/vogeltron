@@ -4,7 +4,7 @@ import logging
 
 HEADERS = {'User-Agent': "/r/SFGiants Sidebar Bot"}
 
-logger = logging.getLogger('vogelton')
+logger = logging.getLogger('vogeltron')
 
 
 # Try a request 3 times, with a 1 second wait in between failures

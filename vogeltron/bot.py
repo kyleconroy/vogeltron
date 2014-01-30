@@ -19,20 +19,19 @@ LOG_SETTINGS = {
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'level': 'INFO',
+            'level': logging.DEBUG,
             'formatter': 'detailed',
-            'stream': 'ext://sys.stdout',
         },
     },
     'formatters': {
         'detailed': {
-            'format': ('%(asctime)s %(module)-17s line:%(lineno)-4d '
+            'format': ('%(asctime)s %(module)-8s line:%(lineno)-4d '
                        '%(levelname)-8s %(message)s'),
         },
     },
     'loggers': {
         'vogeltron': {
-            'level': 'INFO',
+            'level': logging.INFO,
             'handlers': ['console'],
         },
     }
@@ -45,7 +44,7 @@ from . import reddit
 from . import filters
 
 
-logger = logging.getLogger('vogelton')
+logger = logging.getLogger('vogeltron')
 
 loader = jinja2.PackageLoader('vogeltron', 'templates')
 env = jinja2.Environment(loader=loader)
