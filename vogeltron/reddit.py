@@ -39,10 +39,10 @@ class Client(object):
         self.user_hash = resp.json()['data']['modhash']
 
     def get(self, *args, **kwargs):
-        return _retry(self.s or requests, 'GET', *args, **kwargs)
+        return _retry(getattr(self, 's', requests), 'GET', *args, **kwargs)
 
     def post(self, *args, **kwargs):
-        return _retry(self.s or requests, 'POST', *args, **kwargs)
+        return _retry(getattr(self, 's', requests), 'POST', *args, **kwargs)
 
     def _user_where(self, user, where):
         url = "http://www.reddit.com/user/{}/{}.json".format(user, where)
