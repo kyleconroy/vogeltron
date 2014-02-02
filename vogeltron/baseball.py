@@ -2,6 +2,7 @@ import requests
 import datetime
 import pytz
 import re
+import time
 import json
 import os
 import collections
@@ -140,25 +141,33 @@ class Team(object):
         return self.__dict__ == other.__dict__
 
 
-def parse_gametime(date, time):
+def parse_gametime(date, gtime):
     today = datetime.date.today()
 
-    if time.strip() == "POSTPONED":
-        time = "4:05 PM"
+    if gtime.strip() == "POSTPONED":
+        gtime = "4:05 PM"
 
-    if time.strip() == "TBA":
-        time = "4:05 PM"
+    if gtime.strip() == "TBA":
+        gtime = "4:05 PM"
 
-    timestamp = "{} {} {}".format(date.strip(), time.strip(), today.year)
+    timestamp = "{} {} {}".format(date.strip(), gtime.strip(), today.year)
     gametime = datetime.datetime.strptime(timestamp, "%a, %b %d %I:%M %p %Y")
     eastern = pytz.timezone('US/Eastern')
     return eastern.localize(gametime).astimezone(pytz.utc)
 
 
 def make_soup(url):
-    resp = requests.get(url, headers={'User-Agent': USER_AGENT})
-    resp.raise_for_status()
-    return BeautifulSoup(resp.content)
+    for i in range(5):
+        try:
+            resp = requests.get(url, headers={'User-Agent': USER_AGENT})
+            resp.raise_for_status()
+            return BeautifulSoup(resp.content)
+        except requests.exceptions.RequestException as e:
+            if i >= 4:
+                raise e
+            else:
+                logger.warn('Retrying GET to {}'.format(url))
+                time.sleep(1)
 
 
 def division_timezone(division):

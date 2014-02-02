@@ -19,7 +19,7 @@ def _retry(session, method, *args, **kwargs):
                 raise e
             else:
                 logger.warn('Retrying {} to {}'.format(method, args))
-                time.sleep(1)
+                time.sleep(3)
 
 
 class Client(object):
